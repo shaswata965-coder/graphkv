@@ -82,6 +82,10 @@ def test_cli_sweep_resume_and_plot(tmp_path):
     assert len(list(csv.DictReader((out / "summary.csv").open()))) == 5
     assert len((out / "per_prompt.jsonl").read_text().splitlines()) == 30
 
+    # Resuming with different prompts/decoding settings is refused.
+    changed = [a if a != "12" else "20" for a in argv]
+    assert run.main(changed) == 2
+
     assert plot.main([str(out), "--table-interval", "4", "--table-epsilons", "0.5,100"]) == 0
     assert (out / "fig2_metrics.png").stat().st_size > 0
     assert "Max Compression" in (out / "table1.md").read_text()

@@ -215,8 +215,9 @@ def compress_layer(
         key, value: ``[1, num_kv_heads, length, head_dim]``.
         config: compression hyper-parameters.
         valid: optional ``[num_kv_heads, length]`` mask of real entries.
-        weights: optional ``[num_kv_heads, length]`` token counts (only used
-            with ``config.weighted_merge``).
+        weights: optional ``[num_kv_heads, length]`` number of original tokens
+            per entry (tracked for the weighted-merge and proportional-attention
+            extensions). If given, the returned weights are updated to match.
 
     Returns:
         ``(key, value, valid, weights)`` after compression. Each head keeps

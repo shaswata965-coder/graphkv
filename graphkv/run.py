@@ -35,6 +35,13 @@ from .engine import DecodeResult, GraphKVEngine, sequence_nll
 from .models import make_adapter
 from .utils import environment_info, load_model_and_tokenizer, resolve_device, resolve_dtype, set_seed
 
+# Settings that must match to resume into an existing output directory.
+# (Compression hyper-parameters are part of each configuration id instead.)
+RESUME_KEYS = (
+    "model", "device", "dtype", "num_prompts", "min_chars", "max_words", "prompts_file", "min_context",
+    "max_new_tokens", "do_sample", "temperature", "top_k", "top_p", "ignore_eos", "seed",
+)
+
 PAPER_EPSILONS = "0.5,1,2,5,10,15,20,25,30,35,40"
 PAPER_INTERVALS = "8,16,32"
 
@@ -306,6 +313,17 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     out = Path(args.output_dir or f"results/{Path(args.model).name}-{time.strftime('%Y%m%d-%H%M%S')}")
     out.mkdir(parents=True, exist_ok=True)
+    config_path = out / "run_config.json"
+    if config_path.exists():
+        previous = json.loads(config_path.read_text())["args"]
+        diff = [k for k in RESUME_KEYS if previous.get(k) != vars(args).get(k)]
+        if diff:
+            print(
+                f"{out} holds results from different settings ({', '.join(f'{k}: {previous.get(k)!r} -> {vars(args).get(k)!r}' for k in diff)}); "
+                "use a new --output-dir",
+                file=sys.stderr,
+            )
+            return 2
 
     print(f"loading {args.model} on {device} ({dtype}) ...")
     model, tokenizer = load_model_and_tokenizer(args.model, device, dtype)
@@ -318,8 +336,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     items = prepare_prompts(tokenizer, texts, args, adapter.max_positions)
     print(f"  {len(items)} prompts, mean length {mean(len(it.ids) for it in items):.0f} tokens")
 
-    run_config = {"args": vars(args), "environment": environment_info(device), "model_type": model.config.model_type}
-    (out / "run_config.json").write_text(json.dumps(run_config, indent=2, default=str))
+    if not config_path.exists():
+        run_config = {"args": vars(args), "environment": environment_info(device), "model_type": model.config.model_type}
+        config_path.write_text(json.dumps(run_config, indent=2, default=str))
     with (out / "prompts.jsonl").open("w") as f:
         for i, it in enumerate(items):
             f.write(json.dumps({"prompt_idx": i, "text": it.text, "num_tokens": len(it.ids)}) + "\n")
