@@ -1,0 +1,8 @@
+# Install PyTorch first, matching your hardware (see README "Setup"),
+# then: pip install -r requirements.txt
+torch>=2.1
+transformers>=4.45
+datasets>=2.14
+matplotlib>=3.7
+numpy
+pytest>=7

@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "graphkv"
+version = "0.1.0"
+description = "Graph-based dynamic KV-cache compression for transformer inference (ISCAS 2026 reproduction)"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "torch>=2.1",
+    "transformers>=4.45",
+]
+
+[project.optional-dependencies]
+experiments = ["datasets>=2.14", "matplotlib>=3.7", "numpy"]
+test = ["pytest>=7"]
+
+[tool.setuptools.packages.find]
+include = ["graphkv*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::FutureWarning"]
