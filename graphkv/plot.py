@@ -24,6 +24,13 @@ PPL_METRICS = {
     "gen_ppl": "generated text, scored by compressed model itself",
 }
 
+PPL_SHORT = {
+    "tf_ppl": "teacher-forced, compressed model",
+    "seq_ppl": "prompt + generation, full model",
+    "oracle_ppl": "generation, full model",
+    "gen_ppl": "generation, compressed model",
+}
+
 # (summary column, panel title, y label); the perplexity column is chosen at runtime.
 PANELS = [
     ("{ppl}", "Model quality (perplexity)", "Perplexity  (lower is better)"),
@@ -70,7 +77,7 @@ def plot(results_dir: Path, title: Optional[str] = None, ppl_metric: str = "tf_p
     for ax, (key, panel_title, ylabel) in zip(axes.flat, PANELS):
         key = key.format(ppl=ppl_metric)
         if key == ppl_metric:
-            panel_title = f"Perplexity: {PPL_METRICS[ppl_metric]}"
+            panel_title = f"Perplexity: {PPL_SHORT[ppl_metric]}"
         ax.set_facecolor("#fcfcfb")
         for i, (interval, series) in enumerate(sorted(by_interval.items())):
             pts = sorted((num(r, "epsilon"), num(r, key)) for r in series if num(r, key) is not None)

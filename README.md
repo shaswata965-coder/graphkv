@@ -101,8 +101,8 @@ The defaults of `graphkv.run` are the paper's settings: ε grid `0.5,1,2,5,10,15
 
 **Runtime and memory planning.** Each (prompt, configuration) pair runs a timed generation, an untimed
 oracle scoring pass and a teacher-forced pass.
-* GPT-2 on a 4-thread CPU: about 3.5 s per pair, so the full 100-prompt sweep takes about 3.5 hours. Reduce it with
-  `--num-prompts 20` or fewer ε values.
+* GPT-2 on a 4-thread CPU: about 2.8 s per pair (measured), so the full 100-prompt sweep takes about 2.5-3 hours and a
+  20-prompt sweep about 30 minutes. Reduce it with `--num-prompts 20` or fewer ε values.
 * TinyLlama on CPU (fp32): about 5 GB RAM and roughly 10× slower than GPT-2. Prefer a GPU, or run a subset.
 * Fine-tuning TinyLlama in full needs about 18 GB of accelerator memory for weights, gradients and AdamW state.
   GPT-2 fine-tunes on a CPU in under an hour.
@@ -194,7 +194,7 @@ The paper leaves several details open. Each choice below is a flag where reasona
 
 These findings come from runs of this code on pretrained (not fine-tuned) GPT-2, on CPU.
 
-* The **compression curve** reproduces the paper's shape and scale: about 35% at ε=5, about 95% at ε=10 and about 97.8% at ε≥20
+* The **compression curve** reproduces the paper's shape and scale: about 36% at ε=5, about 95% at ε=10 and about 97% at ε≥20
   (M=16), which saturates at `N_sink` plus a few centroids per head.
 * **Throughput** shows the paper's non-monotonic pattern. Small ε costs throughput (clustering work with little reduction).
   Large ε recovers to roughly baseline or slightly above, since the attention context becomes tiny. On short (~300-token)
@@ -204,7 +204,8 @@ These findings come from runs of this code on pretrained (not fine-tuned) GPT-2,
   continuation typically collapses into repetition after the first compression. Judge "near-lossless" with `tf_ppl`,
   `prefix_match` and the generated text in `per_prompt.jsonl`, not with `seq_ppl` alone.
 
-See `docs/example_results.md` for a 20-prompt GPT-2 sweep produced with this code.
+See [`docs/example_results.md`](docs/example_results.md) for a full ε × M sweep on 20 prompts with pretrained GPT-2
+(figures, a Table I comparison with the paper, and all 34 configurations).
 
 ## Supported models and limits
 
