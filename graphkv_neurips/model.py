@@ -399,7 +399,8 @@ class RopeDecoder:
         """Encode independent blocks that share one ``context``; block ``i`` occupies positions ``starts[i] + [0, len)``.
 
         Blocks are right-padded and batched (up to ``max_batch_tokens`` padded
-        tokens per forward pass); the result is identical to encoding each block alone.
+        tokens per forward pass, padding at most half of each batch); the result
+        is identical to encoding each block alone.
         """
         order = sorted(range(len(blocks)), key=lambda i: len(blocks[i]))
         out: List[Optional[Segment]] = [None] * len(blocks)
@@ -424,7 +425,11 @@ class RopeDecoder:
             if len(blocks[i]) == 0:
                 raise ValueError("cannot encode an empty block")
             width = max([len(blocks[j]) for j in group] + [len(blocks[i])])
-            if group and width * (len(group) + 1) > max_batch_tokens:
+            padded = width * (len(group) + 1)
+            real = sum(len(blocks[j]) for j in group) + len(blocks[i])
+            # one long block among short ones would otherwise pad them all to its length
+            # (2Wiki example 9527: 10 x 1595 padded tokens for 2900 real ones, out of memory on an L4)
+            if group and (padded > max_batch_tokens or padded > 2 * real):
                 flush()
             group.append(i)
         flush()

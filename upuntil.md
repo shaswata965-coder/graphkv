@@ -10,7 +10,7 @@ Branch: `graph-kv-neurIPS`. Status as of 2026-10-27.
 |---|---|---|
 | 1 | Find the authors' code and pin it | done |
 | 2 | Reimplement the method and every baseline (`graphkv_neurips/`) | done |
-| 3 | Tests against Hugging Face, the paper's properties and the official functions | done: 58 Graph-KV tests pass (19 more parity tests under transformers 4.50) |
+| 3 | Tests against Hugging Face, the paper's properties and the official functions | done: 59 Graph-KV tests pass (19 more parity tests under transformers 4.50) |
 | 4 | Re-score the authors' released outputs against the paper's tables | done |
 | 5 | Audit paper vs official code vs ours, fix deviations | done; differences documented |
 | 6 | End-to-end check with the paper's 8B model on CPU | done: 99.79% token agreement |
@@ -18,7 +18,8 @@ Branch: `graph-kv-neurIPS`. Status as of 2026-10-27.
 | 8 | Colab notebook and a 200-unit monthly budget | done |
 | 9 | Colab run, cells 1-5 (setup, tests, GPU self-check, debug run) | done on an L4 |
 | 10 | Notebook cells that replicate the paper's Tables 3 and 2 | done, waiting to be run |
-| 11 | Colab cells 6a-6c, then the experiments E3, E1, E2 | **next** |
+| 11 | Colab cell 6a (teacher-forced check on GPU) | HotpotQA done: 99.6-99.7%, every disagreement a bfloat16 tie. 2Wiki ran out of memory; fixed, to re-run |
+| 12 | Colab cells 6b-6c, then the experiments E3, E1, E2 | **next** |
 
 ---
 
@@ -57,8 +58,8 @@ Mistral, Qwen2 and Qwen3 models.
 
 ## Step 3: tests
 
-* `tests/test_gkv_*.py`: 58 pass, 1 skipped (the parity module, which needs transformers 4.50).
-  The whole repository: 123 pass, 1 skipped.
+* `tests/test_gkv_*.py`: 59 pass, 1 skipped (the parity module, which needs transformers 4.50).
+  The whole repository: 124 pass, 1 skipped.
 * What they check:
   * the decoder against Hugging Face: logits within ~2e-7, identical greedy generation;
   * Graph-KV against one Hugging Face forward pass with the graph-structured block mask (Fig. 1);
@@ -150,6 +151,8 @@ structure to matter; NLL alongside accuracy.
 | 4. unit tests | 44 passed in 14 s |
 | 4b. GPU self-check | all checks ok (logits identical to Hugging Face; Graph-KV vs block mask 1.3e-7; moving keys 2.2e-7; official Full 8.9e-8) |
 | 5. debug run (1B model, 5 questions) | pipeline works end to end, 2.7 s per question, ~0 units. Accuracy numbers are meaningless at this size, as expected. 5.2 chunks of ~112 tokens per question; Graph-KV's position span 369 vs 700 for sequential reading |
+| 6a. teacher-forced check, HotpotQA (30 questions, 120 released outputs) | 99.6-99.7% of released tokens are our arg-max under their own method; 97 of 120 outputs agree at every token, and all 28 disagreements are bfloat16 ties (margin at most two steps). Other methods: 94.9-97.8%. Released Top-3 vs the paper layout: 97.0%, 10/30 outputs. Details in `docs/neurips/VERIFICATION.md`, section 1 |
+| 6a. teacher-forced check, 2Wiki (30 questions) | out of GPU memory at example 9527 (one 1595-token chunk padded nine short ones into a 15,950-token batch). Fixed; re-run the cell, it resumes |
 
 ## Step 10: replicating the paper's tables (new cells 6b and 6c)
 
@@ -178,11 +181,12 @@ an L4, is not yet measured.
 | MorehopQA released outputs are in a different order from its data file | released answers are matched by question |
 | notebook summary collector crashed on classification summaries | fixed |
 | a CPU experiment run was interrupted at your request | everything moved to Colab |
+| 2Wiki on the L4 out of GPU memory: one long chunk padded nine short ones to its length (15,950 padded tokens for 2,900 real) | `encode_batch` keeps padding at most half of a batch; the worst padded batch of every planned run is now under 4,800 tokens |
 
 ## Next
 
-1. Colab cell 6a (teacher-forced check on GPU, 30 2Wiki + 30 HotpotQA questions). Then I add the GPU results to
-   `docs/neurips/VERIFICATION.md`.
+1. Re-run the 2Wiki line of Colab cell 6a (`git pull` in cell 3 first; it resumes at example 9527). Then I add the
+   2Wiki GPU results to `docs/neurips/VERIFICATION.md`.
 2. Cells 6b and 6c (Tables 3 and 2 on a sample).
 3. The experiments: E3 (cell 7), E1 (cell 8), E2 (cell 9); optionally Table 4 on Cora.
 4. Not in this budget: ArXiv-QA (Fig. 6) needs an 80 GB GPU.

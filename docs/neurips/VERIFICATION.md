@@ -80,7 +80,68 @@ How it was run:
 * Released runs not checked here:
   * HotpotQA sequential: not released in full;
   * MorehopQA and MultiHop-RAG: same code paths.
-* Notebook cell 6a repeats the check on a GPU with 30 2Wiki and 30 HotpotQA examples.
+* Notebook cell 6a repeats the check on a GPU with 30 2Wiki and 30 HotpotQA examples (below).
+
+### On a GPU: 30 HotpotQA examples (notebook cell 6a, Colab L4)
+
+Same check, run on an NVIDIA L4 in bfloat16 (torch 2.11, transformers 5.20), with 30 stratified HotpotQA examples
+(seed 0) and 120 released outputs. HotpotQA has no `vanilla` row: that run was not released in full (13 of 7405
+outputs). Raw data: `graphkv_runs/e0_verify_hqa.json` on the Colab account's Google Drive.
+
+| released run \ our method | block | graphkv-top1@official | graphkv-top3@official | graphkv-full@official | graphkv-top3 (paper layout) |
+|---|---|---|---|---|---|
+| block (Block-RAG) | **99.7% (30/30)** | 96.3% (13/30) | 96.3% (14/30) | 95.7% (9/30) | 94.9% (10/30) |
+| gapemp_appr_1 (Graph-KV Top-1) | 97.3% (11/30) | **99.7% (30/30)** | 97.0% (16/30) | 96.0% (8/30) | 95.9% (9/30) |
+| gapemp_appr_3 (Graph-KV Top-3) | 96.5% (12/30) | 97.7% (13/30) | **99.6% (30/30)** | 97.8% (14/30) | 97.0% (10/30) |
+| gapemp (Graph-KV Full) | 95.7% (6/30) | 96.1% (6/30) | 97.8% (14/30) | **99.7% (30/30)** | 95.5% (8/30) |
+
+* **Diagonal:** 99.6-99.7% of tokens are our arg-max in every row.
+  * 97 of the 120 outputs agree at every token (block 25, Top-1 24, Top-3 24, Full 24). The other 23 hold the 28
+    disagreements below.
+  * Every disagreement has a logit margin of 0 to 0.25. That is at most one bfloat16 step, except example 5207
+    at position 123, which is two steps. So all 120 outputs count as agreeing.
+  * Ties are about as frequent as in the CPU run: 81% of outputs agree strictly here, 83% (50 of 60) on 2Wiki.
+* **Off-diagonal:** 94.9-97.8%. The closest cell is 1.8 points below its row's diagonal, so the check still tells
+  the methods apart.
+* **Last column:** the released Top-3 outputs agree with the paper layout on 97.0% of tokens (10/30 outputs), and
+  with `graphkv-top3@official` on 99.6% (30/30). This confirms the 2Wiki finding: the RAG numbers come from the
+  released code's positions.
+
+| example | released run | answer tokens | position | our arg-max | released token | logit margin | bf16 step at that logit |
+|---|---|---|---|---|---|---|---|
+| 432 | block | 202 | 103 | `' Great'` | `' Life'` | 0.000 | 0.062 |
+| 432 | block | 202 | 163 | `'Dark'` | `'The'` | 0.125 | 0.125 |
+| 432 | gapemp_appr_3 | 199 | 14 | `' both'` | `' were'` | 0.125 | 0.125 |
+| 432 | gapemp_appr_3 | 199 | 35 | `' a'` | `' an'` | 0.000 | 0.125 |
+| 1497 | gapemp_appr_3 | 71 | 14 | `' as'` | `' and'` | 0.125 | 0.125 |
+| 2231 | gapemp_appr_1 | 103 | 63 | `' it'` | `' premiered'` | 0.125 | 0.125 |
+| 2645 | gapemp_appr_1 | 22 | 7 | `' D'` | `' I'` | 0.250 | 0.250 |
+| 3183 | gapemp | 170 | 122 | `' is'` | `"'s"` | 0.125 | 0.125 |
+| 3397 | gapemp | 88 | 61 | `' is'` | `' has'` | 0.000 | 0.250 |
+| 3694 | gapemp_appr_3 | 61 | 9 | `' portrayed'` | `' who'` | 0.125 | 0.125 |
+| 3854 | block | 212 | 200 | `'<\|end_of_text\|>'` | `' Ridley'` | 0.125 | 0.125 |
+| 3854 | gapemp_appr_1 | 202 | 75 | `'.I'` | `'ang'` | 0.125 | 0.125 |
+| 3854 | gapemp_appr_3 | 200 | 60 | `'G'` | `'N'` | 0.000 | 0.125 |
+| 3854 | gapemp_appr_3 | 200 | 150 | `' may'` | `' is'` | 0.125 | 0.125 |
+| 4170 | gapemp_appr_3 | 118 | 85 | `'<\|end_of_text\|>'` | `' This'` | 0.125 | 0.125 |
+| 4170 | gapemp | 44 | 26 | `' that'` | `' their'` | 0.000 | 0.125 |
+| 4230 | block | 172 | 111 | `' creating'` | `' resulting'` | 0.000 | 0.125 |
+| 4230 | block | 172 | 123 | `' made'` | `' indeed'` | 0.000 | 0.125 |
+| 4230 | gapemp | 144 | 118 | `' have'` | `' are'` | 0.125 | 0.125 |
+| 4842 | gapemp_appr_3 | 55 | 8 | `' former'` | `' Mayweather'` | 0.000 | 0.125 |
+| 4938 | gapemp_appr_1 | 54 | 49 | `'Oh'` | `'T'` | 0.125 | 0.125 |
+| 5175 | gapemp_appr_1 | 68 | 23 | `' on'` | `','` | 0.125 | 0.125 |
+| 5207 | block | 164 | 123 | `' can'` | `' is'` | 0.250 | 0.125 |
+| 5207 | block | 164 | 125 | `' the'` | `' believed'` | 0.000 | 0.125 |
+| 5978 | gapemp | 97 | 58 | `' currently'` | `' the'` | 0.125 | 0.125 |
+| 7011 | gapemp | 59 | 32 | `' this'` | `' the'` | 0.250 | 0.250 |
+| 7231 | block | 200 | 23 | `' II'` | `'us'` | 0.125 | 0.125 |
+| 7231 | gapemp_appr_1 | 55 | 37 | `' was'` | `' founded'` | 0.125 | 0.125 |
+
+The 2Wiki half of cell 6a ran out of GPU memory at example 9527. That example has one 1595-token chunk and nine
+short ones, and `encode_batch` padded all ten into a single 15,950-token batch, for 2,900 real tokens. Batches are
+now split so that padding is at most half of a batch, which brings the worst padded batch of every planned Colab
+run under 4,800 tokens. Re-running the cell resumes after the examples already saved.
 
 ## 2. Component by component
 

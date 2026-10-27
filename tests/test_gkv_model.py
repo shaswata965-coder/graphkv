@@ -55,6 +55,27 @@ def test_chunked_encoding_and_batching_change_nothing():
                 assert (x - y).abs().max() < 1e-5 and (y - z).abs().max() < 1e-5
 
 
+def test_one_long_block_is_not_batched_with_short_ones(monkeypatch):
+    """Padding stays at most half of a batch (2Wiki example 9527 padded nine short chunks to 1595 tokens)."""
+    dec = RopeDecoder(tiny_model("llama"))
+    blocks = [_ids(n, s)[0].tolist() for s, n in enumerate([3, 4, 3, 5, 3, 4, 3, 5, 4, 40])]
+    shapes = []
+    forward = dec.forward
+
+    def spy(ids, *args, **kwargs):
+        shapes.append(tuple(ids.shape))
+        return forward(ids, *args, **kwargs)
+
+    monkeypatch.setattr(dec, "forward", spy)
+    with torch.no_grad():
+        batched = dec.encode_batch(blocks, [0] * len(blocks))
+    assert shapes == [(9, 5), (1, 40)]
+    with torch.no_grad():
+        for b, seg in zip(blocks, batched):
+            _, alone = dec.encode(torch.as_tensor([b]), torch.arange(len(b)).unsqueeze(0))
+            assert all((x - y).abs().max() < 1e-5 for x, y in zip(seg.keys, alone.keys))
+
+
 def test_kv_buffer_decoding_matches_huggingface_generate():
     model = tiny_model("llama")
     dec = RopeDecoder(model)
