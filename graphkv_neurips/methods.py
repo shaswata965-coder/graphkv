@@ -291,6 +291,8 @@ def parse_method(spec: str, *, bos_id: Optional[int] = None) -> Method:
         return Method("graphkv", plan=lambda p: GraphPlan.rag_full(len(p.chunks), view=view), layout=layout, label=spec)
     if base.startswith(("graphkv-top", "noedge-top")):
         edges = base.startswith("graphkv")
+        if not edges and variant == "official":
+            raise ValueError("the official code has no no-edge variant")
         m = int(base.split("-top", 1)[1])
 
         def top_m(p: Prompt) -> GraphPlan:
@@ -303,12 +305,14 @@ def parse_method(spec: str, *, bos_id: Optional[int] = None) -> Method:
     if base.startswith("graphkv-chain"):
         # graphkv-chain1-3: Top1 -> Top2-4 -> rest; graphkv-chain1-2-2: Top1 -> Top2-3 -> Top4-5 -> rest
         sizes = [int(x) for x in base[len("graphkv-chain") :].split("-")]
-        if variant:
-            raise ValueError("chains have no official variant")
-        return Method("graphkv", plan=lambda p: GraphPlan.chain(_chain_groups(p.relevance_order(), sizes), len(p.chunks)), label=spec)
+        if variant == "official":
+            raise ValueError("chains have no official variant (no code was released for Appendix A.1.2)")
+        return Method("graphkv", plan=lambda p: GraphPlan.chain(_chain_groups(p.relevance_order(), sizes), len(p.chunks)), layout=layout, label=spec)
     if base == "graphkv-star":
         # citation ego-graph: every chunk but the last is a reference of the last (central) chunk
-        return Method("graphkv", plan=lambda p: GraphPlan.star(len(p.chunks) - 1), label=spec)
+        if variant == "official":
+            raise ValueError("the official ego-graph code uses the paper layout; drop '@official'")
+        return Method("graphkv", plan=lambda p: GraphPlan.star(len(p.chunks) - 1), layout=layout, label=spec)
     raise ValueError(f"unknown method '{spec}'")
 
 
