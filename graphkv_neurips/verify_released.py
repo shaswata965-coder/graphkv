@@ -79,6 +79,20 @@ def cleanup_only(predicted: str, released: str) -> bool:
     return predicted != released and predicted.strip() == released.strip() and bool(released.strip()) and released.strip()[0] in _PUNCT
 
 
+def near_tie(margin: float, top_logit: float, ulps: int = 2) -> bool:
+    """True when our arg-max beats the released token by at most ``ulps`` bfloat16 steps at that logit size.
+
+    bfloat16 keeps 8 significant bits, so logits around 20 are only resolved to 0.125;
+    the official run (bf16 FlashAttention on GPU) and this one can break such ties differently.
+    """
+    import math
+
+    if top_logit == 0:
+        return margin <= 0
+    step = 2.0 ** (math.floor(math.log2(abs(top_logit))) - 7)
+    return margin <= ulps * step + 1e-6
+
+
 @torch.no_grad()
 def teacher_forced(dec: RopeDecoder, prepared: Prepared, answers: List[List[int]], tok=None) -> List[dict]:
     """Arg-max agreement and NLL of each answer after the prepared context (answers batched)."""
@@ -108,9 +122,11 @@ def teacher_forced(dec: RopeDecoder, prepared: Prepared, answers: List[List[int]
             pairs = [(tok.decode([int(pred[j])]), tok.decode([a[j]])) for j in miss]
             # margin: how much our arg-max beats the released token (in logits); small = a near-tie
             rec["mismatches"] = [
-                dict(pos=j, ours=p, released=r, margin=round(float(lg[j, pred[j]] - lg[j, a[j]]), 4)) for j, (p, r) in zip(miss, pairs)
+                dict(pos=j, ours=p, released=r, margin=round(float(lg[j, pred[j]] - lg[j, a[j]]), 4), top_logit=round(float(lg[j, pred[j]]), 3))
+                for j, (p, r) in zip(miss, pairs)
             ]
             rec["cleanup_only"] = all(cleanup_only(p, r) for p, r in pairs)
+            rec["near_tie_only"] = all(near_tie(m["margin"], m["top_logit"]) for m in rec["mismatches"])
         out.append(rec)
     return out
 
@@ -182,7 +198,8 @@ def report(results: List[dict], runs: List[str], methods: List[str]) -> str:
     """Token-weighted agreement matrix (rows: released run, columns: our method).
 
     "exact" counts outputs whose every token is our arg-max; mismatches that are only
-    the decode clean-up of the released text (a space before punctuation) count as exact.
+    the decode clean-up of the released text (a space before punctuation) or bfloat16
+    near-ties (see :func:`near_tie`) count as exact.
     """
     lines = ["| released run \\ our method | " + " | ".join(methods) + " |", "|---" * (len(methods) + 1) + "|"]
     for r in runs:
@@ -194,7 +211,7 @@ def report(results: List[dict], runs: List[str], methods: List[str]) -> str:
                 if c:
                     hits += c["agree"] * c["tokens"]
                     toks += c["tokens"]
-                    exact += c["first_mismatch"] is None or bool(c.get("cleanup_only"))
+                    exact += c["first_mismatch"] is None or bool(c.get("cleanup_only")) or bool(c.get("near_tie_only"))
                     n += 1
             cell = f"{100 * hits / toks:.1f}% ({exact}/{n} exact)" if toks else ""
             cells.append(f"**{cell}**" if RUNS.get(r) == m else cell)
