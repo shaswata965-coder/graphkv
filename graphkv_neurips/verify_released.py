@@ -46,6 +46,17 @@ EXTRA_METHODS = ("graphkv-top3",)  # paper layout: shows how far the released co
 SPECIAL = ("<|end_of_text|>", "<|eot_id|>", "<|im_end|>")
 
 
+def _release_memory() -> None:
+    """Free Python garbage and hand freed heap pages back to the OS (matters on RAM-limited CPU runs)."""
+    gc.collect()
+    try:
+        import ctypes
+
+        ctypes.CDLL("libc.so.6").malloc_trim(0)
+    except (OSError, AttributeError):
+        pass
+
+
 def _clean(text: str) -> str:
     for s in SPECIAL:
         text = text.split(s)[0]
@@ -183,7 +194,7 @@ def main(argv=None) -> None:
             for r, res in zip(names, teacher_forced(dec, prepared, [answers[r] for r in names], tok)):
                 rec["cells"][f"{r}|{spec}"] = res
             del prepared
-            gc.collect()
+            _release_memory()
         rec["seconds"] = round(time.time() - t0, 1)
         results.append(rec)
         os.makedirs(os.path.dirname(args.output) or ".", exist_ok=True)
