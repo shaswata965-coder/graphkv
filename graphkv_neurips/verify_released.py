@@ -154,7 +154,13 @@ def main(argv=None) -> None:
     ap.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     ap.add_argument("--threads", type=int, default=None)
     ap.add_argument("--output", required=True)
+    ap.add_argument("--report-only", action="store_true", help="print the Markdown report of an existing --output file")
     args = ap.parse_args(argv)
+    if args.report_only:
+        with open(args.output) as f:
+            saved = json.load(f)
+        print(markdown(saved))
+        return
     if args.threads:
         torch.set_num_threads(args.threads)
 
@@ -203,6 +209,29 @@ def main(argv=None) -> None:
         diag = [rec["cells"][f"{r}|{RUNS[r]}"]["agree"] for r in answers]
         print(f"example {ex.index} ({rec['seconds']}s): own-method agreement " + ", ".join(f"{a:.3f}" for a in diag), flush=True)
     print(report(results, runs, methods))
+
+
+def markdown(saved: dict) -> str:
+    """Agreement matrix plus every disagreement on the diagonal, with its logit margin."""
+    results, runs, methods = saved["examples"], saved["runs"], saved["methods"]
+    lines = [f"{len(results)} examples of {saved['task']}, model `{saved['model']}`.", "", report(results, runs, methods), ""]
+    rows = []
+    for ex in results:
+        for r in runs:
+            c = ex["cells"].get(f"{r}|{RUNS[r]}")
+            for m in (c or {}).get("mismatches", []):
+                step = None
+                if "top_logit" in m and m["top_logit"]:
+                    import math
+
+                    step = 2.0 ** (math.floor(math.log2(abs(m["top_logit"]))) - 7)
+                rows.append((ex["index"], r, c["tokens"], m, step))
+    if rows:
+        lines += ["Disagreements between a released run and its own method (all positions):", "",
+                  "| example | run | answer tokens | position | ours | released | logit margin | bf16 step at that logit |", "|---|---|---|---|---|---|---|---|"]
+        for idx, r, n, m, step in rows:
+            lines.append(f"| {idx} | {r} | {n} | {m['pos']} | `{m['ours']!r}` | `{m['released']!r}` | {m['margin']:.3f} | {'' if step is None else f'{step:.3f}'} |")
+    return "\n".join(lines)
 
 
 def report(results: List[dict], runs: List[str], methods: List[str]) -> str:
