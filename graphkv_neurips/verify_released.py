@@ -67,8 +67,20 @@ def _released(task: str, run: str, indices: set, data_dir=None, model_dir="ldsjm
     return out
 
 
+_PUNCT = set(".,!?;:'\")]}")
+
+
+def cleanup_only(predicted: str, released: str) -> bool:
+    """True when two tokens differ only by a space before punctuation.
+
+    transformers 4.50 decoded the released text with ``clean_up_tokenization_spaces``
+    (Tulu's tokenizer config), which deletes such spaces, so re-tokenising the stored
+    text cannot recover a generated " ," or " 's"."""
+    return predicted != released and predicted.strip() == released.strip() and bool(released.strip()) and released.strip()[0] in _PUNCT
+
+
 @torch.no_grad()
-def teacher_forced(dec: RopeDecoder, prepared: Prepared, answers: List[List[int]]) -> List[dict]:
+def teacher_forced(dec: RopeDecoder, prepared: Prepared, answers: List[List[int]], tok=None) -> List[dict]:
     """Arg-max agreement and NLL of each answer after the prepared context (answers batched)."""
     q = list(prepared.query_ids)
     seg, start = prepared.segment, prepared.query_start
@@ -87,10 +99,16 @@ def teacher_forced(dec: RopeDecoder, prepared: Prepared, answers: List[List[int]
     for b, a in enumerate(answers):
         lg = logits[b, : len(a)].float()
         target = torch.as_tensor(a, device=lg.device)
-        hit = lg.argmax(-1) == target
-        miss = (~hit).nonzero()
-        out.append(dict(tokens=len(a), agree=float(hit.float().mean()), first_mismatch=int(miss[0]) if len(miss) else None,
-                        nll=float(torch.nn.functional.cross_entropy(lg, target))))
+        pred = lg.argmax(-1)
+        hit = pred == target
+        miss = (~hit).nonzero().view(-1).tolist()
+        rec = dict(tokens=len(a), agree=float(hit.float().mean()), first_mismatch=miss[0] if miss else None,
+                   nll=float(torch.nn.functional.cross_entropy(lg, target)))
+        if tok is not None and miss:
+            pairs = [(tok.decode([int(pred[j])]), tok.decode([a[j]])) for j in miss]
+            rec["mismatches"] = [dict(pos=j, ours=p, released=r) for j, (p, r) in zip(miss, pairs)]
+            rec["cleanup_only"] = all(cleanup_only(p, r) for p, r in pairs)
+        out.append(rec)
     return out
 
 
@@ -143,7 +161,7 @@ def main(argv=None) -> None:
         for spec in methods:
             prepared = prepare(dec, prompt, parse_method(spec, bos_id=tok.bos_token_id), pad_id=tok.pad_token_id or 0)
             names = list(answers)
-            for r, res in zip(names, teacher_forced(dec, prepared, [answers[r] for r in names])):
+            for r, res in zip(names, teacher_forced(dec, prepared, [answers[r] for r in names], tok)):
                 rec["cells"][f"{r}|{spec}"] = res
             del prepared
             gc.collect()
@@ -158,7 +176,11 @@ def main(argv=None) -> None:
 
 
 def report(results: List[dict], runs: List[str], methods: List[str]) -> str:
-    """Token-weighted agreement matrix (rows: released run, columns: our method)."""
+    """Token-weighted agreement matrix (rows: released run, columns: our method).
+
+    "exact" counts outputs whose every token is our arg-max; mismatches that are only
+    the decode clean-up of the released text (a space before punctuation) count as exact.
+    """
     lines = ["| released run \\ our method | " + " | ".join(methods) + " |", "|---" * (len(methods) + 1) + "|"]
     for r in runs:
         cells = []
@@ -169,7 +191,7 @@ def report(results: List[dict], runs: List[str], methods: List[str]) -> str:
                 if c:
                     hits += c["agree"] * c["tokens"]
                     toks += c["tokens"]
-                    exact += c["first_mismatch"] is None
+                    exact += c["first_mismatch"] is None or bool(c.get("cleanup_only"))
                     n += 1
             cell = f"{100 * hits / toks:.1f}% ({exact}/{n} exact)" if toks else ""
             cells.append(f"**{cell}**" if RUNS.get(r) == m else cell)
