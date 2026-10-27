@@ -208,7 +208,7 @@ def main(argv=None) -> None:
             json.dump(dict(model=args.model, task=args.task, runs=runs, methods=methods, examples=results), f, indent=1)
         diag = [rec["cells"][f"{r}|{RUNS[r]}"]["agree"] for r in answers]
         print(f"example {ex.index} ({rec['seconds']}s): own-method agreement " + ", ".join(f"{a:.3f}" for a in diag), flush=True)
-    print(report(results, runs, methods))
+    print(markdown(dict(model=args.model, task=args.task, runs=runs, methods=methods, examples=results)))
 
 
 def markdown(saved: dict) -> str:
