@@ -106,7 +106,10 @@ def teacher_forced(dec: RopeDecoder, prepared: Prepared, answers: List[List[int]
                    nll=float(torch.nn.functional.cross_entropy(lg, target)))
         if tok is not None and miss:
             pairs = [(tok.decode([int(pred[j])]), tok.decode([a[j]])) for j in miss]
-            rec["mismatches"] = [dict(pos=j, ours=p, released=r) for j, (p, r) in zip(miss, pairs)]
+            # margin: how much our arg-max beats the released token (in logits); small = a near-tie
+            rec["mismatches"] = [
+                dict(pos=j, ours=p, released=r, margin=round(float(lg[j, pred[j]] - lg[j, a[j]]), 4)) for j, (p, r) in zip(miss, pairs)
+            ]
             rec["cleanup_only"] = all(cleanup_only(p, r) for p, r in pairs)
         out.append(rec)
     return out
