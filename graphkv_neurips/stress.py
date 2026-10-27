@@ -14,8 +14,14 @@ their KV caches.
   time with the node KV caches already pre-filled (re-used across queries) are
   reported.
 
-    python -m graphkv_neurips.stress memory --model Qwen/Qwen2.5-0.5B-Instruct --words 500 --neighbors 2,4,8,16
+    python -m graphkv_neurips.stress memory --model Qwen/Qwen2.5-0.5B-Instruct --words 500,1000 --neighbors 2,4,8,16
     python -m graphkv_neurips.stress ttft --model Qwen/Qwen2.5-0.5B-Instruct --words 100,200,400,800
+
+Paper settings (Appendix A.2.4): node text from the first Cora test sample, 500 and
+1000 words per node for memory, 100-800 words and 10 neighbours for TTFT. The
+paper measures GPU memory with ``torch.cuda.max_memory_allocated``; here the
+peak resident memory of the process is used, so CPU runs are comparable among
+themselves, not with the paper's GPU numbers.
 """
 
 from __future__ import annotations
@@ -42,13 +48,27 @@ DEFAULT_TEXT = (
 
 
 def node_text(words: int, text: str = DEFAULT_TEXT) -> str:
+    """Repeat or truncate ``text`` to ``words`` words (Appendix A.2.4)."""
     base = text.split()
     out = (base * (words // len(base) + 1))[:words]
     return " ".join(out) + "\n"
 
 
+def source_text(kind: str = "cora") -> str:
+    """The paper extracts the text "from the first test sample of the Cora dataset"; ``builtin`` avoids the download."""
+    if kind == "cora":
+        from .tag_data import load_tag
+
+        graph = load_tag("cora")
+        return graph.texts[int(graph.masks["test_mask"].nonzero()[0])]
+    return DEFAULT_TEXT
+
+
+_TEXT = {"value": DEFAULT_TEXT}
+
+
 def star_prompt(tok, neighbors: int, words: int) -> Prompt:
-    node = tok(node_text(words), add_special_tokens=False).input_ids
+    node = tok(node_text(words, _TEXT["value"]), add_special_tokens=False).input_ids
     prefix = tok("You will read several papers, then answer.\n", add_special_tokens=False).input_ids
     query = tok("\nQuestion: what is the central paper about?\nAnswer:", add_special_tokens=False).input_ids
     chunks = [list(node) for _ in range(neighbors + 1)]
@@ -80,7 +100,7 @@ def _child(args) -> None:
     """One configuration in this process; prints a JSON line."""
     from .run_rag import load_model
 
-    tok, model = load_model(args.model, args.dtype, "cpu", args.threads)
+    tok, model = load_model(args.model, args.dtype, args.device, args.threads)
     from .model import RopeDecoder
 
     dec = RopeDecoder(model)
@@ -92,8 +112,14 @@ def _child(args) -> None:
     import gc
 
     gc.collect()
-    base = _rss_mb()
-    _reset_peak()
+    cuda = args.device.startswith("cuda")
+    if cuda:  # the paper: torch.cuda.reset_peak_memory_stats() / max_memory_allocated()
+        torch.cuda.synchronize()
+        torch.cuda.reset_peak_memory_stats()
+        base = torch.cuda.memory_allocated() / 2**20
+    else:
+        base = _rss_mb()
+        _reset_peak()
     t0 = time.perf_counter()
     if args.method == "sequential":
         prepared = prepare(dec, prompt, method)
@@ -101,8 +127,10 @@ def _child(args) -> None:
         enc = encode_graph(dec, prompt.prefix, prompt.chunks, method.plan(prompt), max_batch_tokens=args.batch_tokens)
         prepared = Prepared(enc.segment, prompt.query, enc.query_start)
     _, first_s, _ = decode(dec, prepared, max_new_tokens=1)
+    if cuda:
+        torch.cuda.synchronize()
     elapsed = time.perf_counter() - t0
-    peak = _rss_peak_mb()
+    peak = torch.cuda.max_memory_allocated() / 2**20 if cuda else _rss_peak_mb()
     n_tokens = len(prompt.prefix) + sum(map(len, prompt.chunks)) + len(prompt.query)
     print(json.dumps(dict(method=args.method, neighbors=args.k, words=args.w, tokens=n_tokens, base_mb=round(base, 1), peak_mb=round(peak, 1), extra_mb=round(peak - base, 1), seconds=round(elapsed, 3))))
 
@@ -113,7 +141,8 @@ def run_memory(args) -> List[dict]:
         for method in ("sequential", "graphkv"):
             for k in [int(n) for n in args.neighbors.split(",")]:
                 cmd = [sys.executable, "-m", "graphkv_neurips.stress", "_child", "--model", args.model, "--dtype", args.dtype,
-                       "--method", method, "--k", str(k), "--w", str(words), "--batch-tokens", str(args.batch_tokens)]
+                       "--method", method, "--k", str(k), "--w", str(words), "--batch-tokens", str(args.batch_tokens), "--text", args.text,
+                       "--device", args.device]
                 if args.threads:
                     cmd += ["--threads", str(args.threads)]
                 out = subprocess.run(cmd, capture_output=True, text=True)
@@ -131,7 +160,7 @@ def run_ttft(args) -> List[dict]:
     from .model import RopeDecoder
     from .run_rag import load_model
 
-    tok, model = load_model(args.model, args.dtype, "cpu", args.threads)
+    tok, model = load_model(args.model, args.dtype, args.device, args.threads)
     dec = RopeDecoder(model)
     rows = []
     for words in [int(w) for w in args.words.split(",")]:
@@ -144,6 +173,8 @@ def run_ttft(args) -> List[dict]:
             seq_s = time.perf_counter() - t0
             t0 = time.perf_counter()
             enc = encode_graph(dec, prompt.prefix, prompt.chunks, plan)
+            if args.device.startswith("cuda"):
+                torch.cuda.synchronize()
             prefill_s = time.perf_counter() - t0
             cached = Prepared(enc.segment, prompt.query, enc.query_start)
             t1 = time.perf_counter()
@@ -161,19 +192,22 @@ def main(argv=None) -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("mode", choices=["memory", "ttft", "_child"])
     ap.add_argument("--model", default="Qwen/Qwen2.5-0.5B-Instruct")
-    ap.add_argument("--dtype", default="float32")
+    ap.add_argument("--dtype", default="auto")
+    ap.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     ap.add_argument("--threads", type=int, default=None)
     ap.add_argument("--words", default="500")
     ap.add_argument("--neighbors", default="2,4,8,16")
     ap.add_argument("--ttft-neighbors", type=int, default=10)
     ap.add_argument("--repeats", type=int, default=3)
     ap.add_argument("--batch-tokens", type=int, default=16384, help="Graph-KV: padded tokens per prefill batch")
+    ap.add_argument("--text", choices=["cora", "builtin"], default="cora", help="node text: first Cora test sample (paper) or a built-in paragraph")
     ap.add_argument("--output", default=None)
     # child-only
     ap.add_argument("--method", default="sequential")
     ap.add_argument("--k", type=int, default=2)
     ap.add_argument("--w", type=int, default=500)
     args = ap.parse_args(argv)
+    _TEXT["value"] = source_text(args.text)
     if args.mode == "_child":
         _child(args)
         return

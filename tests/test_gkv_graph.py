@@ -148,6 +148,18 @@ def test_rag_plans_follow_the_paper():
     assert all(src == [(1, 0)] for src in reordered.rounds[0].values())
 
 
+def test_global_layout_uses_the_longest_chunk_overall():
+    """@global: level t starts at P + t * L with L the longest chunk (literal Sec. 3.1); default: after the longest source."""
+    dec = RopeDecoder(tiny_model("llama"))
+    chunks = [_tokens(9, 1), _tokens(4, 2)]  # chunk 1 is the top-1 source (4 tokens), chunk 0 the longer target
+    prompt = Prompt([1, 2], chunks, [3])
+    default = prepare(dec, prompt, parse_method("graphkv-top1"))
+    literal = prepare(dec, prompt, parse_method("graphkv-top1@global"))
+    assert default.segment.positions.tolist() == [0, 1] + list(range(2, 6)) + list(range(6, 15))
+    assert literal.segment.positions.tolist() == [0, 1] + list(range(2, 6)) + list(range(11, 20))
+    assert (default.query_start, literal.query_start) == (15, 20)
+
+
 def test_multi_hop_chain_uses_one_position_range_per_hop():
     """Appendix A.1.2: Top1 -> Top2-4 -> rest, with ranges [P, P+L), [P+L, P+2L), [P+2L, P+3L)."""
     dec = RopeDecoder(tiny_model("llama"))

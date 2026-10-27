@@ -17,6 +17,7 @@ the logits equal Hugging Face's for plain causal decoding.
 
 from __future__ import annotations
 
+import contextlib
 from dataclasses import dataclass
 from typing import Callable, List, Optional, Sequence, Tuple
 
@@ -168,6 +169,8 @@ class RopeDecoder:
         self.sliding_window = self._sliding_window(cfg)
         rope = getattr(cfg, "rope_scaling", None) or getattr(cfg, "rope_parameters", None) or {}
         self.rope_type = rope.get("rope_type", rope.get("type")) if isinstance(rope, dict) else None
+        # optional: layer index -> context manager that makes the layer's weights available (see lowmem.py)
+        self.layer_hook: Optional[Callable[[int], object]] = None
 
     @staticmethod
     def _sliding_window(cfg) -> Optional[int]:
@@ -261,33 +264,8 @@ class RopeDecoder:
         new_keys: List[torch.Tensor] = []
         new_values: List[torch.Tensor] = []
         for i, layer in enumerate(self.layers):
-            attn = layer.self_attn
-            x = layer.input_layernorm(h)
-            q = attn.q_proj(x).view(bsz, q_len, self.num_heads, self.head_dim)
-            k = attn.k_proj(x).view(bsz, q_len, self.num_kv_heads, self.head_dim)
-            v = attn.v_proj(x).view(bsz, q_len, self.num_kv_heads, self.head_dim).transpose(1, 2)
-            if self.qk_norm:
-                q, k = attn.q_norm(q), attn.k_norm(k)
-            q, k = q.transpose(1, 2), k.transpose(1, 2)
-            q = q * cos + _rotate_half(q) * sin
-            k = k * cos + _rotate_half(k) * sin
-            new_keys.append(k)
-            new_values.append(v)
-            if cache is not None:
-                keys, values = cache.write(i, k, v)
-            elif context is not None:
-                keys = torch.cat([context.keys[i].to(k.dtype).expand(bsz, -1, -1, -1), k], dim=2)
-                values = torch.cat([context.values[i].to(v.dtype).expand(bsz, -1, -1, -1), v], dim=2)
-            else:
-                keys, values = k, v
-            if probe is not None:
-                probe(i, q, keys)
-            if ape is not None:
-                out = self._ape_attention(q, keys, values, ctx_len, ape)
-            else:
-                out = self._attention(q, keys, values, mask)
-            h = h + attn.o_proj(out.transpose(1, 2).reshape(bsz, q_len, self.num_heads * self.head_dim))
-            h = h + layer.mlp(layer.post_attention_layernorm(h))
+            with self.layer_hook(i) if self.layer_hook is not None else contextlib.nullcontext():
+                h = self._layer(i, layer, h, cos, sin, bsz, q_len, ctx_len, mask, cache, context, new_keys, new_values, ape, probe)
         if cache is not None:
             cache.commit(positions.to(cache.positions.device))
         if logits == "none":
@@ -303,6 +281,36 @@ class RopeDecoder:
         elif logits != "all":
             raise ValueError("logits must be 'last', 'all', 'none' or a positive int")
         return self.model.lm_head(self.base.norm(h)), new_keys, new_values
+
+    def _layer(self, i, layer, h, cos, sin, bsz, q_len, ctx_len, mask, cache, context, new_keys, new_values, ape, probe) -> torch.Tensor:
+        """One decoder layer; appends the new tokens' KV of layer ``i`` to ``new_keys`` / ``new_values``."""
+        attn = layer.self_attn
+        x = layer.input_layernorm(h)
+        q = attn.q_proj(x).view(bsz, q_len, self.num_heads, self.head_dim)
+        k = attn.k_proj(x).view(bsz, q_len, self.num_kv_heads, self.head_dim)
+        v = attn.v_proj(x).view(bsz, q_len, self.num_kv_heads, self.head_dim).transpose(1, 2)
+        if self.qk_norm:
+            q, k = attn.q_norm(q), attn.k_norm(k)
+        q, k = q.transpose(1, 2), k.transpose(1, 2)
+        q = q * cos + _rotate_half(q) * sin
+        k = k * cos + _rotate_half(k) * sin
+        new_keys.append(k)
+        new_values.append(v)
+        if cache is not None:
+            keys, values = cache.write(i, k, v)
+        elif context is not None:
+            keys = torch.cat([context.keys[i].to(k.dtype).expand(bsz, -1, -1, -1), k], dim=2)
+            values = torch.cat([context.values[i].to(v.dtype).expand(bsz, -1, -1, -1), v], dim=2)
+        else:
+            keys, values = k, v
+        if probe is not None:
+            probe(i, q, keys)
+        if ape is not None:
+            out = self._ape_attention(q, keys, values, ctx_len, ape)
+        else:
+            out = self._attention(q, keys, values, mask)
+        h = h + attn.o_proj(out.transpose(1, 2).reshape(bsz, q_len, self.num_heads * self.head_dim))
+        return h + layer.mlp(layer.post_attention_layernorm(h))
 
     def _repeat_kv(self, t: torch.Tensor) -> torch.Tensor:
         if self.num_kv_heads == self.num_heads:

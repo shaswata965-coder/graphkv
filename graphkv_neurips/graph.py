@@ -252,6 +252,25 @@ class PaperLayout:
         return [placement.compute[s] for s in sources]
 
 
+class GlobalPaperLayout(PaperLayout):
+    """Literal reading of Sec. 3.1: level ``t`` starts at ``P + t * L`` with ``L`` the longest chunk overall.
+
+    :class:`PaperLayout` instead starts each level where the longest
+    representation of the previous level ends, as the official ArXiv-QA code
+    does (``pcw_parallel.gapemp_graph``: the central paper starts right after
+    the longest reference). The two coincide when the sources include the
+    longest chunk.
+    """
+
+    name = "paper-global"
+
+    def assign(self, plan: GraphPlan, lengths: Sequence[int], prefix_len: int) -> "Placement":
+        L = max(lengths) if lengths else 0
+        compute = {inst: prefix_len + inst[1] * L for inst in plan.instances()}
+        view_end = max([compute[i] + lengths[i[0]] for i in plan.query_view] + [prefix_len])
+        return Placement(compute=compute, view=dict(compute), query_start=view_end)
+
+
 class LocalPaperLayout(PaperLayout):
     """Like :class:`PaperLayout`, but a target starts right after the longest of *its own* sources.
 
@@ -313,7 +332,7 @@ class SequentialRAGLayout:
         return starts
 
 
-LAYOUTS = {"paper": PaperLayout, "paper-local": LocalPaperLayout, "sequential": SequentialRAGLayout}
+LAYOUTS = {"paper": PaperLayout, "paper-global": GlobalPaperLayout, "paper-local": LocalPaperLayout, "sequential": SequentialRAGLayout}
 
 
 @dataclass

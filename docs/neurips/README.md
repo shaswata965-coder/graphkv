@@ -20,14 +20,16 @@ paper with a similar name (the ISCAS 2026 KV-cache compression paper; see the to
 | offline parallel encoding `h^(0)` of every chunk | `model.RopeDecoder.encode_batch` |
 | structure-aware attention: a target re-encoded on the KV of its sources `N(j)` (Sec. 3.1) | `graph.encode_graph`, `graph.GraphPlan.rounds` |
 | graph-structured block mask (Fig. 1) | the same computation; `tests/test_gkv_graph.py` checks it against one Hugging Face forward pass with that mask |
-| shared PEs: sources `[0, L)`, targets `[L, 2L)`, query after (Sec. 3.1, Fig. 2) | `graph.PaperLayout` |
+| shared PEs: sources `[0, L)`, targets `[L, 2L)`, query after (Sec. 3.1, Fig. 2) | `graph.PaperLayout` (L = longest source, as the official ArXiv-QA code); `@global` = `graph.GlobalPaperLayout` (L = longest chunk overall, literal Sec. 3.1) |
 | multi-round propagation, `[2L, 3L)`, ... (Sec. 3.1, Appendix A.1.2) | `GraphPlan.chain`, `graphkv-chain1-3` |
 | RAG bipartite graph: top-m sources → remaining targets (Fig. 3), Graph-KV-Full | `GraphPlan.top_m`, `GraphPlan.rag_full` |
-| citation ego-graph (ArXiv-QA, paper classification) | `GraphPlan.star`, `prompts.PromptBuilder.arxiv_text / classify_text` |
-| baselines: sequential, PCW, APE (T = S = 0.9), Block-RAG | `methods.py` |
+| Task 1, RAG (Sec. 4.1, Tables 2, 3, 5, 6) | `run_rag.py`, data `data.load_rag` (the official processed data) |
+| Task 2, ArXiv-QA (Sec. 4.2, Fig. 6) | `run_arxiv.py` (prompts, distractor sampling, per-method blocks and token limits of `arxiv_inference.py`) |
+| Task 3, paper classification (Sec. 4.3, Table 4) | `run_classify.py`, data `tag_data.py` (Cora / PubMed of `Graph-COM/Text-Attributed-Graphs`) |
+| Task 4, stress test (Sec. 4.4) | `stress.py` |
+| baselines: sequential, PCW, APE (T = S = 0.9, BOS before the question as in APE's code), Block-RAG | `methods.py` |
 | prompts of Appendix A.2 | `prompts.py` (`style="tulu"` reproduces the official strings) |
 | metrics: subspan EM, MultiHop-RAG, MorehopQA | `metrics.py` |
-| stress test (Sec. 4.4) | `stress.py` |
 
 The decoder (`model.py`) reuses a Hugging Face model's modules and implements only the attention over an explicit
 context. It does this because the official code gets its masks from FlashAttention-2's bottom-right causal alignment
@@ -60,9 +62,10 @@ Greedy outputs are compared over the whole generation, up to 1024 tokens.
 
 | official function | this implementation | result |
 |---|---|---|
-| `pcw_parallel.gapemp_graph` (ArXiv-QA Graph-KV) | `graphkv-star` | identical |
-| `pcw_parallel.gapemp_graph_batch` (with a distractor ego-graph) | star plans, `layout="paper-local"` | identical |
-| `pcw_parallel.block` (ArXiv-QA Block-RAG) | `block` | identical |
+| `pcw_parallel.gapemp_graph` (ArXiv-QA Graph-KV) | `graphkv-star`; `run_arxiv.build` | identical |
+| `pcw_parallel.gapemp_graph_batch` (with a distractor ego-graph) | `run_arxiv.build` (star plans, `layout="paper-local"`) | identical |
+| `pcw_parallel.block`, `block_batch` (ArXiv-QA Block-RAG) | `block`; `run_arxiv.build` | identical |
+| `utils.build_prefix`, `docs2blocks`, `build_suffix` (all 6 RAG tasks) | `prompts.PromptBuilder(style="tulu")` | byte-identical |
 | `pcw.gapemp` (RAG Graph-KV-Full) | `graphkv-full@official` | identical |
 | `pcw.gapemp_appr`, k = 1 and 3 | `graphkv-top1@official`, `graphkv-top3@official` | identical |
 | `server/block_generate_server.block_generate` | `block` | identical |
@@ -93,11 +96,14 @@ metrics. Full table: [`rescored_official_outputs.md`](rescored_official_outputs.
 The dataset labelled *NarrativeQA* in the paper is the `nq_eval` file of Block-Attention. Its questions (e.g.
 "who got the first nobel prize in physics") are Natural Questions, not NarrativeQA.
 
-### 4. What has not been run here
+### 4. End to end with the paper's 8B model
 
-This container has no GPU, so nothing has been generated with the 8B models. The Colab notebook's cell E0 does
-that first: it runs the same examples and compares with the released generations
-(`python -m graphkv_neurips.compare_official`).
+The released generations of `ldsjmdy/Tulu3-Block-FT` were fed teacher-forced through this implementation, on CPU
+with a streaming loader. Released runs: sequential, Block-RAG, Graph-KV Top-1/Top-3/Full; task: 2Wiki. The full
+agreement matrix and the component-by-component audit are in [`VERIFICATION.md`](VERIFICATION.md).
+
+The Colab notebook repeats the check on a GPU with more examples (cell 6a). Its free-generation comparison is
+cell 6b.
 
 ## Experiments beyond the paper
 
@@ -131,8 +137,13 @@ python -m graphkv_neurips.run_structure --model ldsjmdy/Tulu3-Block-FT --task 2w
 # re-score the released outputs (download results/ from the Graph-COM/GraphKV dataset first)
 python -m graphkv_neurips.rescore --results-dir <path>/results --output docs/neurips/rescored_official_outputs.md
 
-# stress test (Sec. 4.4)
-python -m graphkv_neurips.stress ttft --model Qwen/Qwen2.5-0.5B-Instruct --words 100,200,400,800
+# the paper's other tasks
+python -m graphkv_neurips.run_arxiv --method graphkv --groups 1 --output-dir runs/arxiv        # Fig. 6 (80 GB GPU)
+python -m graphkv_neurips.run_classify --dataset cora --output-dir runs/cora                    # Table 4
+python -m graphkv_neurips.stress ttft --words 100,200,400,800                                    # Fig. 8 (Sec. 4.4)
+
+# end-to-end check with the 8B model against the released generations
+python -m graphkv_neurips.verify_released --task 2wiki --num-examples 12 --output docs/neurips/verify_released_2wiki.json
 ```
 
 Parity environment for the official code:

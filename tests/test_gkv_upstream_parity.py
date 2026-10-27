@@ -56,6 +56,8 @@ class ByteTokenizer:
         return [b + 3 for b in text.encode("utf-8")]
 
     def __call__(self, text, return_tensors=None, truncation=False, max_length=None, padding=False, add_special_tokens=False):
+        if return_tensors is None and isinstance(text, str):
+            return types.SimpleNamespace(input_ids=self.encode(text))
         texts = [text] if isinstance(text, str) else list(text)
         rows = [self.encode(t) for t in texts]
         if truncation and max_length is not None:
@@ -209,6 +211,67 @@ def test_rag_block_rag(upstream, setup):
     )
     official = tok.decoded[-1]
     _compare(official, _ours(dec, tok, TEXTS["prefix"], TEXTS["chunks"], TEXTS["query"], Method("block"), 64))
+
+
+@pytest.mark.parametrize("method,groups", [("graphkv", 1), ("graphkv", 2), ("block", 1), ("block", 2)])
+def test_arxiv_builder_matches_official_functions(upstream, setup, method, groups):
+    """run_arxiv.build + our decoding reproduce gapemp_graph(_batch) / block(_batch) of pcw_parallel.py."""
+    from graphkv_neurips.prompts import PromptBuilder
+    from graphkv_neurips.run_arxiv import build
+
+    model, emb, dec = setup
+    tok = ByteTokenizer()
+    centers = [TEXTS["center"], "Another central paper."]
+    neigh = [list(TEXTS["neighbors"]), ["distractor ref", "second distractor reference text here"]]
+    prefix = "<|user|>\nRead.\n\n"
+    query = "\n Question: who? \n<|assistant|>\n"
+    pp = upstream["pcw_parallel"]
+    if method == "graphkv" and groups == 1:
+        pp.gapemp_graph(tok, model, emb, prefix, centers[0], list(neigh[0]), query, "Tulu", 1, 1, None)
+    elif method == "graphkv":
+        pp.gapemp_graph_batch(tok, model, emb, prefix, centers, [list(n) for n in neigh], query, "Tulu", 1, 1, None)
+    elif groups == 1:
+        pp.block(tok, model, emb, prefix, centers[0], list(neigh[0]), query, "Tulu", 1, 1, None)
+    else:
+        pp.block_batch(tok, model, emb, prefix, centers, [list(n) for n in neigh], query, "Tulu", 1, 1, None)
+    official = tok.decoded[-1]
+    builder = PromptBuilder(types.SimpleNamespace(name_or_path="tulu"), "tulu")
+    builder.tokenizer = tok
+    builder.wrap = lambda instruction, question: (prefix, query)
+    prompt, m = build(builder, method, list(zip(centers, neigh))[:groups], "who?")
+    out, _, _ = decode(dec, prepare(dec, prompt, m, pad_id=EOS), max_new_tokens=256, stop_ids=[EOS])
+    _compare(official, out if len(out) == 256 else out + [EOS])
+
+
+@pytest.mark.parametrize("task", ["2wiki", "hqa", "tqa", "nqa", "multihopqa", "morehopqa"])
+def test_rag_prompts_match_official_utils(upstream, task):
+    """Prefix, chunks and question are byte-identical to utils.build_prefix / docs2blocks / build_suffix."""
+    from graphkv_neurips.prompts import PromptBuilder
+
+    utils = importlib.import_module("utils")
+    if task == "multihopqa":
+        docs = [{"text": f"[Excerpt from document]\ntitle: Doc {i}\nbody {i}", "score": s} for i, s in enumerate([0.3, 0.9, 0.1])]
+    elif task == "morehopqa":
+        docs = [f"- Title: Doc {i} \ntext: body {i}" for i in range(3)]
+    else:
+        docs = [{"title": f"Doc {i}", "text": f"body {i}", "score": s} for i, s in enumerate([0.3, 0.9, 0.1])]
+    ours = PromptBuilder(types.SimpleNamespace(name_or_path="ldsjmdy/Tulu3-Block-FT"), "tulu").rag_text("Who?", docs, task)
+    assert ours.prefix == utils.build_prefix("ldsjmdy/Tulu3-Block-FT", task)
+    assert ours.chunks == utils.docs2blocks(docs, task, "ascent")
+    assert ours.query == utils.build_suffix("Who?", "ldsjmdy/Tulu3-Block-FT", task)
+
+
+def test_arxiv_prompt_strings_appear_in_official_code():
+    from graphkv_neurips import prompts
+
+    with open(os.path.join(UPSTREAM, "arxiv_inference.py")) as f:
+        inference = f.read()
+    with open(os.path.join(UPSTREAM, "pcw_parallel.py")) as f:
+        parallel = f.read()
+    assert repr("<|user|>\n" + prompts.ARXIV_INSTRUCTION)[1:-1] in inference
+    assert repr(prompts.ARXIV_SEQ_INTRO)[1:-1] in inference
+    assert repr(prompts.ARXIV_CENTER_INTRO)[1:-1] in parallel
+    assert repr(prompts.ARXIV_CENTER_INTRO_BATCH)[1:-1] in parallel
 
 
 def test_sequential(upstream, setup):

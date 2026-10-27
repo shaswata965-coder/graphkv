@@ -150,7 +150,10 @@ def prepare(decoder: RopeDecoder, prompt: Prompt, method: Method, *, pad_id: int
         start = p + max(len(c) for c in prompt.chunks)
         pairs = _causal_pairs(p) + sum(len(c) * p + _causal_pairs(len(c)) for c in prompt.chunks)
         ape = APEConfig(mask, method.ape_temperature, method.ape_scale)
-        return Prepared(ctx, list(prompt.query), start, ape=ape, attention_pairs=pairs, position_span=start + len(prompt.query))
+        query = list(prompt.query)
+        if method.bos_id is not None and (not query or query[0] != method.bos_id):
+            query = [method.bos_id] + query
+        return Prepared(ctx, query, start, ape=ape, attention_pairs=pairs, position_span=start + len(query))
 
     plan = method.plan(prompt)
     cache = level0_cache if method.layout != "sequential" else None
@@ -255,6 +258,8 @@ def parse_method(spec: str, *, bos_id: Optional[int] = None) -> Method:
 
     * ``@official``: the official RAG variant (``pcw.py``), i.e. official top-m
       targets and sequential source positions;
+    * ``@global``: shared ranges at multiples of the longest chunk overall
+      (literal Sec. 3.1) instead of after the longest source;
     * ``:targets`` / ``:sources``: which representations the query sees
       (default: both). ``graphkv-top3:targets`` drops the sources after the
       targets were updated; ``noedge-top3:targets`` shows the same chunks at the
@@ -263,16 +268,21 @@ def parse_method(spec: str, *, bos_id: Optional[int] = None) -> Method:
     spec_body, _, view = spec.partition(":")
     base, _, variant = spec_body.partition("@")
     view = view or "all"
-    if variant not in ("", "official"):
+    if variant not in ("", "official", "global"):
         raise ValueError(f"unknown variant '{variant}'")
     if view not in ("all", "targets", "sources"):
         raise ValueError(f"unknown view '{view}'")
-    if view != "all" and (variant or not base.startswith(("graphkv-top", "noedge-top", "graphkv-full"))):
+    if view != "all" and (variant == "official" or not base.startswith(("graphkv-top", "noedge-top", "graphkv-full"))):
         raise ValueError("views are available for graphkv-top<m>, noedge-top<m> and graphkv-full (paper variant)")
-    layout = "sequential" if variant == "official" else "paper"
+    layout = {"official": "sequential", "global": "paper-global"}.get(variant, "paper")
     plan_variant = "official" if variant == "official" else "paper"
-    if base in ("sequential", "block", "ape"):
+    if variant and not base.startswith(("graphkv", "noedge")):
+        raise ValueError(f"'@{variant}' applies to Graph-KV methods only")
+    if base in ("sequential", "block"):
         return Method(base, label=spec)
+    if base == "ape":
+        # APE's code tokenizes the question with special tokens, i.e. with a BOS in front (demo_ape.py, pred_parallel9.py)
+        return Method("ape", bos_id=bos_id, label=spec)
     if base == "pcw":
         return Method("pcw", bos_id=bos_id, label=spec)
     if base == "parallel":

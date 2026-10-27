@@ -27,7 +27,9 @@ CLASSIFY_INSTRUCTION = (
     "central paper. Then, you will read the title or abstract of the central paper itself. Finally, you will answer "
     "a question related to the central paper:\n\n"
 )
-ARXIV_CENTER_INTRO = "\nNow you will read the center paper and answer a related question: \n"  # pcw_parallel.gapemp_graph
+CLASSIFY_CENTER_INTRO = " \n\n They are all cited by the following central paper: : "  # Appendix A.2.3 template
+ARXIV_CENTER_INTRO = "\nNow you will read the center paper and answer a related question: \n"  # pcw_parallel.gapemp_graph / block
+ARXIV_CENTER_INTRO_BATCH = "\nNow you will read the center paper and answer a related question: : \n"  # gapemp_graph_batch (sic)
 ARXIV_SEQ_INTRO = "\n\n Now please read the paper:"  # arxiv_inference.py, sequential prompt
 
 
@@ -123,12 +125,19 @@ class PromptBuilder:
         return TextPrompt(prefix, list(references) + [ARXIV_CENTER_INTRO + center], query, joined)
 
     def classify_text(self, center: str, references: Sequence[str], classes: Sequence[str]) -> TextPrompt:
-        """Paper topic classification (Appendix A.2.3): references are sources, the central paper the target."""
+        """Paper topic classification (Appendix A.2.3): references are sources, the central paper the target.
+
+        No code was released for this task; the template of Appendix A.2.3 is
+        filled the way ``arxiv_inference.py`` fills its analogous template
+        (references joined by blank lines, then the central paper). Without
+        references this is the paper's "Query-Only" baseline.
+        """
         question = f"Classify the central paper into one of the following categories: {', '.join(classes)}. Provide your answer following 'Answer:'"
         prefix, query = self.wrap(CLASSIFY_INSTRUCTION, "\n" + question + " \n")
-        center_block = "\n\n They are all cited by the following central paper: : " + center + "\n"
-        refs = [r + "\n" for r in references]
-        return TextPrompt(prefix, refs + [center_block], query)
+        if not references:
+            return TextPrompt(prefix, [center], query)
+        joined = prefix + "\n\n".join(references) + CLASSIFY_CENTER_INTRO + center + query
+        return TextPrompt(prefix, list(references) + [CLASSIFY_CENTER_INTRO + center], query, joined)
 
     # -- tokens ------------------------------------------------------------
 
