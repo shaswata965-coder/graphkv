@@ -46,7 +46,7 @@ Suggested month:
 
 | week | experiments | approx. units |
 |---|---|---|
-| 1 | E0 sanity check against the released outputs (once); E3 drop-sources on documents | 12 + 8 |
+| 1 | E0 (once): teacher-forced check against the released outputs, then Tables 3 and 2 on 50 questions per dataset; E3 drop-sources on documents | 1 + 2 x 7 + 8 |
 | 2 | E1 scorers on fixed windows (NLL); E3 repeated on the best windows; generation confirmation | 3 x 8 |
 | 3 | E2 structures at matched size, then a granularity sweep for the best two (NLL); confirmation | 3 x 8 |
 | 4 | second dataset (HotpotQA or a long-document set) for the best configurations; reserve | 30 + reserve |
@@ -60,10 +60,14 @@ Suggested month:
    check the attention masks, positions, chunkers and views (~1 min). Run them again after each `git pull`.
 4. **Debug run (cell 5)** on every change: 5 examples, 1B model, ~5 min. Read `summary.md` in the output
    directory on Drive. Only then switch to an L4.
-5. **Real runs (cells 6-9).** Each one has `--time-budget-min` and stops cleanly. Rerunning the same cell
+5. **Paper replication (cells 6a-6c, once).** 6a checks token by token against the released generations; 6b and 6c
+   print the paper's Tables 3 and 2 on a sample. Each cell of those tables shows our accuracy, the released outputs'
+   accuracy on the same questions, and the paper's number. Ours vs released is the test; the paper's number is over
+   all questions, so at 50 questions it can differ from both by sampling error alone (about +-14 points).
+6. **Real runs (cells 7-9).** Each one has `--time-budget-min` and stops cleanly. Rerunning the same cell
    resumes, and finished examples are skipped. Keep the browser tab open; on Pro, background execution is
    not available and an idle tab disconnects.
-6. **Collect (cell 10)**, then **disconnect (cell 11)**. A connected runtime bills even when it sits idle.
+7. **Collect (cell 10)**, then **disconnect (cell 11)**. A connected runtime bills even when it sits idle.
 
 Debugging rules that keep re-runs cheap:
 * A change to flags or code means a new `--output-dir`. Resuming into an old directory mixes settings.

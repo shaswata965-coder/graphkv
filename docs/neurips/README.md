@@ -23,7 +23,7 @@ paper with a similar name (the ISCAS 2026 KV-cache compression paper; see the to
 | shared PEs: sources `[0, L)`, targets `[L, 2L)`, query after (Sec. 3.1, Fig. 2) | `graph.PaperLayout` (L = longest source, as the official ArXiv-QA code); `@global` = `graph.GlobalPaperLayout` (L = longest chunk overall, literal Sec. 3.1) |
 | multi-round propagation, `[2L, 3L)`, ... (Sec. 3.1, Appendix A.1.2) | `GraphPlan.chain`, `graphkv-chain1-3` |
 | RAG bipartite graph: top-m sources → remaining targets (Fig. 3), Graph-KV-Full | `GraphPlan.top_m`, `GraphPlan.rag_full` |
-| Task 1, RAG (Sec. 4.1, Tables 2, 3, 5, 6) | `run_rag.py`, data `data.load_rag` (the official processed data) |
+| Task 1, RAG (Sec. 4.1, Tables 2, 3, 5, 6) | `run_rag.py`, data `data.load_rag` (the official processed data); `replicate.py` prints Tables 2 and 3 on a sample next to the released outputs and the paper |
 | Task 2, ArXiv-QA (Sec. 4.2, Fig. 6) | `run_arxiv.py` (prompts, distractor sampling, per-method blocks and token limits of `arxiv_inference.py`) |
 | Task 3, paper classification (Sec. 4.3, Table 4) | `run_classify.py`, data `tag_data.py` (Cora / PubMed of `Graph-COM/Text-Attributed-Graphs`) |
 | Task 4, stress test (Sec. 4.4) | `stress.py` |
@@ -136,6 +136,10 @@ python -m pytest tests/test_gkv_*.py          # parity test runs only under tran
 # the paper's RAG protocol (Tables 2/3/5/6)
 python -m graphkv_neurips.run_rag --model ldsjmdy/Tulu3-Block-FT --task 2wiki \
     --methods sequential,block,graphkv-top1,graphkv-top3,graphkv-full --num-examples 200 --output-dir runs/rag
+
+# Tables 3 and 2 on 50 questions per dataset: ours / released outputs on the same questions / paper
+python -m graphkv_neurips.replicate --table 3 --model ldsjmdy/Tulu3-Block-FT --num-examples 50 --output-dir runs/table3
+python -m graphkv_neurips.replicate --table 2 --model ldsjmdy/Tulu3-Block-FT --num-examples 50 --output-dir runs/table2
 
 # structure experiments
 python -m graphkv_neurips.run_structure --model ldsjmdy/Tulu3-Block-FT --task 2wiki --chunker attention:128 \
