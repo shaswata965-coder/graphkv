@@ -22,16 +22,65 @@ implementation and feeds each released generation teacher-forced.
 The released outputs are greedy, so under the computation that produced them each released token is the model's
 arg-max. Rows are released runs, columns our methods. Each cell gives:
 * the token-weighted share of positions where our arg-max equals the released token;
-* in brackets, the number of outputs where *every* token agrees.
+* in brackets, the number of outputs that agree everywhere. Positions where the two candidate tokens are within two
+  bfloat16 steps of each other count as agreeing (see below).
 
-RESULTS_TABLE
+Run: 12 stratified 2Wiki examples (seed 0); 60 released outputs; 5,353 answer tokens.
+Raw data: [`verify_released_2wiki.json`](verify_released_2wiki.json).
 
-* **Diagonal (bold).** Each released run evaluated under the method that produced it.
-* **Off-diagonal.** The same text under a different method: the negative control. Where two methods happen to
-  produce the same answer, their cells coincide. That is expected and does not indicate an error.
-* **Last column.** The paper's position layout (Sec. 3.1) applied to the top-3 graph. It is a different
-  computation from the released RAG code, and the released top-3 outputs agree with it less than with
-  `graphkv-top3@official`.
+| released run \ our method | sequential | block | graphkv-top1@official | graphkv-top3@official | graphkv-full@official | graphkv-top3 (paper layout) |
+|---|---|---|---|---|---|---|
+| vanilla (sequential) | **99.8% (12/12)** | 97.0% (2/12) | 97.2% (2/12) | 96.6% (0/12) | 96.7% (3/12) | 97.7% (2/12) |
+| block (Block-RAG) | 96.3% (2/12) | **99.6% (10/12)** | 98.0% (4/12) | 97.1% (2/12) | 96.9% (2/12) | 96.9% (2/12) |
+| gapemp_appr_1 (Graph-KV Top-1) | 96.3% (1/12) | 97.8% (4/12) | **99.9% (12/12)** | 98.6% (5/12) | 97.2% (3/12) | 96.7% (2/12) |
+| gapemp_appr_3 (Graph-KV Top-3) | 96.6% (1/12) | 97.7% (2/12) | 98.8% (5/12) | **99.7% (12/12)** | 98.7% (6/12) | 98.1% (5/12) |
+| gapemp (Graph-KV Full) | 95.1% (1/12) | 96.0% (1/12) | 96.6% (2/12) | 98.2% (6/12) | **100.0% (12/12)** | 96.2% (3/12) |
+
+**Diagonal (bold).** Each released run is evaluated under the method that produced it.
+* 99.79% of the 5,353 tokens are our arg-max.
+* 50 of the 60 outputs agree at every token.
+* All 11 disagreements are listed below. Each has a logit margin of 0 to 0.25 between our arg-max and the released
+  token, at most two bfloat16 steps at those logit sizes (logits around 16-32 are only resolved to 0.125).
+* These are ties that the official run (bf16 FlashAttention on a GPU) broke the other way. Two Block-RAG rows lack
+  the step column because they were measured before the logit value was recorded. Their margins are 0.125 and 0,
+  which are ties as well.
+* No disagreement exceeds bfloat16 resolution.
+
+| example | released run | answer tokens | position | our arg-max | released token | logit margin | bf16 step at that logit |
+|---|---|---|---|---|---|---|---|
+| 4084 | block | 138 | 90 | `' was'` | `','` | 0.125 |  |
+| 5098 | block | 73 | 38 | `' the'` | `' these'` | 0.000 |  |
+| 5246 | vanilla | 59 | 28 | `' "'` | `' titled'` | 0.125 | 0.125 |
+| 5246 | block | 59 | 55 | `'-'` | `' '` | 0.000 | 0.250 |
+| 5246 | gapemp_appr_3 | 55 | 37 | `' King'` | `' he'` | 0.125 | 0.125 |
+| 6615 | gapemp_appr_1 | 157 | 96 | `' Jiří'` | `' we'` | 0.250 | 0.125 |
+| 6615 | gapemp_appr_3 | 192 | 125 | `' we'` | `' Jiří'` | 0.000 | 0.125 |
+| 7772 | vanilla | 82 | 32 | `' bar'` | `' Chamber'` | 0.000 | 0.125 |
+| 7772 | block | 159 | 50 | `' Governor'` | `' which'` | 0.125 | 0.125 |
+| 7772 | block | 159 | 60 | `'.'` | `','` | 0.250 | 0.250 |
+| 10846 | gapemp_appr_3 | 107 | 29 | `','` | `'.\n'` | 0.000 | 0.250 |
+
+**Off-diagonal: the negative control.** The same released texts scored under another method agree on 97.1% of
+tokens, and few outputs agree everywhere. The check therefore discriminates between methods.
+* Where two methods produced the same answer, their cells coincide. This is expected.
+* Teacher forcing makes most next tokens predictable under any reasonable context, so the gap is a few points, not
+  tens.
+
+**Last column.** The paper's position layout (Sec. 3.1) is a different computation from the released RAG code:
+* the released top-3 outputs agree with it on 98.1% of tokens and 5/12 outputs;
+* under `graphkv-top3@official` they agree on 99.7% and 12/12.
+
+The paper's RAG numbers were therefore produced with the released code's sequential source positions, not with the
+shared ranges it describes.
+
+How it was run:
+* CPU, bfloat16, with `--streamed-layers 16`: 16 of the 32 decoder layers are read from the memory-mapped
+  checkpoint when needed, because 16 GB of weights do not fit in this machine's 15 GB of RAM. This is numerically
+  identical (`tests/test_gkv_lowmem.py`).
+* Released runs not checked here:
+  * HotpotQA sequential: not released in full;
+  * MorehopQA and MultiHop-RAG: same code paths.
+* Notebook cell 6a repeats the check on a GPU with 30 2Wiki and 30 HotpotQA examples.
 
 ## 2. Component by component
 

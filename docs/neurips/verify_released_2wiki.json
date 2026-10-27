@@ -1,0 +1,8096 @@
+{
+ "model": "ldsjmdy/Tulu3-Block-FT",
+ "task": "2wiki",
+ "runs": [
+  "vanilla",
+  "block",
+  "gapemp_appr_1",
+  "gapemp_appr_3",
+  "gapemp"
+ ],
+ "methods": [
+  "sequential",
+  "block",
+  "graphkv-top1@official",
+  "graphkv-top3@official",
+  "graphkv-full@official",
+  "graphkv-top3"
+ ],
+ "examples": [
+  {
+   "index": 771,
+   "group": "compositional",
+   "cells": {
+    "vanilla|sequential": {
+     "tokens": 62,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.08784101158380508
+    },
+    "block|sequential": {
+     "tokens": 64,
+     "agree": 0.90625,
+     "first_mismatch": 0,
+     "nll": 0.14867056906223297
+    },
+    "gapemp_appr_1|sequential": {
+     "tokens": 64,
+     "agree": 0.90625,
+     "first_mismatch": 0,
+     "nll": 0.14867056906223297
+    },
+    "gapemp_appr_3|sequential": {
+     "tokens": 64,
+     "agree": 0.90625,
+     "first_mismatch": 0,
+     "nll": 0.14867056906223297
+    },
+    "gapemp|sequential": {
+     "tokens": 60,
+     "agree": 0.9166666865348816,
+     "first_mismatch": 0,
+     "nll": 0.20604977011680603
+    },
+    "vanilla|block": {
+     "tokens": 62,
+     "agree": 0.9193548560142517,
+     "first_mismatch": 0,
+     "nll": 0.16756126284599304
+    },
+    "block|block": {
+     "tokens": 64,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.0636247768998146
+    },
+    "gapemp_appr_1|block": {
+     "tokens": 64,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.0636247768998146
+    },
+    "gapemp_appr_3|block": {
+     "tokens": 64,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.0636247768998146
+    },
+    "gapemp|block": {
+     "tokens": 60,
+     "agree": 0.9666666388511658,
+     "first_mismatch": 25,
+     "nll": 0.13645291328430176
+    },
+    "vanilla|graphkv-top1@official": {
+     "tokens": 62,
+     "agree": 0.9032257795333862,
+     "first_mismatch": 0,
+     "nll": 0.1846138834953308
+    },
+    "block|graphkv-top1@official": {
+     "tokens": 64,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.07807227969169617
+    },
+    "gapemp_appr_1|graphkv-top1@official": {
+     "tokens": 64,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.07807227969169617
+    },
+    "gapemp_appr_3|graphkv-top1@official": {
+     "tokens": 64,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.07807227969169617
+    },
+    "gapemp|graphkv-top1@official": {
+     "tokens": 60,
+     "agree": 0.9333333373069763,
+     "first_mismatch": 25,
+     "nll": 0.15034188330173492
+    },
+    "vanilla|graphkv-top3@official": {
+     "tokens": 62,
+     "agree": 0.9032257795333862,
+     "first_mismatch": 0,
+     "nll": 0.1691286265850067
+    },
+    "block|graphkv-top3@official": {
+     "tokens": 64,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.07224846631288528
+    },
+    "gapemp_appr_1|graphkv-top3@official": {
+     "tokens": 64,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.07224846631288528
+    },
+    "gapemp_appr_3|graphkv-top3@official": {
+     "tokens": 64,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.07224846631288528
+    },
+    "gapemp|graphkv-top3@official": {
+     "tokens": 60,
+     "agree": 0.949999988079071,
+     "first_mismatch": 25,
+     "nll": 0.1305784434080124
+    },
+    "vanilla|graphkv-full@official": {
+     "tokens": 62,
+     "agree": 0.9516128897666931,
+     "first_mismatch": 0,
+     "nll": 0.14791251718997955
+    },
+    "block|graphkv-full@official": {
+     "tokens": 64,
+     "agree": 0.984375,
+     "first_mismatch": 25,
+     "nll": 0.09473048895597458
+    },
+    "gapemp_appr_1|graphkv-full@official": {
+     "tokens": 64,
+     "agree": 0.984375,
+     "first_mismatch": 25,
+     "nll": 0.09473048895597458
+    },
+    "gapemp_appr_3|graphkv-full@official": {
+     "tokens": 64,
+     "agree": 0.984375,
+     "first_mismatch": 25,
+     "nll": 0.09473048895597458
+    },
+    "gapemp|graphkv-full@official": {
+     "tokens": 60,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.11442872881889343
+    },
+    "vanilla|graphkv-top3": {
+     "tokens": 62,
+     "agree": 0.9677419066429138,
+     "first_mismatch": 35,
+     "nll": 0.12766990065574646
+    },
+    "block|graphkv-top3": {
+     "tokens": 64,
+     "agree": 0.96875,
+     "first_mismatch": 0,
+     "nll": 0.09084860980510712
+    },
+    "gapemp_appr_1|graphkv-top3": {
+     "tokens": 64,
+     "agree": 0.96875,
+     "first_mismatch": 0,
+     "nll": 0.09084860980510712
+    },
+    "gapemp_appr_3|graphkv-top3": {
+     "tokens": 64,
+     "agree": 0.96875,
+     "first_mismatch": 0,
+     "nll": 0.09084860980510712
+    },
+    "gapemp|graphkv-top3": {
+     "tokens": 60,
+     "agree": 0.9166666865348816,
+     "first_mismatch": 0,
+     "nll": 0.2028723508119583
+    }
+   },
+   "seconds": 198.8
+  },
+  {
+   "index": 4084,
+   "group": "bridge_comparison",
+   "cells": {
+    "vanilla|sequential": {
+     "tokens": 123,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.034286387264728546
+    },
+    "block|sequential": {
+     "tokens": 138,
+     "agree": 0.9855072498321533,
+     "first_mismatch": 83,
+     "nll": 0.04495817422866821,
+     "mismatches": [
+      {
+       "pos": 83,
+       "ours": " Woody",
+       "released": " Ad",
+       "margin": 0.75
+      },
+      {
+       "pos": 90,
+       "ours": " was",
+       "released": ",",
+       "margin": 1.5
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_1|sequential": {
+     "tokens": 120,
+     "agree": 0.9833333492279053,
+     "first_mismatch": 19,
+     "nll": 0.05020355433225632,
+     "mismatches": [
+      {
+       "pos": 19,
+       "ours": ".\n\n",
+       "released": " mentioned",
+       "margin": 1.625
+      },
+      {
+       "pos": 105,
+       "ours": " of",
+       "released": " born",
+       "margin": 0.5
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_3|sequential": {
+     "tokens": 130,
+     "agree": 0.9846153855323792,
+     "first_mismatch": 19,
+     "nll": 0.057292062789201736,
+     "mismatches": [
+      {
+       "pos": 19,
+       "ours": ".\n\n",
+       "released": " \"",
+       "margin": 2.0
+      },
+      {
+       "pos": 34,
+       "ours": "According",
+       "released": "For",
+       "margin": 0.875
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp|sequential": {
+     "tokens": 111,
+     "agree": 0.9819819927215576,
+     "first_mismatch": 15,
+     "nll": 0.041653573513031006,
+     "mismatches": [
+      {
+       "pos": 15,
+       "ours": " associated",
+       "released": " mentioned",
+       "margin": 0.5
+      },
+      {
+       "pos": 18,
+       "ours": " Ad",
+       "released": " Woody",
+       "margin": 0.625
+      }
+     ],
+     "cleanup_only": false
+    },
+    "vanilla|block": {
+     "tokens": 123,
+     "agree": 0.9756097793579102,
+     "first_mismatch": 83,
+     "nll": 0.043083734810352325,
+     "mismatches": [
+      {
+       "pos": 83,
+       "ours": " Ad",
+       "released": " Woody",
+       "margin": 0.0
+      },
+      {
+       "pos": 100,
+       "ours": " film",
+       "released": " director",
+       "margin": 0.125
+      },
+      {
+       "pos": 101,
+       "ours": " born",
+       "released": " of",
+       "margin": 0.5
+      }
+     ],
+     "cleanup_only": false
+    },
+    "block|block": {
+     "tokens": 138,
+     "agree": 0.9927536249160767,
+     "first_mismatch": 90,
+     "nll": 0.032231662422418594,
+     "mismatches": [
+      {
+       "pos": 90,
+       "ours": " was",
+       "released": ",",
+       "margin": 0.125
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_1|block": {
+     "tokens": 120,
+     "agree": 0.9916666746139526,
+     "first_mismatch": 19,
+     "nll": 0.04716471955180168,
+     "mismatches": [
+      {
+       "pos": 19,
+       "ours": ".\n\n",
+       "released": " mentioned",
+       "margin": 1.5
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_3|block": {
+     "tokens": 130,
+     "agree": 0.9923076629638672,
+     "first_mismatch": 19,
+     "nll": 0.04783058166503906,
+     "mismatches": [
+      {
+       "pos": 19,
+       "ours": ".\n\n",
+       "released": " \"",
+       "margin": 2.125
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp|block": {
+     "tokens": 111,
+     "agree": 0.9639639854431152,
+     "first_mismatch": 15,
+     "nll": 0.050816524773836136,
+     "mismatches": [
+      {
+       "pos": 15,
+       "ours": " associated",
+       "released": " mentioned",
+       "margin": 1.0
+      },
+      {
+       "pos": 18,
+       "ours": " Ad",
+       "released": " Woody",
+       "margin": 0.0
+      },
+      {
+       "pos": 72,
+       "ours": "Compar",
+       "released": "Since",
+       "margin": 0.625
+      },
+      {
+       "pos": 91,
+       "ours": "K",
+       "released": "Everyone",
+       "margin": 0.0
+      }
+     ],
+     "cleanup_only": false
+    },
+    "vanilla|graphkv-top1@official": {
+     "tokens": 123,
+     "agree": 0.9837398529052734,
+     "first_mismatch": 19,
+     "nll": 0.05117425322532654,
+     "mismatches": [
+      {
+       "pos": 19,
+       "ours": " mentioned",
+       "released": ".\n\n",
+       "margin": 0.375
+      },
+      {
+       "pos": 101,
+       "ours": " born",
+       "released": " of",
+       "margin": 0.5
+      }
+     ],
+     "cleanup_only": false
+    },
+    "block|graphkv-top1@official": {
+     "tokens": 138,
+     "agree": 0.97826087474823,
+     "first_mismatch": 19,
+     "nll": 0.056846845895051956,
+     "mismatches": [
+      {
+       "pos": 19,
+       "ours": " mentioned",
+       "released": ".\n\n",
+       "margin": 0.375
+      },
+      {
+       "pos": 83,
+       "ours": " Woody",
+       "released": " Ad",
+       "margin": 0.875
+      },
+      {
+       "pos": 90,
+       "ours": " was",
+       "released": ",",
+       "margin": 1.625
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_1|graphkv-top1@official": {
+     "tokens": 120,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03993913158774376
+    },
+    "gapemp_appr_3|graphkv-top1@official": {
+     "tokens": 130,
+     "agree": 0.9923076629638672,
+     "first_mismatch": 19,
+     "nll": 0.04032287746667862,
+     "mismatches": [
+      {
+       "pos": 19,
+       "ours": " mentioned",
+       "released": " \"",
+       "margin": 0.375
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp|graphkv-top1@official": {
+     "tokens": 111,
+     "agree": 0.9819819927215576,
+     "first_mismatch": 15,
+     "nll": 0.04972025007009506,
+     "mismatches": [
+      {
+       "pos": 15,
+       "ours": " associated",
+       "released": " mentioned",
+       "margin": 0.75
+      },
+      {
+       "pos": 91,
+       "ours": "K",
+       "released": "Everyone",
+       "margin": 1.0
+      }
+     ],
+     "cleanup_only": false
+    },
+    "vanilla|graphkv-top3@official": {
+     "tokens": 123,
+     "agree": 0.9674796462059021,
+     "first_mismatch": 19,
+     "nll": 0.05759688839316368,
+     "mismatches": [
+      {
+       "pos": 19,
+       "ours": " \"",
+       "released": ".\n\n",
+       "margin": 0.5
+      },
+      {
+       "pos": 100,
+       "ours": " film",
+       "released": " director",
+       "margin": 0.125
+      },
+      {
+       "pos": 101,
+       "ours": " born",
+       "released": " of",
+       "margin": 0.5
+      },
+      {
+       "pos": 103,
+       "ours": "K",
+       "released": "Everyone",
+       "margin": 0.125
+      }
+     ],
+     "cleanup_only": false
+    },
+    "block|graphkv-top3@official": {
+     "tokens": 138,
+     "agree": 0.97826087474823,
+     "first_mismatch": 19,
+     "nll": 0.04786286503076553,
+     "mismatches": [
+      {
+       "pos": 19,
+       "ours": " \"",
+       "released": ".\n\n",
+       "margin": 0.5
+      },
+      {
+       "pos": 83,
+       "ours": " Woody",
+       "released": " Ad",
+       "margin": 0.5
+      },
+      {
+       "pos": 90,
+       "ours": " was",
+       "released": ",",
+       "margin": 1.125
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_1|graphkv-top3@official": {
+     "tokens": 120,
+     "agree": 0.9916666746139526,
+     "first_mismatch": 19,
+     "nll": 0.05373053252696991,
+     "mismatches": [
+      {
+       "pos": 19,
+       "ours": " \"",
+       "released": " mentioned",
+       "margin": 1.0
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_3|graphkv-top3@official": {
+     "tokens": 130,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.04040314257144928
+    },
+    "gapemp|graphkv-top3@official": {
+     "tokens": 111,
+     "agree": 0.9819819927215576,
+     "first_mismatch": 15,
+     "nll": 0.03691178932785988,
+     "mismatches": [
+      {
+       "pos": 15,
+       "ours": " associated",
+       "released": " mentioned",
+       "margin": 0.125
+      },
+      {
+       "pos": 91,
+       "ours": "K",
+       "released": "Everyone",
+       "margin": 0.25
+      }
+     ],
+     "cleanup_only": false
+    },
+    "vanilla|graphkv-full@official": {
+     "tokens": 123,
+     "agree": 0.9756097793579102,
+     "first_mismatch": 15,
+     "nll": 0.05955997109413147,
+     "mismatches": [
+      {
+       "pos": 15,
+       "ours": " mentioned",
+       "released": " associated",
+       "margin": 0.75
+      },
+      {
+       "pos": 19,
+       "ours": " \"",
+       "released": ".\n\n",
+       "margin": 0.625
+      },
+      {
+       "pos": 100,
+       "ours": " film",
+       "released": " director",
+       "margin": 0.875
+      }
+     ],
+     "cleanup_only": false
+    },
+    "block|graphkv-full@official": {
+     "tokens": 138,
+     "agree": 0.9710144996643066,
+     "first_mismatch": 15,
+     "nll": 0.05339841917157173,
+     "mismatches": [
+      {
+       "pos": 15,
+       "ours": " mentioned",
+       "released": " associated",
+       "margin": 0.75
+      },
+      {
+       "pos": 19,
+       "ours": " \"",
+       "released": ".\n\n",
+       "margin": 0.625
+      },
+      {
+       "pos": 83,
+       "ours": " Woody",
+       "released": " Ad",
+       "margin": 1.375
+      },
+      {
+       "pos": 90,
+       "ours": " was",
+       "released": ",",
+       "margin": 0.75
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_1|graphkv-full@official": {
+     "tokens": 120,
+     "agree": 0.9666666388511658,
+     "first_mismatch": 15,
+     "nll": 0.062017686665058136,
+     "mismatches": [
+      {
+       "pos": 15,
+       "ours": " mentioned",
+       "released": " associated",
+       "margin": 0.75
+      },
+      {
+       "pos": 19,
+       "ours": " \"",
+       "released": " mentioned",
+       "margin": 0.875
+      },
+      {
+       "pos": 104,
+       "ours": " film",
+       "released": " director",
+       "margin": 0.5
+      },
+      {
+       "pos": 105,
+       "ours": " of",
+       "released": " born",
+       "margin": 0.5
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_3|graphkv-full@official": {
+     "tokens": 130,
+     "agree": 0.9846153855323792,
+     "first_mismatch": 15,
+     "nll": 0.04645455628633499,
+     "mismatches": [
+      {
+       "pos": 15,
+       "ours": " mentioned",
+       "released": " associated",
+       "margin": 0.75
+      },
+      {
+       "pos": 114,
+       "ours": " film",
+       "released": " director",
+       "margin": 0.0
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp|graphkv-full@official": {
+     "tokens": 111,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03498123213648796
+    },
+    "vanilla|graphkv-top3": {
+     "tokens": 123,
+     "agree": 0.9918699264526367,
+     "first_mismatch": 19,
+     "nll": 0.03722238913178444,
+     "mismatches": [
+      {
+       "pos": 19,
+       "ours": " \"",
+       "released": ".\n\n",
+       "margin": 0.125
+      }
+     ],
+     "cleanup_only": false
+    },
+    "block|graphkv-top3": {
+     "tokens": 138,
+     "agree": 0.9710144996643066,
+     "first_mismatch": 19,
+     "nll": 0.04519070312380791,
+     "mismatches": [
+      {
+       "pos": 19,
+       "ours": " \"",
+       "released": ".\n\n",
+       "margin": 0.125
+      },
+      {
+       "pos": 83,
+       "ours": " Woody",
+       "released": " Ad",
+       "margin": 0.875
+      },
+      {
+       "pos": 90,
+       "ours": " was",
+       "released": ",",
+       "margin": 0.5
+      },
+      {
+       "pos": 124,
+       "ours": " \"",
+       "released": " that",
+       "margin": 0.75
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_1|graphkv-top3": {
+     "tokens": 120,
+     "agree": 0.9833333492279053,
+     "first_mismatch": 19,
+     "nll": 0.047874752432107925,
+     "mismatches": [
+      {
+       "pos": 19,
+       "ours": " \"",
+       "released": " mentioned",
+       "margin": 1.0
+      },
+      {
+       "pos": 105,
+       "ours": " of",
+       "released": " born",
+       "margin": 0.25
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_3|graphkv-top3": {
+     "tokens": 130,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.04083826392889023
+    },
+    "gapemp|graphkv-top3": {
+     "tokens": 111,
+     "agree": 0.9729729890823364,
+     "first_mismatch": 15,
+     "nll": 0.04890916869044304,
+     "mismatches": [
+      {
+       "pos": 15,
+       "ours": " associated",
+       "released": " mentioned",
+       "margin": 0.5
+      },
+      {
+       "pos": 72,
+       "ours": "Compar",
+       "released": "Since",
+       "margin": 0.5
+      },
+      {
+       "pos": 88,
+       "ours": " answer",
+       "released": " director",
+       "margin": 1.0
+      }
+     ],
+     "cleanup_only": false
+    }
+   },
+   "seconds": 573.0
+  },
+  {
+   "index": 5098,
+   "group": "comparison",
+   "cells": {
+    "vanilla|sequential": {
+     "tokens": 71,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.05769460275769234
+    },
+    "block|sequential": {
+     "tokens": 73,
+     "agree": 0.9726027250289917,
+     "first_mismatch": 36,
+     "nll": 0.0741543397307396,
+     "mismatches": [
+      {
+       "pos": 36,
+       "ours": "According",
+       "released": "Compar",
+       "margin": 0.125
+      },
+      {
+       "pos": 66,
+       "ours": " much",
+       "released": " later",
+       "margin": 1.25
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_1|sequential": {
+     "tokens": 68,
+     "agree": 0.9411764740943909,
+     "first_mismatch": 9,
+     "nll": 0.34442761540412903,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " that",
+       "margin": 1.75
+      },
+      {
+       "pos": 35,
+       "ours": " was",
+       "released": " is",
+       "margin": 9.125
+      },
+      {
+       "pos": 56,
+       "ours": " in",
+       "released": " specifically",
+       "margin": 0.625
+      },
+      {
+       "pos": 58,
+       "ours": "37",
+       "released": "27",
+       "margin": 10.125
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_3|sequential": {
+     "tokens": 61,
+     "agree": 0.9672130942344666,
+     "first_mismatch": 9,
+     "nll": 0.0644783303141594,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " that",
+       "margin": 1.75
+      },
+      {
+       "pos": 41,
+       "ours": ".\n\n",
+       "released": ".",
+       "margin": 0.5
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp|sequential": {
+     "tokens": 61,
+     "agree": 0.9672130942344666,
+     "first_mismatch": 9,
+     "nll": 0.0644783303141594,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " that",
+       "margin": 1.75
+      },
+      {
+       "pos": 41,
+       "ours": ".\n\n",
+       "released": ".",
+       "margin": 0.5
+      }
+     ],
+     "cleanup_only": false
+    },
+    "vanilla|block": {
+     "tokens": 71,
+     "agree": 0.9577465057373047,
+     "first_mismatch": 36,
+     "nll": 0.09661199897527695,
+     "mismatches": [
+      {
+       "pos": 36,
+       "ours": "Compar",
+       "released": "According",
+       "margin": 1.125
+      },
+      {
+       "pos": 39,
+       "ours": " dates",
+       "released": " release",
+       "margin": 0.125
+      },
+      {
+       "pos": 63,
+       "ours": " later",
+       "released": " much",
+       "margin": 1.75
+      }
+     ],
+     "cleanup_only": false
+    },
+    "block|block": {
+     "tokens": 73,
+     "agree": 0.9863013625144958,
+     "first_mismatch": 38,
+     "nll": 0.057742320001125336,
+     "mismatches": [
+      {
+       "pos": 38,
+       "ours": " the",
+       "released": " these",
+       "margin": 0.0
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_1|block": {
+     "tokens": 68,
+     "agree": 0.970588207244873,
+     "first_mismatch": 9,
+     "nll": 0.13502107560634613,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " that",
+       "margin": 0.25
+      },
+      {
+       "pos": 58,
+       "ours": "37",
+       "released": "27",
+       "margin": 5.875
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_3|block": {
+     "tokens": 61,
+     "agree": 0.9672130942344666,
+     "first_mismatch": 9,
+     "nll": 0.04980471357703209,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " that",
+       "margin": 0.25
+      },
+      {
+       "pos": 35,
+       "ours": " is",
+       "released": " was",
+       "margin": 0.5
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp|block": {
+     "tokens": 61,
+     "agree": 0.9672130942344666,
+     "first_mismatch": 9,
+     "nll": 0.04980471357703209,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " that",
+       "margin": 0.25
+      },
+      {
+       "pos": 35,
+       "ours": " is",
+       "released": " was",
+       "margin": 0.5
+      }
+     ],
+     "cleanup_only": false
+    },
+    "vanilla|graphkv-top1@official": {
+     "tokens": 71,
+     "agree": 0.9577465057373047,
+     "first_mismatch": 9,
+     "nll": 0.10596475750207901,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " that",
+       "released": " the",
+       "margin": 0.75
+      },
+      {
+       "pos": 36,
+       "ours": "Compar",
+       "released": "According",
+       "margin": 0.375
+      },
+      {
+       "pos": 63,
+       "ours": " later",
+       "released": " much",
+       "margin": 1.875
+      }
+     ],
+     "cleanup_only": false
+    },
+    "block|graphkv-top1@official": {
+     "tokens": 73,
+     "agree": 0.9726027250289917,
+     "first_mismatch": 9,
+     "nll": 0.08271225541830063,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " that",
+       "released": " the",
+       "margin": 0.75
+      },
+      {
+       "pos": 38,
+       "ours": " the",
+       "released": " these",
+       "margin": 1.0
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_1|graphkv-top1@official": {
+     "tokens": 68,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.05534280091524124
+    },
+    "gapemp_appr_3|graphkv-top1@official": {
+     "tokens": 61,
+     "agree": 0.9836065769195557,
+     "first_mismatch": 35,
+     "nll": 0.05845391005277634,
+     "mismatches": [
+      {
+       "pos": 35,
+       "ours": " is",
+       "released": " was",
+       "margin": 1.0
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp|graphkv-top1@official": {
+     "tokens": 61,
+     "agree": 0.9836065769195557,
+     "first_mismatch": 35,
+     "nll": 0.05845391005277634,
+     "mismatches": [
+      {
+       "pos": 35,
+       "ours": " is",
+       "released": " was",
+       "margin": 1.0
+      }
+     ],
+     "cleanup_only": false
+    },
+    "vanilla|graphkv-top3@official": {
+     "tokens": 71,
+     "agree": 0.9718309640884399,
+     "first_mismatch": 9,
+     "nll": 0.115377277135849,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " that",
+       "released": " the",
+       "margin": 1.875
+      },
+      {
+       "pos": 63,
+       "ours": " later",
+       "released": " much",
+       "margin": 1.75
+      }
+     ],
+     "cleanup_only": false
+    },
+    "block|graphkv-top3@official": {
+     "tokens": 73,
+     "agree": 0.9589040875434875,
+     "first_mismatch": 9,
+     "nll": 0.100283682346344,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " that",
+       "released": " the",
+       "margin": 1.875
+      },
+      {
+       "pos": 36,
+       "ours": "According",
+       "released": "Compar",
+       "margin": 0.125
+      },
+      {
+       "pos": 38,
+       "ours": " the",
+       "released": " these",
+       "margin": 0.5
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_1|graphkv-top3@official": {
+     "tokens": 68,
+     "agree": 0.9558823704719543,
+     "first_mismatch": 35,
+     "nll": 0.07386104762554169,
+     "mismatches": [
+      {
+       "pos": 35,
+       "ours": " was",
+       "released": " is",
+       "margin": 0.875
+      },
+      {
+       "pos": 43,
+       "ours": " directed",
+       "released": ".\n\n",
+       "margin": 0.5
+      },
+      {
+       "pos": 55,
+       "ours": " than",
+       "released": ",",
+       "margin": 0.25
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_3|graphkv-top3@official": {
+     "tokens": 61,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.042834892868995667
+    },
+    "gapemp|graphkv-top3@official": {
+     "tokens": 61,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.042834892868995667
+    },
+    "vanilla|graphkv-full@official": {
+     "tokens": 71,
+     "agree": 0.9436619877815247,
+     "first_mismatch": 9,
+     "nll": 0.14716918766498566,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " that",
+       "released": " the",
+       "margin": 2.5
+      },
+      {
+       "pos": 10,
+       "ours": " following",
+       "released": " release",
+       "margin": 1.25
+      },
+      {
+       "pos": 25,
+       "ours": ")",
+       "released": ")\n",
+       "margin": 0.25
+      },
+      {
+       "pos": 63,
+       "ours": " later",
+       "released": " much",
+       "margin": 2.0
+      }
+     ],
+     "cleanup_only": false
+    },
+    "block|graphkv-full@official": {
+     "tokens": 73,
+     "agree": 0.931506872177124,
+     "first_mismatch": 9,
+     "nll": 0.13105222582817078,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " that",
+       "released": " the",
+       "margin": 2.5
+      },
+      {
+       "pos": 10,
+       "ours": " following",
+       "released": " release",
+       "margin": 1.25
+      },
+      {
+       "pos": 25,
+       "ours": ")",
+       "released": ")\n",
+       "margin": 0.25
+      },
+      {
+       "pos": 36,
+       "ours": "According",
+       "released": "Compar",
+       "margin": 0.875
+      },
+      {
+       "pos": 38,
+       "ours": " the",
+       "released": " these",
+       "margin": 0.0
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_1|graphkv-full@official": {
+     "tokens": 68,
+     "agree": 0.9264705777168274,
+     "first_mismatch": 35,
+     "nll": 0.13680396974086761,
+     "mismatches": [
+      {
+       "pos": 35,
+       "ours": " was",
+       "released": " is",
+       "margin": 0.625
+      },
+      {
+       "pos": 36,
+       "ours": " an",
+       "released": " a",
+       "margin": 0.25
+      },
+      {
+       "pos": 43,
+       "ours": " directed",
+       "released": ".\n\n",
+       "margin": 1.375
+      },
+      {
+       "pos": 55,
+       "ours": " than",
+       "released": ",",
+       "margin": 1.5
+      },
+      {
+       "pos": 58,
+       "ours": "37",
+       "released": "27",
+       "margin": 2.75
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_3|graphkv-full@official": {
+     "tokens": 61,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03983741253614426
+    },
+    "gapemp|graphkv-full@official": {
+     "tokens": 61,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03983741253614426
+    },
+    "vanilla|graphkv-top3": {
+     "tokens": 71,
+     "agree": 0.9718309640884399,
+     "first_mismatch": 36,
+     "nll": 0.11016105115413666,
+     "mismatches": [
+      {
+       "pos": 36,
+       "ours": "Compar",
+       "released": "According",
+       "margin": 1.25
+      },
+      {
+       "pos": 63,
+       "ours": " later",
+       "released": " much",
+       "margin": 2.25
+      }
+     ],
+     "cleanup_only": false
+    },
+    "block|graphkv-top3": {
+     "tokens": 73,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.046411264687776566
+    },
+    "gapemp_appr_1|graphkv-top3": {
+     "tokens": 68,
+     "agree": 0.9411764740943909,
+     "first_mismatch": 9,
+     "nll": 0.15833866596221924,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " that",
+       "margin": 0.0
+      },
+      {
+       "pos": 35,
+       "ours": " was",
+       "released": " is",
+       "margin": 2.25
+      },
+      {
+       "pos": 56,
+       "ours": " in",
+       "released": " specifically",
+       "margin": 0.125
+      },
+      {
+       "pos": 58,
+       "ours": "37",
+       "released": "27",
+       "margin": 5.125
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp_appr_3|graphkv-top3": {
+     "tokens": 61,
+     "agree": 0.9836065769195557,
+     "first_mismatch": 9,
+     "nll": 0.028273271396756172,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " that",
+       "margin": 0.0
+      }
+     ],
+     "cleanup_only": false
+    },
+    "gapemp|graphkv-top3": {
+     "tokens": 61,
+     "agree": 0.9836065769195557,
+     "first_mismatch": 9,
+     "nll": 0.028273271396756172,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " that",
+       "margin": 0.0
+      }
+     ],
+     "cleanup_only": false
+    }
+   },
+   "seconds": 238.6
+  },
+  {
+   "index": 5246,
+   "group": "compositional",
+   "cells": {
+    "vanilla|sequential": {
+     "tokens": 59,
+     "agree": 0.9830508232116699,
+     "first_mismatch": 28,
+     "nll": 0.05397029593586922,
+     "mismatches": [
+      {
+       "pos": 28,
+       "ours": " \"",
+       "released": " titled",
+       "margin": 0.125,
+       "top_logit": 28.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "block|sequential": {
+     "tokens": 59,
+     "agree": 0.9491525292396545,
+     "first_mismatch": 24,
+     "nll": 0.09499747306108475,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " According",
+       "released": " The",
+       "margin": 0.625,
+       "top_logit": 26.625
+      },
+      {
+       "pos": 26,
+       "ours": " \"",
+       "released": " titled",
+       "margin": 0.5,
+       "top_logit": 25.0
+      },
+      {
+       "pos": 55,
+       "ours": "-",
+       "released": " ",
+       "margin": 0.75,
+       "top_logit": 34.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|sequential": {
+     "tokens": 54,
+     "agree": 0.9259259104728699,
+     "first_mismatch": 24,
+     "nll": 0.15757395327091217,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " According",
+       "released": " The",
+       "margin": 0.625,
+       "top_logit": 26.625
+      },
+      {
+       "pos": 26,
+       "ours": " \"",
+       "released": " titled",
+       "margin": 0.5,
+       "top_logit": 25.0
+      },
+      {
+       "pos": 36,
+       "ours": " King",
+       "released": " he",
+       "margin": 2.875,
+       "top_logit": 34.25
+      },
+      {
+       "pos": 50,
+       "ours": "-",
+       "released": " ",
+       "margin": 1.0,
+       "top_logit": 34.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|sequential": {
+     "tokens": 55,
+     "agree": 0.9090909361839294,
+     "first_mismatch": 4,
+     "nll": 0.1652679592370987,
+     "mismatches": [
+      {
+       "pos": 4,
+       "ours": " documents",
+       "released": " search",
+       "margin": 0.125,
+       "top_logit": 31.0
+      },
+      {
+       "pos": 25,
+       "ours": " According",
+       "released": " The",
+       "margin": 0.375,
+       "top_logit": 26.625
+      },
+      {
+       "pos": 27,
+       "ours": " on",
+       "released": " titled",
+       "margin": 0.625,
+       "top_logit": 24.875
+      },
+      {
+       "pos": 37,
+       "ours": " King",
+       "released": " he",
+       "margin": 3.5,
+       "top_logit": 34.75
+      },
+      {
+       "pos": 51,
+       "ours": "-",
+       "released": " ",
+       "margin": 1.25,
+       "top_logit": 34.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|sequential": {
+     "tokens": 192,
+     "agree": 0.8697916865348816,
+     "first_mismatch": 4,
+     "nll": 0.40525496006011963,
+     "mismatches": [
+      {
+       "pos": 4,
+       "ours": " documents",
+       "released": " search",
+       "margin": 0.125,
+       "top_logit": 31.0
+      },
+      {
+       "pos": 25,
+       "ours": " According",
+       "released": " Unfortunately",
+       "margin": 6.0,
+       "top_logit": 26.625
+      },
+      {
+       "pos": 27,
+       "ours": " the",
+       "released": " there",
+       "margin": 2.375,
+       "top_logit": 29.375
+      },
+      {
+       "pos": 30,
+       "ours": " direct",
+       "released": " information",
+       "margin": 3.75,
+       "top_logit": 30.625
+      },
+      {
+       "pos": 33,
+       "ours": " the",
+       "released": " King",
+       "margin": 0.25,
+       "top_logit": 32.5
+      },
+      {
+       "pos": 40,
+       "ours": " place",
+       "released": " death",
+       "margin": 1.625,
+       "top_logit": 28.375
+      },
+      {
+       "pos": 41,
+       "ours": " in",
+       "released": ".",
+       "margin": 0.5,
+       "top_logit": 25.375
+      },
+      {
+       "pos": 47,
+       "ours": " some",
+       "released": " information",
+       "margin": 0.625,
+       "top_logit": 26.25
+      },
+      {
+       "pos": 49,
+       "ours": " Bay",
+       "released": " Sal",
+       "margin": 5.125,
+       "top_logit": 30.875
+      },
+      {
+       "pos": 55,
+       "ours": " father",
+       "released": " husband",
+       "margin": 8.5,
+       "top_logit": 25.375
+      },
+      {
+       "pos": 57,
+       "ours": " Nar",
+       "released": " N",
+       "margin": 1.5,
+       "top_logit": 25.25
+      },
+      {
+       "pos": 78,
+       "ours": ",",
+       "released": " \"",
+       "margin": 2.75,
+       "top_logit": 30.125
+      },
+      {
+       "pos": 79,
+       "ours": "Sal",
+       "released": "Be",
+       "margin": 7.125,
+       "top_logit": 25.0
+      },
+      {
+       "pos": 87,
+       "ours": " Bay",
+       "released": " Jacques",
+       "margin": 1.625,
+       "top_logit": 25.75
+      },
+      {
+       "pos": 93,
+       "ours": ",",
+       "released": " who",
+       "margin": 1.75,
+       "top_logit": 35.0
+      },
+      {
+       "pos": 112,
+       "ours": " France",
+       "released": " a",
+       "margin": 2.25,
+       "top_logit": 28.5
+      },
+      {
+       "pos": 127,
+       "ours": " this",
+       "released": " there",
+       "margin": 0.75,
+       "top_logit": 30.125
+      },
+      {
+       "pos": 132,
+       "ours": " this",
+       "released": " Jacques",
+       "margin": 1.0,
+       "top_logit": 29.0
+      },
+      {
+       "pos": 140,
+       "ours": " or",
+       "released": "'s",
+       "margin": 0.375,
+       "top_logit": 31.25
+      },
+      {
+       "pos": 142,
+       "ours": ".\n\n",
+       "released": ",",
+       "margin": 1.625,
+       "top_logit": 28.875
+      },
+      {
+       "pos": 143,
+       "ours": " and",
+       "released": " so",
+       "margin": 0.25,
+       "top_logit": 31.625
+      },
+      {
+       "pos": 149,
+       "ours": ".\n\n",
+       "released": " to",
+       "margin": 1.0,
+       "top_logit": 34.0
+      },
+      {
+       "pos": 154,
+       "ours": " there",
+       "released": " the",
+       "margin": 0.625,
+       "top_logit": 26.375
+      },
+      {
+       "pos": 156,
+       "ours": " is",
+       "released": " specifically",
+       "margin": 2.125,
+       "top_logit": 22.875
+      },
+      {
+       "pos": 167,
+       "ours": " King",
+       "released": " and",
+       "margin": 1.875,
+       "top_logit": 27.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|block": {
+     "tokens": 59,
+     "agree": 0.9661017060279846,
+     "first_mismatch": 24,
+     "nll": 0.1036677286028862,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " The",
+       "released": " According",
+       "margin": 2.0,
+       "top_logit": 24.875
+      },
+      {
+       "pos": 55,
+       "ours": " ",
+       "released": "-",
+       "margin": 0.5,
+       "top_logit": 33.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|block": {
+     "tokens": 59,
+     "agree": 0.9830508232116699,
+     "first_mismatch": 55,
+     "nll": 0.0760284960269928,
+     "mismatches": [
+      {
+       "pos": 55,
+       "ours": "-",
+       "released": " ",
+       "margin": 0.0,
+       "top_logit": 32.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp_appr_1|block": {
+     "tokens": 54,
+     "agree": 0.9629629850387573,
+     "first_mismatch": 36,
+     "nll": 0.08638690412044525,
+     "mismatches": [
+      {
+       "pos": 36,
+       "ours": " King",
+       "released": " he",
+       "margin": 0.125,
+       "top_logit": 31.125
+      },
+      {
+       "pos": 50,
+       "ours": "-",
+       "released": " ",
+       "margin": 0.25,
+       "top_logit": 32.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp_appr_3|block": {
+     "tokens": 55,
+     "agree": 0.9454545378684998,
+     "first_mismatch": 4,
+     "nll": 0.09120997786521912,
+     "mismatches": [
+      {
+       "pos": 4,
+       "ours": " documents",
+       "released": " search",
+       "margin": 0.375,
+       "top_logit": 31.0
+      },
+      {
+       "pos": 37,
+       "ours": " King",
+       "released": " he",
+       "margin": 0.5,
+       "top_logit": 31.375
+      },
+      {
+       "pos": 51,
+       "ours": "-",
+       "released": " ",
+       "margin": 0.0,
+       "top_logit": 32.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|block": {
+     "tokens": 192,
+     "agree": 0.90625,
+     "first_mismatch": 4,
+     "nll": 0.23693890869617462,
+     "mismatches": [
+      {
+       "pos": 4,
+       "ours": " documents",
+       "released": " search",
+       "margin": 0.375,
+       "top_logit": 31.0
+      },
+      {
+       "pos": 25,
+       "ours": " The",
+       "released": " Unfortunately",
+       "margin": 1.0,
+       "top_logit": 24.875
+      },
+      {
+       "pos": 27,
+       "ours": " the",
+       "released": " there",
+       "margin": 1.0,
+       "top_logit": 31.25
+      },
+      {
+       "pos": 30,
+       "ours": " specific",
+       "released": " information",
+       "margin": 0.125,
+       "top_logit": 30.0
+      },
+      {
+       "pos": 33,
+       "ours": " the",
+       "released": " King",
+       "margin": 0.0,
+       "top_logit": 33.75
+      },
+      {
+       "pos": 46,
+       "ours": " infer",
+       "released": " find",
+       "margin": 2.0,
+       "top_logit": 23.0
+      },
+      {
+       "pos": 49,
+       "ours": " Bay",
+       "released": " Sal",
+       "margin": 2.0,
+       "top_logit": 30.625
+      },
+      {
+       "pos": 55,
+       "ours": " father",
+       "released": " husband",
+       "margin": 1.875,
+       "top_logit": 22.875
+      },
+      {
+       "pos": 57,
+       "ours": " Th",
+       "released": " N",
+       "margin": 3.875,
+       "top_logit": 25.25
+      },
+      {
+       "pos": 79,
+       "ours": "Sal",
+       "released": "Be",
+       "margin": 3.25,
+       "top_logit": 23.375
+      },
+      {
+       "pos": 93,
+       "ours": ",",
+       "released": " who",
+       "margin": 0.25,
+       "top_logit": 34.75
+      },
+      {
+       "pos": 112,
+       "ours": " France",
+       "released": " a",
+       "margin": 0.625,
+       "top_logit": 27.5
+      },
+      {
+       "pos": 132,
+       "ours": " Be",
+       "released": " Jacques",
+       "margin": 3.75,
+       "top_logit": 29.875
+      },
+      {
+       "pos": 143,
+       "ours": " and",
+       "released": " so",
+       "margin": 0.5,
+       "top_logit": 30.25
+      },
+      {
+       "pos": 154,
+       "ours": " there",
+       "released": " the",
+       "margin": 0.625,
+       "top_logit": 25.375
+      },
+      {
+       "pos": 156,
+       "ours": " does",
+       "released": " specifically",
+       "margin": 1.875,
+       "top_logit": 23.625
+      },
+      {
+       "pos": 185,
+       "ours": ".",
+       "released": " based",
+       "margin": 0.0,
+       "top_logit": 30.0
+      },
+      {
+       "pos": 188,
+       "ours": " given",
+       "released": " provided",
+       "margin": 0.0,
+       "top_logit": 29.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-top1@official": {
+     "tokens": 59,
+     "agree": 0.9661017060279846,
+     "first_mismatch": 24,
+     "nll": 0.1130286455154419,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " The",
+       "released": " According",
+       "margin": 2.625,
+       "top_logit": 25.25
+      },
+      {
+       "pos": 55,
+       "ours": " ",
+       "released": "-",
+       "margin": 1.75,
+       "top_logit": 33.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top1@official": {
+     "tokens": 59,
+     "agree": 0.9830508232116699,
+     "first_mismatch": 36,
+     "nll": 0.07077204436063766,
+     "mismatches": [
+      {
+       "pos": 36,
+       "ours": " he",
+       "released": " King",
+       "margin": 1.5,
+       "top_logit": 34.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top1@official": {
+     "tokens": 54,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.049770183861255646
+    },
+    "gapemp_appr_3|graphkv-top1@official": {
+     "tokens": 55,
+     "agree": 0.9818181991577148,
+     "first_mismatch": 4,
+     "nll": 0.0628005787730217,
+     "mismatches": [
+      {
+       "pos": 4,
+       "ours": " documents",
+       "released": " search",
+       "margin": 0.75,
+       "top_logit": 31.375
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|graphkv-top1@official": {
+     "tokens": 192,
+     "agree": 0.8958333134651184,
+     "first_mismatch": 4,
+     "nll": 0.22655098140239716,
+     "mismatches": [
+      {
+       "pos": 4,
+       "ours": " documents",
+       "released": " search",
+       "margin": 0.75,
+       "top_logit": 31.375
+      },
+      {
+       "pos": 25,
+       "ours": " The",
+       "released": " Unfortunately",
+       "margin": 2.375,
+       "top_logit": 25.125
+      },
+      {
+       "pos": 27,
+       "ours": " the",
+       "released": " there",
+       "margin": 2.75,
+       "top_logit": 31.375
+      },
+      {
+       "pos": 30,
+       "ours": " specific",
+       "released": " information",
+       "margin": 1.625,
+       "top_logit": 30.375
+      },
+      {
+       "pos": 40,
+       "ours": " place",
+       "released": " death",
+       "margin": 0.875,
+       "top_logit": 28.125
+      },
+      {
+       "pos": 44,
+       "ours": " it",
+       "released": " we",
+       "margin": 0.125,
+       "top_logit": 30.375
+      },
+      {
+       "pos": 46,
+       "ours": " infer",
+       "released": " find",
+       "margin": 1.5,
+       "top_logit": 22.875
+      },
+      {
+       "pos": 49,
+       "ours": " King",
+       "released": " Sal",
+       "margin": 1.125,
+       "top_logit": 28.25
+      },
+      {
+       "pos": 55,
+       "ours": " father",
+       "released": " husband",
+       "margin": 0.875,
+       "top_logit": 23.0
+      },
+      {
+       "pos": 57,
+       "ours": " Th",
+       "released": " N",
+       "margin": 1.625,
+       "top_logit": 26.0
+      },
+      {
+       "pos": 79,
+       "ours": "Val",
+       "released": "Be",
+       "margin": 0.875,
+       "top_logit": 23.0
+      },
+      {
+       "pos": 93,
+       "ours": ",",
+       "released": " who",
+       "margin": 0.5,
+       "top_logit": 35.0
+      },
+      {
+       "pos": 132,
+       "ours": " Be",
+       "released": " Jacques",
+       "margin": 2.75,
+       "top_logit": 29.875
+      },
+      {
+       "pos": 140,
+       "ours": " or",
+       "released": "'s",
+       "margin": 0.25,
+       "top_logit": 31.25
+      },
+      {
+       "pos": 142,
+       "ours": ".\n\n",
+       "released": ",",
+       "margin": 0.125,
+       "top_logit": 27.625
+      },
+      {
+       "pos": 143,
+       "ours": " and",
+       "released": " so",
+       "margin": 0.25,
+       "top_logit": 30.25
+      },
+      {
+       "pos": 154,
+       "ours": " there",
+       "released": " the",
+       "margin": 0.625,
+       "top_logit": 25.375
+      },
+      {
+       "pos": 156,
+       "ours": " does",
+       "released": " specifically",
+       "margin": 1.75,
+       "top_logit": 23.5
+      },
+      {
+       "pos": 185,
+       "ours": ".",
+       "released": " based",
+       "margin": 0.625,
+       "top_logit": 30.375
+      },
+      {
+       "pos": 188,
+       "ours": " given",
+       "released": " provided",
+       "margin": 0.125,
+       "top_logit": 28.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-top3@official": {
+     "tokens": 59,
+     "agree": 0.9491525292396545,
+     "first_mismatch": 4,
+     "nll": 0.16835720837116241,
+     "mismatches": [
+      {
+       "pos": 4,
+       "ours": " search",
+       "released": " documents",
+       "margin": 0.125,
+       "top_logit": 31.375
+      },
+      {
+       "pos": 24,
+       "ours": " The",
+       "released": " According",
+       "margin": 3.25,
+       "top_logit": 24.5
+      },
+      {
+       "pos": 55,
+       "ours": " ",
+       "released": "-",
+       "margin": 2.625,
+       "top_logit": 34.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top3@official": {
+     "tokens": 59,
+     "agree": 0.9661017060279846,
+     "first_mismatch": 4,
+     "nll": 0.09628967195749283,
+     "mismatches": [
+      {
+       "pos": 4,
+       "ours": " search",
+       "released": " documents",
+       "margin": 0.125,
+       "top_logit": 31.375
+      },
+      {
+       "pos": 36,
+       "ours": " he",
+       "released": " King",
+       "margin": 0.5,
+       "top_logit": 30.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top3@official": {
+     "tokens": 54,
+     "agree": 0.9814814925193787,
+     "first_mismatch": 4,
+     "nll": 0.08880668133497238,
+     "mismatches": [
+      {
+       "pos": 4,
+       "ours": " search",
+       "released": " documents",
+       "margin": 0.125,
+       "top_logit": 31.375
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp_appr_3|graphkv-top3@official": {
+     "tokens": 55,
+     "agree": 0.9818181991577148,
+     "first_mismatch": 37,
+     "nll": 0.08922532945871353,
+     "mismatches": [
+      {
+       "pos": 37,
+       "ours": " King",
+       "released": " he",
+       "margin": 0.125,
+       "top_logit": 30.625
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp|graphkv-top3@official": {
+     "tokens": 192,
+     "agree": 0.9427083134651184,
+     "first_mismatch": 25,
+     "nll": 0.160657599568367,
+     "mismatches": [
+      {
+       "pos": 25,
+       "ours": " The",
+       "released": " Unfortunately",
+       "margin": 0.75,
+       "top_logit": 24.375
+      },
+      {
+       "pos": 30,
+       "ours": " specific",
+       "released": " information",
+       "margin": 0.5,
+       "top_logit": 30.125
+      },
+      {
+       "pos": 40,
+       "ours": " place",
+       "released": " death",
+       "margin": 0.625,
+       "top_logit": 28.25
+      },
+      {
+       "pos": 46,
+       "ours": " infer",
+       "released": " find",
+       "margin": 1.125,
+       "top_logit": 22.25
+      },
+      {
+       "pos": 57,
+       "ours": " Th",
+       "released": " N",
+       "margin": 1.25,
+       "top_logit": 26.25
+      },
+      {
+       "pos": 132,
+       "ours": " Be",
+       "released": " Jacques",
+       "margin": 2.625,
+       "top_logit": 30.625
+      },
+      {
+       "pos": 143,
+       "ours": " and",
+       "released": " so",
+       "margin": 0.125,
+       "top_logit": 30.375
+      },
+      {
+       "pos": 154,
+       "ours": " there",
+       "released": " the",
+       "margin": 0.5,
+       "top_logit": 25.5
+      },
+      {
+       "pos": 156,
+       "ours": " does",
+       "released": " specifically",
+       "margin": 0.75,
+       "top_logit": 23.0
+      },
+      {
+       "pos": 185,
+       "ours": ".",
+       "released": " based",
+       "margin": 0.0,
+       "top_logit": 29.875
+      },
+      {
+       "pos": 188,
+       "ours": " given",
+       "released": " provided",
+       "margin": 0.0,
+       "top_logit": 28.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-full@official": {
+     "tokens": 59,
+     "agree": 0.9322034120559692,
+     "first_mismatch": 4,
+     "nll": 0.18028131127357483,
+     "mismatches": [
+      {
+       "pos": 4,
+       "ours": " search",
+       "released": " documents",
+       "margin": 0.5,
+       "top_logit": 32.0
+      },
+      {
+       "pos": 24,
+       "ours": " The",
+       "released": " According",
+       "margin": 3.5,
+       "top_logit": 24.25
+      },
+      {
+       "pos": 55,
+       "ours": " ",
+       "released": "-",
+       "margin": 2.625,
+       "top_logit": 34.25
+      },
+      {
+       "pos": 58,
+       "ours": ".\n\n",
+       "released": ".",
+       "margin": 0.25,
+       "top_logit": 34.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-full@official": {
+     "tokens": 59,
+     "agree": 0.9491525292396545,
+     "first_mismatch": 4,
+     "nll": 0.10780077427625656,
+     "mismatches": [
+      {
+       "pos": 4,
+       "ours": " search",
+       "released": " documents",
+       "margin": 0.5,
+       "top_logit": 32.0
+      },
+      {
+       "pos": 36,
+       "ours": " he",
+       "released": " King",
+       "margin": 0.5,
+       "top_logit": 31.375
+      },
+      {
+       "pos": 58,
+       "ours": ".\n\n",
+       "released": ".",
+       "margin": 1.0,
+       "top_logit": 35.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-full@official": {
+     "tokens": 54,
+     "agree": 0.9814814925193787,
+     "first_mismatch": 4,
+     "nll": 0.09628397971391678,
+     "mismatches": [
+      {
+       "pos": 4,
+       "ours": " search",
+       "released": " documents",
+       "margin": 0.5,
+       "top_logit": 32.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp_appr_3|graphkv-full@official": {
+     "tokens": 55,
+     "agree": 0.9636363387107849,
+     "first_mismatch": 25,
+     "nll": 0.08698193728923798,
+     "mismatches": [
+      {
+       "pos": 25,
+       "ours": " Unfortunately",
+       "released": " The",
+       "margin": 0.125,
+       "top_logit": 24.25
+      },
+      {
+       "pos": 37,
+       "ours": " King",
+       "released": " he",
+       "margin": 0.25,
+       "top_logit": 31.375
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp|graphkv-full@official": {
+     "tokens": 192,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.10720042139291763
+    },
+    "vanilla|graphkv-top3": {
+     "tokens": 59,
+     "agree": 0.9491525292396545,
+     "first_mismatch": 0,
+     "nll": 0.14713416993618011,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Based",
+       "released": "According",
+       "margin": 0.75,
+       "top_logit": 27.625
+      },
+      {
+       "pos": 4,
+       "ours": " search",
+       "released": " documents",
+       "margin": 1.125,
+       "top_logit": 31.75
+      },
+      {
+       "pos": 24,
+       "ours": " The",
+       "released": " According",
+       "margin": 3.625,
+       "top_logit": 26.125
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top3": {
+     "tokens": 59,
+     "agree": 0.9322034120559692,
+     "first_mismatch": 0,
+     "nll": 0.13939471542835236,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Based",
+       "released": "According",
+       "margin": 0.75,
+       "top_logit": 27.625
+      },
+      {
+       "pos": 4,
+       "ours": " search",
+       "released": " documents",
+       "margin": 1.125,
+       "top_logit": 31.75
+      },
+      {
+       "pos": 26,
+       "ours": " on",
+       "released": " titled",
+       "margin": 2.125,
+       "top_logit": 26.5
+      },
+      {
+       "pos": 55,
+       "ours": "-",
+       "released": " ",
+       "margin": 1.25,
+       "top_logit": 33.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top3": {
+     "tokens": 54,
+     "agree": 0.9074074029922485,
+     "first_mismatch": 0,
+     "nll": 0.17870791256427765,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Based",
+       "released": "According",
+       "margin": 0.75,
+       "top_logit": 27.625
+      },
+      {
+       "pos": 4,
+       "ours": " search",
+       "released": " documents",
+       "margin": 1.125,
+       "top_logit": 31.75
+      },
+      {
+       "pos": 26,
+       "ours": " on",
+       "released": " titled",
+       "margin": 2.125,
+       "top_logit": 26.5
+      },
+      {
+       "pos": 36,
+       "ours": " King",
+       "released": " he",
+       "margin": 2.125,
+       "top_logit": 32.25
+      },
+      {
+       "pos": 50,
+       "ours": "-",
+       "released": " ",
+       "margin": 0.75,
+       "top_logit": 33.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-top3": {
+     "tokens": 55,
+     "agree": 0.9272727370262146,
+     "first_mismatch": 0,
+     "nll": 0.15759406983852386,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Based",
+       "released": "According",
+       "margin": 0.75,
+       "top_logit": 27.625
+      },
+      {
+       "pos": 27,
+       "ours": " on",
+       "released": " titled",
+       "margin": 2.125,
+       "top_logit": 26.375
+      },
+      {
+       "pos": 37,
+       "ours": " King",
+       "released": " he",
+       "margin": 2.5,
+       "top_logit": 32.5
+      },
+      {
+       "pos": 51,
+       "ours": "-",
+       "released": " ",
+       "margin": 0.5,
+       "top_logit": 33.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|graphkv-top3": {
+     "tokens": 192,
+     "agree": 0.9114583134651184,
+     "first_mismatch": 0,
+     "nll": 0.2073637843132019,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Based",
+       "released": "According",
+       "margin": 0.75,
+       "top_logit": 27.625
+      },
+      {
+       "pos": 25,
+       "ours": " The",
+       "released": " Unfortunately",
+       "margin": 2.375,
+       "top_logit": 26.125
+      },
+      {
+       "pos": 27,
+       "ours": " the",
+       "released": " there",
+       "margin": 0.375,
+       "top_logit": 31.375
+      },
+      {
+       "pos": 46,
+       "ours": " infer",
+       "released": " find",
+       "margin": 0.75,
+       "top_logit": 22.25
+      },
+      {
+       "pos": 49,
+       "ours": " Bay",
+       "released": " Sal",
+       "margin": 2.375,
+       "top_logit": 31.125
+      },
+      {
+       "pos": 55,
+       "ours": " father",
+       "released": " husband",
+       "margin": 2.375,
+       "top_logit": 23.25
+      },
+      {
+       "pos": 57,
+       "ours": " Th",
+       "released": " N",
+       "margin": 1.75,
+       "top_logit": 25.0
+      },
+      {
+       "pos": 74,
+       "ours": " N",
+       "released": " According",
+       "margin": 1.125,
+       "top_logit": 24.0
+      },
+      {
+       "pos": 78,
+       "ours": ",",
+       "released": " \"",
+       "margin": 1.125,
+       "top_logit": 28.75
+      },
+      {
+       "pos": 79,
+       "ours": "Sal",
+       "released": "Be",
+       "margin": 2.125,
+       "top_logit": 23.125
+      },
+      {
+       "pos": 93,
+       "ours": ",",
+       "released": " who",
+       "margin": 0.0,
+       "top_logit": 36.75
+      },
+      {
+       "pos": 132,
+       "ours": " this",
+       "released": " Jacques",
+       "margin": 1.625,
+       "top_logit": 30.0
+      },
+      {
+       "pos": 143,
+       "ours": " and",
+       "released": " so",
+       "margin": 0.0,
+       "top_logit": 31.875
+      },
+      {
+       "pos": 156,
+       "ours": " does",
+       "released": " specifically",
+       "margin": 0.625,
+       "top_logit": 22.75
+      },
+      {
+       "pos": 166,
+       "ours": "'s",
+       "released": ",",
+       "margin": 0.5,
+       "top_logit": 35.5
+      },
+      {
+       "pos": 171,
+       "ours": " relevant",
+       "released": " information",
+       "margin": 0.75,
+       "top_logit": 27.75
+      },
+      {
+       "pos": 184,
+       "ours": " not",
+       "released": " unknown",
+       "margin": 0.0,
+       "top_logit": 22.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    }
+   },
+   "seconds": 812.2
+  },
+  {
+   "index": 6615,
+   "group": "bridge_comparison",
+   "cells": {
+    "vanilla|sequential": {
+     "tokens": 144,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.030121253803372383
+    },
+    "block|sequential": {
+     "tokens": 153,
+     "agree": 0.9803921580314636,
+     "first_mismatch": 25,
+     "nll": 0.055078718811273575,
+     "mismatches": [
+      {
+       "pos": 25,
+       "ours": " storia",
+       "released": " St",
+       "margin": 0.625,
+       "top_logit": 28.75
+      },
+      {
+       "pos": 35,
+       "ours": "),",
+       "released": " film",
+       "margin": 0.0,
+       "top_logit": 34.5
+      },
+      {
+       "pos": 65,
+       "ours": "\",",
+       "released": "\"",
+       "margin": 2.75,
+       "top_logit": 36.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|sequential": {
+     "tokens": 157,
+     "agree": 0.9681528806686401,
+     "first_mismatch": 25,
+     "nll": 0.06300517916679382,
+     "mismatches": [
+      {
+       "pos": 25,
+       "ours": " storia",
+       "released": " St",
+       "margin": 0.625,
+       "top_logit": 28.75
+      },
+      {
+       "pos": 35,
+       "ours": "),",
+       "released": " film",
+       "margin": 0.0,
+       "top_logit": 34.5
+      },
+      {
+       "pos": 65,
+       "ours": "\",",
+       "released": "\"",
+       "margin": 2.75,
+       "top_logit": 36.25
+      },
+      {
+       "pos": 96,
+       "ours": " Ji\u0159\u00ed",
+       "released": " we",
+       "margin": 0.75,
+       "top_logit": 31.125
+      },
+      {
+       "pos": 103,
+       "ours": " was",
+       "released": ",",
+       "margin": 0.25,
+       "top_logit": 33.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|sequential": {
+     "tokens": 192,
+     "agree": 0.9791666865348816,
+     "first_mismatch": 20,
+     "nll": 0.06801298260688782,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " mentioned",
+       "released": " \"",
+       "margin": 1.625,
+       "top_logit": 26.75
+      },
+      {
+       "pos": 59,
+       "ours": "\",",
+       "released": "\"",
+       "margin": 1.0,
+       "top_logit": 37.25
+      },
+      {
+       "pos": 125,
+       "ours": " we",
+       "released": " Ji\u0159\u00ed",
+       "margin": 0.125,
+       "top_logit": 31.125
+      },
+      {
+       "pos": 167,
+       "ours": " film",
+       "released": " answer",
+       "margin": 3.625,
+       "top_logit": 33.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|sequential": {
+     "tokens": 192,
+     "agree": 0.9895833134651184,
+     "first_mismatch": 20,
+     "nll": 0.046875838190317154,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " mentioned",
+       "released": " \"",
+       "margin": 1.625,
+       "top_logit": 26.75
+      },
+      {
+       "pos": 59,
+       "ours": "\",",
+       "released": "\"",
+       "margin": 1.0,
+       "top_logit": 37.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|block": {
+     "tokens": 144,
+     "agree": 0.9861111044883728,
+     "first_mismatch": 25,
+     "nll": 0.05060566961765289,
+     "mismatches": [
+      {
+       "pos": 25,
+       "ours": " St",
+       "released": " storia",
+       "margin": 1.125,
+       "top_logit": 27.625
+      },
+      {
+       "pos": 63,
+       "ours": "\"",
+       "released": "\",",
+       "margin": 1.875,
+       "top_logit": 33.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|block": {
+     "tokens": 153,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03152471035718918
+    },
+    "gapemp_appr_1|block": {
+     "tokens": 157,
+     "agree": 0.993630588054657,
+     "first_mismatch": 96,
+     "nll": 0.031231166794896126,
+     "mismatches": [
+      {
+       "pos": 96,
+       "ours": " Ji\u0159\u00ed",
+       "released": " we",
+       "margin": 0.125,
+       "top_logit": 29.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp_appr_3|block": {
+     "tokens": 192,
+     "agree": 0.9739583134651184,
+     "first_mismatch": 20,
+     "nll": 0.04946088790893555,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " mentioned",
+       "released": " \"",
+       "margin": 0.875,
+       "top_logit": 26.5
+      },
+      {
+       "pos": 50,
+       "ours": "According",
+       "released": "For",
+       "margin": 0.25,
+       "top_logit": 24.75
+      },
+      {
+       "pos": 59,
+       "ours": "\",",
+       "released": "\"",
+       "margin": 1.75,
+       "top_logit": 36.0
+      },
+      {
+       "pos": 125,
+       "ours": " we",
+       "released": " Ji\u0159\u00ed",
+       "margin": 0.25,
+       "top_logit": 29.625
+      },
+      {
+       "pos": 167,
+       "ours": " film",
+       "released": " answer",
+       "margin": 0.75,
+       "top_logit": 30.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|block": {
+     "tokens": 192,
+     "agree": 0.984375,
+     "first_mismatch": 20,
+     "nll": 0.040243446826934814,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " mentioned",
+       "released": " \"",
+       "margin": 0.875,
+       "top_logit": 26.5
+      },
+      {
+       "pos": 50,
+       "ours": "According",
+       "released": "For",
+       "margin": 0.25,
+       "top_logit": 24.75
+      },
+      {
+       "pos": 59,
+       "ours": "\",",
+       "released": "\"",
+       "margin": 1.75,
+       "top_logit": 36.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-top1@official": {
+     "tokens": 144,
+     "agree": 0.9861111044883728,
+     "first_mismatch": 25,
+     "nll": 0.050770875066518784,
+     "mismatches": [
+      {
+       "pos": 25,
+       "ours": " St",
+       "released": " storia",
+       "margin": 0.5,
+       "top_logit": 27.75
+      },
+      {
+       "pos": 63,
+       "ours": "\"",
+       "released": "\",",
+       "margin": 1.0,
+       "top_logit": 33.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top1@official": {
+     "tokens": 153,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.04077303782105446
+    },
+    "gapemp_appr_1|graphkv-top1@official": {
+     "tokens": 157,
+     "agree": 0.993630588054657,
+     "first_mismatch": 96,
+     "nll": 0.04138929769396782,
+     "mismatches": [
+      {
+       "pos": 96,
+       "ours": " Ji\u0159\u00ed",
+       "released": " we",
+       "margin": 0.25,
+       "top_logit": 29.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp_appr_3|graphkv-top1@official": {
+     "tokens": 192,
+     "agree": 0.9791666865348816,
+     "first_mismatch": 20,
+     "nll": 0.041934579610824585,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " mentioned",
+       "released": " \"",
+       "margin": 0.25,
+       "top_logit": 26.875
+      },
+      {
+       "pos": 59,
+       "ours": "\",",
+       "released": "\"",
+       "margin": 0.75,
+       "top_logit": 35.75
+      },
+      {
+       "pos": 125,
+       "ours": " we",
+       "released": " Ji\u0159\u00ed",
+       "margin": 0.25,
+       "top_logit": 29.5
+      },
+      {
+       "pos": 167,
+       "ours": " film",
+       "released": " answer",
+       "margin": 0.25,
+       "top_logit": 30.375
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|graphkv-top1@official": {
+     "tokens": 192,
+     "agree": 0.9895833134651184,
+     "first_mismatch": 20,
+     "nll": 0.03604811057448387,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " mentioned",
+       "released": " \"",
+       "margin": 0.25,
+       "top_logit": 26.875
+      },
+      {
+       "pos": 59,
+       "ours": "\",",
+       "released": "\"",
+       "margin": 0.75,
+       "top_logit": 35.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-top3@official": {
+     "tokens": 144,
+     "agree": 0.9722222089767456,
+     "first_mismatch": 20,
+     "nll": 0.06725457310676575,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " \"",
+       "released": " mentioned",
+       "margin": 1.125,
+       "top_logit": 27.375
+      },
+      {
+       "pos": 25,
+       "ours": " St",
+       "released": " storia",
+       "margin": 1.75,
+       "top_logit": 28.875
+      },
+      {
+       "pos": 63,
+       "ours": "\"",
+       "released": "\",",
+       "margin": 1.5,
+       "top_logit": 33.75
+      },
+      {
+       "pos": 126,
+       "ours": " answer",
+       "released": " film",
+       "margin": 0.0,
+       "top_logit": 30.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top3@official": {
+     "tokens": 153,
+     "agree": 0.9869281053543091,
+     "first_mismatch": 20,
+     "nll": 0.04437513276934624,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " \"",
+       "released": " mentioned",
+       "margin": 1.125,
+       "top_logit": 27.375
+      },
+      {
+       "pos": 135,
+       "ours": " answer",
+       "released": " film",
+       "margin": 0.0,
+       "top_logit": 30.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top3@official": {
+     "tokens": 157,
+     "agree": 0.987261176109314,
+     "first_mismatch": 20,
+     "nll": 0.04538414627313614,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " \"",
+       "released": " mentioned",
+       "margin": 1.125,
+       "top_logit": 27.375
+      },
+      {
+       "pos": 96,
+       "ours": " Ji\u0159\u00ed",
+       "released": " we",
+       "margin": 0.375,
+       "top_logit": 29.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-top3@official": {
+     "tokens": 192,
+     "agree": 0.9947916865348816,
+     "first_mismatch": 125,
+     "nll": 0.033868368715047836,
+     "mismatches": [
+      {
+       "pos": 125,
+       "ours": " we",
+       "released": " Ji\u0159\u00ed",
+       "margin": 0.0,
+       "top_logit": 29.625
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp|graphkv-top3@official": {
+     "tokens": 192,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.031224258244037628
+    },
+    "vanilla|graphkv-full@official": {
+     "tokens": 144,
+     "agree": 0.9722222089767456,
+     "first_mismatch": 20,
+     "nll": 0.06524065136909485,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " \"",
+       "released": " mentioned",
+       "margin": 1.375,
+       "top_logit": 27.5
+      },
+      {
+       "pos": 23,
+       "ours": " the",
+       "released": " \"",
+       "margin": 0.875,
+       "top_logit": 29.625
+      },
+      {
+       "pos": 25,
+       "ours": " St",
+       "released": " storia",
+       "margin": 0.875,
+       "top_logit": 28.125
+      },
+      {
+       "pos": 63,
+       "ours": "\"",
+       "released": "\",",
+       "margin": 1.0,
+       "top_logit": 33.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-full@official": {
+     "tokens": 153,
+     "agree": 0.9869281053543091,
+     "first_mismatch": 20,
+     "nll": 0.05394412577152252,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " \"",
+       "released": " mentioned",
+       "margin": 1.375,
+       "top_logit": 27.5
+      },
+      {
+       "pos": 23,
+       "ours": " the",
+       "released": " \"",
+       "margin": 0.875,
+       "top_logit": 29.625
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-full@official": {
+     "tokens": 157,
+     "agree": 0.9808917045593262,
+     "first_mismatch": 20,
+     "nll": 0.053203411400318146,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " \"",
+       "released": " mentioned",
+       "margin": 1.375,
+       "top_logit": 27.5
+      },
+      {
+       "pos": 23,
+       "ours": " the",
+       "released": " \"",
+       "margin": 0.875,
+       "top_logit": 29.625
+      },
+      {
+       "pos": 96,
+       "ours": " Ji\u0159\u00ed",
+       "released": " we",
+       "margin": 0.125,
+       "top_logit": 30.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-full@official": {
+     "tokens": 192,
+     "agree": 0.9895833134651184,
+     "first_mismatch": 125,
+     "nll": 0.03436018526554108,
+     "mismatches": [
+      {
+       "pos": 125,
+       "ours": " we",
+       "released": " Ji\u0159\u00ed",
+       "margin": 0.875,
+       "top_logit": 30.375
+      },
+      {
+       "pos": 167,
+       "ours": " film",
+       "released": " answer",
+       "margin": 0.25,
+       "top_logit": 30.375
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|graphkv-full@official": {
+     "tokens": 192,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.025888802483677864
+    },
+    "vanilla|graphkv-top3": {
+     "tokens": 144,
+     "agree": 0.9791666865348816,
+     "first_mismatch": 20,
+     "nll": 0.08726532757282257,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " \"",
+       "released": " mentioned",
+       "margin": 0.0,
+       "top_logit": 27.0
+      },
+      {
+       "pos": 25,
+       "ours": " St",
+       "released": " storia",
+       "margin": 1.75,
+       "top_logit": 29.125
+      },
+      {
+       "pos": 63,
+       "ours": "\"",
+       "released": "\",",
+       "margin": 6.625,
+       "top_logit": 34.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top3": {
+     "tokens": 153,
+     "agree": 0.9803921580314636,
+     "first_mismatch": 20,
+     "nll": 0.04448316991329193,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " \"",
+       "released": " mentioned",
+       "margin": 0.0,
+       "top_logit": 27.0
+      },
+      {
+       "pos": 35,
+       "ours": "),",
+       "released": " film",
+       "margin": 1.0,
+       "top_logit": 35.0
+      },
+      {
+       "pos": 59,
+       "ours": " Ch",
+       "released": " chv\u00ed",
+       "margin": 1.0,
+       "top_logit": 19.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top3": {
+     "tokens": 157,
+     "agree": 0.9745222926139832,
+     "first_mismatch": 20,
+     "nll": 0.04797264561057091,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " \"",
+       "released": " mentioned",
+       "margin": 0.0,
+       "top_logit": 27.0
+      },
+      {
+       "pos": 35,
+       "ours": "),",
+       "released": " film",
+       "margin": 1.0,
+       "top_logit": 35.0
+      },
+      {
+       "pos": 59,
+       "ours": " Ch",
+       "released": " chv\u00ed",
+       "margin": 1.0,
+       "top_logit": 19.25
+      },
+      {
+       "pos": 96,
+       "ours": " Ji\u0159\u00ed",
+       "released": " we",
+       "margin": 0.625,
+       "top_logit": 30.625
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-top3": {
+     "tokens": 192,
+     "agree": 0.9895833134651184,
+     "first_mismatch": 125,
+     "nll": 0.03531123697757721,
+     "mismatches": [
+      {
+       "pos": 125,
+       "ours": " we",
+       "released": " Ji\u0159\u00ed",
+       "margin": 0.375,
+       "top_logit": 30.375
+      },
+      {
+       "pos": 167,
+       "ours": " film",
+       "released": " answer",
+       "margin": 1.0,
+       "top_logit": 31.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|graphkv-top3": {
+     "tokens": 192,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.02669713646173477
+    }
+   },
+   "seconds": 252.8
+  },
+  {
+   "index": 6748,
+   "group": "comparison",
+   "cells": {
+    "vanilla|sequential": {
+     "tokens": 123,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.02466266043484211
+    },
+    "block|sequential": {
+     "tokens": 125,
+     "agree": 0.984000027179718,
+     "first_mismatch": 24,
+     "nll": 0.043452296406030655,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " died",
+       "released": " passed",
+       "margin": 0.375,
+       "top_logit": 25.375
+      },
+      {
+       "pos": 94,
+       "ours": " born",
+       "released": " being",
+       "margin": 1.625,
+       "top_logit": 30.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|sequential": {
+     "tokens": 126,
+     "agree": 0.976190447807312,
+     "first_mismatch": 24,
+     "nll": 0.05761370062828064,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " died",
+       "released": " passed",
+       "margin": 0.375,
+       "top_logit": 25.375
+      },
+      {
+       "pos": 94,
+       "ours": " born",
+       "released": " being",
+       "margin": 1.625,
+       "top_logit": 30.0
+      },
+      {
+       "pos": 118,
+       "ours": " the",
+       "released": " younger",
+       "margin": 2.25,
+       "top_logit": 26.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|sequential": {
+     "tokens": 77,
+     "agree": 0.9870129823684692,
+     "first_mismatch": 24,
+     "nll": 0.042645812034606934,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " died",
+       "released": " Mim",
+       "margin": 0.5,
+       "top_logit": 25.375
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|sequential": {
+     "tokens": 77,
+     "agree": 0.9870129823684692,
+     "first_mismatch": 24,
+     "nll": 0.042645812034606934,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " died",
+       "released": " Mim",
+       "margin": 0.5,
+       "top_logit": 25.375
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|block": {
+     "tokens": 123,
+     "agree": 0.9837398529052734,
+     "first_mismatch": 24,
+     "nll": 0.04324691742658615,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " passed",
+       "released": " died",
+       "margin": 0.5,
+       "top_logit": 24.0
+      },
+      {
+       "pos": 93,
+       "ours": " being",
+       "released": " born",
+       "margin": 0.625,
+       "top_logit": 29.625
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|block": {
+     "tokens": 125,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.04417148604989052
+    },
+    "gapemp_appr_1|block": {
+     "tokens": 126,
+     "agree": 0.9920634627342224,
+     "first_mismatch": 118,
+     "nll": 0.04224134236574173,
+     "mismatches": [
+      {
+       "pos": 118,
+       "ours": " the",
+       "released": " younger",
+       "margin": 0.5,
+       "top_logit": 25.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|block": {
+     "tokens": 77,
+     "agree": 0.9870129823684692,
+     "first_mismatch": 24,
+     "nll": 0.07417214661836624,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " passed",
+       "released": " Mim",
+       "margin": 2.875,
+       "top_logit": 24.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|block": {
+     "tokens": 77,
+     "agree": 0.9870129823684692,
+     "first_mismatch": 24,
+     "nll": 0.07417214661836624,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " passed",
+       "released": " Mim",
+       "margin": 2.875,
+       "top_logit": 24.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-top1@official": {
+     "tokens": 123,
+     "agree": 0.9756097793579102,
+     "first_mismatch": 24,
+     "nll": 0.04385482519865036,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " passed",
+       "released": " died",
+       "margin": 0.0,
+       "top_logit": 23.75
+      },
+      {
+       "pos": 93,
+       "ours": " being",
+       "released": " born",
+       "margin": 0.375,
+       "top_logit": 29.5
+      },
+      {
+       "pos": 116,
+       "ours": " younger",
+       "released": " the",
+       "margin": 0.25,
+       "top_logit": 24.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top1@official": {
+     "tokens": 125,
+     "agree": 0.9919999837875366,
+     "first_mismatch": 118,
+     "nll": 0.05022808164358139,
+     "mismatches": [
+      {
+       "pos": 118,
+       "ours": " younger",
+       "released": " the",
+       "margin": 0.375,
+       "top_logit": 24.625
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top1@official": {
+     "tokens": 126,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.04233281686902046
+    },
+    "gapemp_appr_3|graphkv-top1@official": {
+     "tokens": 77,
+     "agree": 0.9870129823684692,
+     "first_mismatch": 24,
+     "nll": 0.04478980228304863,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " passed",
+       "released": " Mim",
+       "margin": 0.75,
+       "top_logit": 23.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|graphkv-top1@official": {
+     "tokens": 77,
+     "agree": 0.9870129823684692,
+     "first_mismatch": 24,
+     "nll": 0.04478980228304863,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " passed",
+       "released": " Mim",
+       "margin": 0.75,
+       "top_logit": 23.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-top3@official": {
+     "tokens": 123,
+     "agree": 0.9837398529052734,
+     "first_mismatch": 24,
+     "nll": 0.046697624027729034,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " Mim",
+       "released": " died",
+       "margin": 1.0,
+       "top_logit": 23.125
+      },
+      {
+       "pos": 93,
+       "ours": " being",
+       "released": " born",
+       "margin": 0.5,
+       "top_logit": 29.625
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top3@official": {
+     "tokens": 125,
+     "agree": 0.9919999837875366,
+     "first_mismatch": 24,
+     "nll": 0.052578218281269073,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " Mim",
+       "released": " passed",
+       "margin": 1.0,
+       "top_logit": 23.125
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top3@official": {
+     "tokens": 126,
+     "agree": 0.9841269850730896,
+     "first_mismatch": 24,
+     "nll": 0.05148124322295189,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " Mim",
+       "released": " passed",
+       "margin": 1.0,
+       "top_logit": 23.125
+      },
+      {
+       "pos": 118,
+       "ours": " the",
+       "released": " younger",
+       "margin": 0.625,
+       "top_logit": 25.125
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-top3@official": {
+     "tokens": 77,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.02905191294848919
+    },
+    "gapemp|graphkv-top3@official": {
+     "tokens": 77,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.02905191294848919
+    },
+    "vanilla|graphkv-full@official": {
+     "tokens": 123,
+     "agree": 0.9837398529052734,
+     "first_mismatch": 24,
+     "nll": 0.04317684471607208,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " Mim",
+       "released": " died",
+       "margin": 1.0,
+       "top_logit": 23.125
+      },
+      {
+       "pos": 93,
+       "ours": " being",
+       "released": " born",
+       "margin": 0.375,
+       "top_logit": 29.625
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-full@official": {
+     "tokens": 125,
+     "agree": 0.984000027179718,
+     "first_mismatch": 24,
+     "nll": 0.05001457780599594,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " Mim",
+       "released": " passed",
+       "margin": 1.0,
+       "top_logit": 23.125
+      },
+      {
+       "pos": 87,
+       "ours": " passed",
+       "released": " died",
+       "margin": 0.25,
+       "top_logit": 29.375
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-full@official": {
+     "tokens": 126,
+     "agree": 0.976190447807312,
+     "first_mismatch": 24,
+     "nll": 0.04919470101594925,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " Mim",
+       "released": " passed",
+       "margin": 1.0,
+       "top_logit": 23.125
+      },
+      {
+       "pos": 87,
+       "ours": " passed",
+       "released": " died",
+       "margin": 0.25,
+       "top_logit": 29.375
+      },
+      {
+       "pos": 118,
+       "ours": " the",
+       "released": " younger",
+       "margin": 0.5,
+       "top_logit": 25.125
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-full@official": {
+     "tokens": 77,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03085767850279808
+    },
+    "gapemp|graphkv-full@official": {
+     "tokens": 77,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03085767850279808
+    },
+    "vanilla|graphkv-top3": {
+     "tokens": 123,
+     "agree": 0.9837398529052734,
+     "first_mismatch": 24,
+     "nll": 0.05969254672527313,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " Mim",
+       "released": " died",
+       "margin": 2.0,
+       "top_logit": 24.375
+      },
+      {
+       "pos": 93,
+       "ours": " being",
+       "released": " born",
+       "margin": 0.625,
+       "top_logit": 30.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top3": {
+     "tokens": 125,
+     "agree": 0.984000027179718,
+     "first_mismatch": 24,
+     "nll": 0.06725618988275528,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " Mim",
+       "released": " passed",
+       "margin": 1.75,
+       "top_logit": 24.375
+      },
+      {
+       "pos": 120,
+       "ours": " one",
+       "released": " of",
+       "margin": 0.625,
+       "top_logit": 27.125
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top3": {
+     "tokens": 126,
+     "agree": 0.9841269850730896,
+     "first_mismatch": 24,
+     "nll": 0.059954021126031876,
+     "mismatches": [
+      {
+       "pos": 24,
+       "ours": " Mim",
+       "released": " passed",
+       "margin": 1.75,
+       "top_logit": 24.375
+      },
+      {
+       "pos": 118,
+       "ours": " the",
+       "released": " younger",
+       "margin": 0.875,
+       "top_logit": 25.375
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-top3": {
+     "tokens": 77,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03025638870894909
+    },
+    "gapemp|graphkv-top3": {
+     "tokens": 77,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03025638870894909
+    }
+   },
+   "seconds": 237.7
+  },
+  {
+   "index": 7701,
+   "group": "inference",
+   "cells": {
+    "vanilla|sequential": {
+     "tokens": 72,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.05431453883647919
+    },
+    "block|sequential": {
+     "tokens": 72,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.05431453883647919
+    },
+    "gapemp_appr_1|sequential": {
+     "tokens": 73,
+     "agree": 0.9863013625144958,
+     "first_mismatch": 65,
+     "nll": 0.05829247459769249,
+     "mismatches": [
+      {
+       "pos": 65,
+       "ours": " is",
+       "released": " would",
+       "margin": 0.25,
+       "top_logit": 34.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp_appr_3|sequential": {
+     "tokens": 73,
+     "agree": 0.9863013625144958,
+     "first_mismatch": 65,
+     "nll": 0.05829247459769249,
+     "mismatches": [
+      {
+       "pos": 65,
+       "ours": " is",
+       "released": " would",
+       "margin": 0.25,
+       "top_logit": 34.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp|sequential": {
+     "tokens": 72,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.05431453883647919
+    },
+    "vanilla|block": {
+     "tokens": 72,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.042036302387714386
+    },
+    "block|block": {
+     "tokens": 72,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.042036302387714386
+    },
+    "gapemp_appr_1|block": {
+     "tokens": 73,
+     "agree": 0.9863013625144958,
+     "first_mismatch": 65,
+     "nll": 0.049322597682476044,
+     "mismatches": [
+      {
+       "pos": 65,
+       "ours": " is",
+       "released": " would",
+       "margin": 0.25,
+       "top_logit": 33.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp_appr_3|block": {
+     "tokens": 73,
+     "agree": 0.9863013625144958,
+     "first_mismatch": 65,
+     "nll": 0.049322597682476044,
+     "mismatches": [
+      {
+       "pos": 65,
+       "ours": " is",
+       "released": " would",
+       "margin": 0.25,
+       "top_logit": 33.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp|block": {
+     "tokens": 72,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.042036302387714386
+    },
+    "vanilla|graphkv-top1@official": {
+     "tokens": 72,
+     "agree": 0.9861111044883728,
+     "first_mismatch": 65,
+     "nll": 0.04351237043738365,
+     "mismatches": [
+      {
+       "pos": 65,
+       "ours": " would",
+       "released": " is",
+       "margin": 0.5,
+       "top_logit": 33.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "block|graphkv-top1@official": {
+     "tokens": 72,
+     "agree": 0.9861111044883728,
+     "first_mismatch": 65,
+     "nll": 0.04351237043738365,
+     "mismatches": [
+      {
+       "pos": 65,
+       "ours": " would",
+       "released": " is",
+       "margin": 0.5,
+       "top_logit": 33.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp_appr_1|graphkv-top1@official": {
+     "tokens": 73,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03877280652523041
+    },
+    "gapemp_appr_3|graphkv-top1@official": {
+     "tokens": 73,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03877280652523041
+    },
+    "gapemp|graphkv-top1@official": {
+     "tokens": 72,
+     "agree": 0.9861111044883728,
+     "first_mismatch": 65,
+     "nll": 0.04351237043738365,
+     "mismatches": [
+      {
+       "pos": 65,
+       "ours": " would",
+       "released": " is",
+       "margin": 0.5,
+       "top_logit": 33.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "vanilla|graphkv-top3@official": {
+     "tokens": 72,
+     "agree": 0.9861111044883728,
+     "first_mismatch": 65,
+     "nll": 0.03597988188266754,
+     "mismatches": [
+      {
+       "pos": 65,
+       "ours": " would",
+       "released": " is",
+       "margin": 1.0,
+       "top_logit": 34.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top3@official": {
+     "tokens": 72,
+     "agree": 0.9861111044883728,
+     "first_mismatch": 65,
+     "nll": 0.03597988188266754,
+     "mismatches": [
+      {
+       "pos": 65,
+       "ours": " would",
+       "released": " is",
+       "margin": 1.0,
+       "top_logit": 34.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top3@official": {
+     "tokens": 73,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.023980433121323586
+    },
+    "gapemp_appr_3|graphkv-top3@official": {
+     "tokens": 73,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.023980433121323586
+    },
+    "gapemp|graphkv-top3@official": {
+     "tokens": 72,
+     "agree": 0.9861111044883728,
+     "first_mismatch": 65,
+     "nll": 0.03597988188266754,
+     "mismatches": [
+      {
+       "pos": 65,
+       "ours": " would",
+       "released": " is",
+       "margin": 1.0,
+       "top_logit": 34.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-full@official": {
+     "tokens": 72,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.039949290454387665
+    },
+    "block|graphkv-full@official": {
+     "tokens": 72,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.039949290454387665
+    },
+    "gapemp_appr_1|graphkv-full@official": {
+     "tokens": 73,
+     "agree": 0.9863013625144958,
+     "first_mismatch": 65,
+     "nll": 0.041493747383356094,
+     "mismatches": [
+      {
+       "pos": 65,
+       "ours": " is",
+       "released": " would",
+       "margin": 0.0,
+       "top_logit": 34.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp_appr_3|graphkv-full@official": {
+     "tokens": 73,
+     "agree": 0.9863013625144958,
+     "first_mismatch": 65,
+     "nll": 0.041493747383356094,
+     "mismatches": [
+      {
+       "pos": 65,
+       "ours": " is",
+       "released": " would",
+       "margin": 0.0,
+       "top_logit": 34.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp|graphkv-full@official": {
+     "tokens": 72,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.039949290454387665
+    },
+    "vanilla|graphkv-top3": {
+     "tokens": 72,
+     "agree": 0.9861111044883728,
+     "first_mismatch": 65,
+     "nll": 0.08407878130674362,
+     "mismatches": [
+      {
+       "pos": 65,
+       "ours": " would",
+       "released": " is",
+       "margin": 2.5,
+       "top_logit": 34.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top3": {
+     "tokens": 72,
+     "agree": 0.9861111044883728,
+     "first_mismatch": 65,
+     "nll": 0.08407878130674362,
+     "mismatches": [
+      {
+       "pos": 65,
+       "ours": " would",
+       "released": " is",
+       "margin": 2.5,
+       "top_logit": 34.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top3": {
+     "tokens": 73,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.051740612834692
+    },
+    "gapemp_appr_3|graphkv-top3": {
+     "tokens": 73,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.051740612834692
+    },
+    "gapemp|graphkv-top3": {
+     "tokens": 72,
+     "agree": 0.9861111044883728,
+     "first_mismatch": 65,
+     "nll": 0.08407878130674362,
+     "mismatches": [
+      {
+       "pos": 65,
+       "ours": " would",
+       "released": " is",
+       "margin": 2.5,
+       "top_logit": 34.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    }
+   },
+   "seconds": 558.2
+  },
+  {
+   "index": 7772,
+   "group": "compositional",
+   "cells": {
+    "vanilla|sequential": {
+     "tokens": 82,
+     "agree": 0.9878048896789551,
+     "first_mismatch": 32,
+     "nll": 0.04255879297852516,
+     "mismatches": [
+      {
+       "pos": 32,
+       "ours": " bar",
+       "released": " Chamber",
+       "margin": 0.0,
+       "top_logit": 24.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "block|sequential": {
+     "tokens": 159,
+     "agree": 0.9182389974594116,
+     "first_mismatch": 27,
+     "nll": 0.3890685439109802,
+     "mismatches": [
+      {
+       "pos": 27,
+       "ours": ",",
+       "released": ".",
+       "margin": 1.0,
+       "top_logit": 38.0
+      },
+      {
+       "pos": 47,
+       "ours": " L",
+       "released": " Nar",
+       "margin": 20.4375,
+       "top_logit": 36.25
+      },
+      {
+       "pos": 50,
+       "ours": " Sweden",
+       "released": " which",
+       "margin": 3.0,
+       "top_logit": 25.75
+      },
+      {
+       "pos": 55,
+       "ours": " Swedish",
+       "released": " Russian",
+       "margin": 3.75,
+       "top_logit": 27.0
+      },
+      {
+       "pos": 64,
+       "ours": " Swedish",
+       "released": " a",
+       "margin": 0.125,
+       "top_logit": 25.5
+      },
+      {
+       "pos": 68,
+       "ours": ".",
+       "released": " and",
+       "margin": 0.875,
+       "top_logit": 31.125
+      },
+      {
+       "pos": 69,
+       "ours": " Chamber",
+       "released": " field",
+       "margin": 0.875,
+       "top_logit": 22.25
+      },
+      {
+       "pos": 72,
+       "ours": " Therefore",
+       "released": " Additionally",
+       "margin": 1.75,
+       "top_logit": 24.75
+      },
+      {
+       "pos": 94,
+       "ours": " was",
+       "released": " may",
+       "margin": 9.875,
+       "top_logit": 30.25
+      },
+      {
+       "pos": 107,
+       "ours": " information",
+       "released": " further",
+       "margin": 2.375,
+       "top_logit": 26.0
+      },
+      {
+       "pos": 112,
+       "ours": ".",
+       "released": ".\n\n",
+       "margin": 0.5,
+       "top_logit": 34.0
+      },
+      {
+       "pos": 126,
+       "ours": " Albert",
+       "released": " Erik",
+       "margin": 0.25,
+       "top_logit": 30.25
+      },
+      {
+       "pos": 155,
+       "ours": " from",
+       "released": " likely",
+       "margin": 0.0,
+       "top_logit": 28.125
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|sequential": {
+     "tokens": 36,
+     "agree": 0.9444444179534912,
+     "first_mismatch": 28,
+     "nll": 0.26971977949142456,
+     "mismatches": [
+      {
+       "pos": 28,
+       "ours": " who",
+       "released": " a",
+       "margin": 4.375,
+       "top_logit": 33.25
+      },
+      {
+       "pos": 33,
+       "ours": " diplomat",
+       "released": " field",
+       "margin": 3.5,
+       "top_logit": 25.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|sequential": {
+     "tokens": 36,
+     "agree": 0.9444444179534912,
+     "first_mismatch": 28,
+     "nll": 0.26971977949142456,
+     "mismatches": [
+      {
+       "pos": 28,
+       "ours": " who",
+       "released": " a",
+       "margin": 4.375,
+       "top_logit": 33.25
+      },
+      {
+       "pos": 33,
+       "ours": " diplomat",
+       "released": " field",
+       "margin": 3.5,
+       "top_logit": 25.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|sequential": {
+     "tokens": 65,
+     "agree": 0.9384615421295166,
+     "first_mismatch": 28,
+     "nll": 0.2646771967411041,
+     "mismatches": [
+      {
+       "pos": 28,
+       "ours": " who",
+       "released": " a",
+       "margin": 4.375,
+       "top_logit": 33.25
+      },
+      {
+       "pos": 33,
+       "ours": " diplomat",
+       "released": " field",
+       "margin": 3.5,
+       "top_logit": 25.75
+      },
+      {
+       "pos": 36,
+       "ours": "<|end_of_text|>",
+       "released": " He",
+       "margin": 1.625,
+       "top_logit": 26.125
+      },
+      {
+       "pos": 46,
+       "ours": " and",
+       "released": " on",
+       "margin": 3.125,
+       "top_logit": 31.625
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|block": {
+     "tokens": 82,
+     "agree": 0.9512194991111755,
+     "first_mismatch": 27,
+     "nll": 0.17409396171569824,
+     "mismatches": [
+      {
+       "pos": 27,
+       "ours": ".",
+       "released": ",",
+       "margin": 0.75,
+       "top_logit": 33.25
+      },
+      {
+       "pos": 28,
+       "ours": " a",
+       "released": " who",
+       "margin": 0.25,
+       "top_logit": 29.625
+      },
+      {
+       "pos": 32,
+       "ours": " bar",
+       "released": " Chamber",
+       "margin": 9.25,
+       "top_logit": 26.25
+      },
+      {
+       "pos": 41,
+       "ours": " Additionally",
+       "released": " This",
+       "margin": 0.5,
+       "top_logit": 25.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|block": {
+     "tokens": 159,
+     "agree": 0.9874213933944702,
+     "first_mismatch": 50,
+     "nll": 0.08097686618566513,
+     "mismatches": [
+      {
+       "pos": 50,
+       "ours": " Governor",
+       "released": " which",
+       "margin": 0.125,
+       "top_logit": 25.5
+      },
+      {
+       "pos": 60,
+       "ours": ".",
+       "released": ",",
+       "margin": 0.25,
+       "top_logit": 34.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp_appr_1|block": {
+     "tokens": 36,
+     "agree": 0.9722222089767456,
+     "first_mismatch": 27,
+     "nll": 0.06036392226815224,
+     "mismatches": [
+      {
+       "pos": 27,
+       "ours": ".",
+       "released": ",",
+       "margin": 0.75,
+       "top_logit": 33.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|block": {
+     "tokens": 36,
+     "agree": 0.9722222089767456,
+     "first_mismatch": 27,
+     "nll": 0.06036392226815224,
+     "mismatches": [
+      {
+       "pos": 27,
+       "ours": ".",
+       "released": ",",
+       "margin": 0.75,
+       "top_logit": 33.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|block": {
+     "tokens": 65,
+     "agree": 0.9538461565971375,
+     "first_mismatch": 27,
+     "nll": 0.1478915810585022,
+     "mismatches": [
+      {
+       "pos": 27,
+       "ours": ".",
+       "released": ",",
+       "margin": 0.75,
+       "top_logit": 33.25
+      },
+      {
+       "pos": 36,
+       "ours": "<|end_of_text|>",
+       "released": " He",
+       "margin": 1.75,
+       "top_logit": 25.125
+      },
+      {
+       "pos": 40,
+       "ours": " Nar",
+       "released": " L",
+       "margin": 4.0,
+       "top_logit": 30.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-top1@official": {
+     "tokens": 82,
+     "agree": 0.9634146094322205,
+     "first_mismatch": 28,
+     "nll": 0.14702492952346802,
+     "mismatches": [
+      {
+       "pos": 28,
+       "ours": " a",
+       "released": " who",
+       "margin": 0.25,
+       "top_logit": 30.375
+      },
+      {
+       "pos": 32,
+       "ours": " bar",
+       "released": " Chamber",
+       "margin": 6.75,
+       "top_logit": 26.5
+      },
+      {
+       "pos": 41,
+       "ours": " He",
+       "released": " This",
+       "margin": 1.25,
+       "top_logit": 24.625
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top1@official": {
+     "tokens": 159,
+     "agree": 0.955974817276001,
+     "first_mismatch": 27,
+     "nll": 0.15292835235595703,
+     "mismatches": [
+      {
+       "pos": 27,
+       "ours": ",",
+       "released": ".",
+       "margin": 1.75,
+       "top_logit": 34.0
+      },
+      {
+       "pos": 30,
+       "ours": " \"",
+       "released": " titled",
+       "margin": 0.25,
+       "top_logit": 25.5
+      },
+      {
+       "pos": 47,
+       "ours": " L",
+       "released": " Nar",
+       "margin": 0.375,
+       "top_logit": 28.625
+      },
+      {
+       "pos": 50,
+       "ours": " Sweden",
+       "released": " which",
+       "margin": 3.5,
+       "top_logit": 28.125
+      },
+      {
+       "pos": 60,
+       "ours": " of",
+       "released": ",",
+       "margin": 0.75,
+       "top_logit": 33.5
+      },
+      {
+       "pos": 93,
+       "ours": " mother",
+       "released": " father",
+       "margin": 0.0,
+       "top_logit": 27.375
+      },
+      {
+       "pos": 142,
+       "ours": " it",
+       "released": " Albert",
+       "margin": 0.375,
+       "top_logit": 29.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top1@official": {
+     "tokens": 36,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.050229135900735855
+    },
+    "gapemp_appr_3|graphkv-top1@official": {
+     "tokens": 36,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.050229135900735855
+    },
+    "gapemp|graphkv-top1@official": {
+     "tokens": 65,
+     "agree": 0.9846153855323792,
+     "first_mismatch": 36,
+     "nll": 0.07566928118467331,
+     "mismatches": [
+      {
+       "pos": 36,
+       "ours": "<|end_of_text|>",
+       "released": " He",
+       "margin": 0.875,
+       "top_logit": 25.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-top3@official": {
+     "tokens": 82,
+     "agree": 0.9756097793579102,
+     "first_mismatch": 28,
+     "nll": 0.13815225660800934,
+     "mismatches": [
+      {
+       "pos": 28,
+       "ours": " a",
+       "released": " who",
+       "margin": 0.875,
+       "top_logit": 31.25
+      },
+      {
+       "pos": 32,
+       "ours": " bar",
+       "released": " Chamber",
+       "margin": 6.75,
+       "top_logit": 26.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top3@official": {
+     "tokens": 159,
+     "agree": 0.9433962106704712,
+     "first_mismatch": 27,
+     "nll": 0.16388365626335144,
+     "mismatches": [
+      {
+       "pos": 27,
+       "ours": ",",
+       "released": ".",
+       "margin": 0.75,
+       "top_logit": 34.5
+      },
+      {
+       "pos": 30,
+       "ours": " \"",
+       "released": " titled",
+       "margin": 0.25,
+       "top_logit": 24.375
+      },
+      {
+       "pos": 47,
+       "ours": " L",
+       "released": " Nar",
+       "margin": 3.125,
+       "top_logit": 30.625
+      },
+      {
+       "pos": 50,
+       "ours": " Sweden",
+       "released": " which",
+       "margin": 1.375,
+       "top_logit": 26.375
+      },
+      {
+       "pos": 62,
+       "ours": " is",
+       "released": " he",
+       "margin": 1.125,
+       "top_logit": 23.25
+      },
+      {
+       "pos": 94,
+       "ours": " was",
+       "released": " may",
+       "margin": 2.0,
+       "top_logit": 25.5
+      },
+      {
+       "pos": 107,
+       "ours": " information",
+       "released": " further",
+       "margin": 0.375,
+       "top_logit": 24.25
+      },
+      {
+       "pos": 142,
+       "ours": " it",
+       "released": " Albert",
+       "margin": 1.0,
+       "top_logit": 30.125
+      },
+      {
+       "pos": 144,
+       "ours": "'s",
+       "released": ",",
+       "margin": 0.25,
+       "top_logit": 34.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top3@official": {
+     "tokens": 36,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.04244410619139671
+    },
+    "gapemp_appr_3|graphkv-top3@official": {
+     "tokens": 36,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.04244410619139671
+    },
+    "gapemp|graphkv-top3@official": {
+     "tokens": 65,
+     "agree": 0.9846153855323792,
+     "first_mismatch": 36,
+     "nll": 0.05915309488773346,
+     "mismatches": [
+      {
+       "pos": 36,
+       "ours": "<|end_of_text|>",
+       "released": " He",
+       "margin": 0.5,
+       "top_logit": 25.375
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-full@official": {
+     "tokens": 82,
+     "agree": 0.9512194991111755,
+     "first_mismatch": 28,
+     "nll": 0.14678743481636047,
+     "mismatches": [
+      {
+       "pos": 28,
+       "ours": " a",
+       "released": " who",
+       "margin": 0.625,
+       "top_logit": 31.625
+      },
+      {
+       "pos": 32,
+       "ours": " bar",
+       "released": " Chamber",
+       "margin": 5.625,
+       "top_logit": 27.375
+      },
+      {
+       "pos": 41,
+       "ours": " He",
+       "released": " This",
+       "margin": 0.375,
+       "top_logit": 24.625
+      },
+      {
+       "pos": 58,
+       "ours": "\"",
+       "released": "\".",
+       "margin": 1.0,
+       "top_logit": 31.375
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-full@official": {
+     "tokens": 159,
+     "agree": 0.9371069073677063,
+     "first_mismatch": 27,
+     "nll": 0.2865181565284729,
+     "mismatches": [
+      {
+       "pos": 27,
+       "ours": ",",
+       "released": ".",
+       "margin": 1.0,
+       "top_logit": 35.25
+      },
+      {
+       "pos": 30,
+       "ours": " states",
+       "released": " titled",
+       "margin": 0.25,
+       "top_logit": 23.375
+      },
+      {
+       "pos": 47,
+       "ours": " L",
+       "released": " Nar",
+       "margin": 1.375,
+       "top_logit": 31.375
+      },
+      {
+       "pos": 50,
+       "ours": " Sweden",
+       "released": " which",
+       "margin": 6.125,
+       "top_logit": 31.125
+      },
+      {
+       "pos": 62,
+       "ours": " is",
+       "released": " he",
+       "margin": 2.625,
+       "top_logit": 24.125
+      },
+      {
+       "pos": 92,
+       "ours": " Erik",
+       "released": " her",
+       "margin": 0.75,
+       "top_logit": 28.75
+      },
+      {
+       "pos": 94,
+       "ours": " was",
+       "released": " may",
+       "margin": 15.1875,
+       "top_logit": 27.125
+      },
+      {
+       "pos": 136,
+       "ours": " national",
+       "released": " bar",
+       "margin": 0.625,
+       "top_logit": 23.5
+      },
+      {
+       "pos": 142,
+       "ours": " it",
+       "released": " Albert",
+       "margin": 1.375,
+       "top_logit": 30.125
+      },
+      {
+       "pos": 144,
+       "ours": "'s",
+       "released": ",",
+       "margin": 1.0,
+       "top_logit": 35.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-full@official": {
+     "tokens": 36,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03724450618028641
+    },
+    "gapemp_appr_3|graphkv-full@official": {
+     "tokens": 36,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03724450618028641
+    },
+    "gapemp|graphkv-full@official": {
+     "tokens": 65,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.0592268742620945
+    },
+    "vanilla|graphkv-top3": {
+     "tokens": 82,
+     "agree": 0.9756097793579102,
+     "first_mismatch": 20,
+     "nll": 0.08877664804458618,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " not",
+       "released": " Erik",
+       "margin": 0.375,
+       "top_logit": 22.25
+      },
+      {
+       "pos": 32,
+       "ours": " bar",
+       "released": " Chamber",
+       "margin": 2.125,
+       "top_logit": 23.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top3": {
+     "tokens": 159,
+     "agree": 0.9308176040649414,
+     "first_mismatch": 20,
+     "nll": 0.3154367208480835,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " not",
+       "released": " Erik",
+       "margin": 0.375,
+       "top_logit": 22.25
+      },
+      {
+       "pos": 27,
+       "ours": ",",
+       "released": ".",
+       "margin": 1.75,
+       "top_logit": 36.25
+      },
+      {
+       "pos": 30,
+       "ours": " states",
+       "released": " titled",
+       "margin": 4.5,
+       "top_logit": 26.0
+      },
+      {
+       "pos": 45,
+       "ours": " Chamber",
+       "released": " born",
+       "margin": 3.125,
+       "top_logit": 27.625
+      },
+      {
+       "pos": 47,
+       "ours": " L",
+       "released": " Nar",
+       "margin": 17.4375,
+       "top_logit": 30.875
+      },
+      {
+       "pos": 60,
+       "ours": ".",
+       "released": ",",
+       "margin": 1.0,
+       "top_logit": 34.75
+      },
+      {
+       "pos": 72,
+       "ours": " Therefore",
+       "released": " Additionally",
+       "margin": 2.75,
+       "top_logit": 24.5
+      },
+      {
+       "pos": 78,
+       "ours": "George",
+       "released": "Albert",
+       "margin": 0.875,
+       "top_logit": 22.5
+      },
+      {
+       "pos": 93,
+       "ours": " mother",
+       "released": " father",
+       "margin": 1.625,
+       "top_logit": 27.125
+      },
+      {
+       "pos": 106,
+       "ours": " specify",
+       "released": " provide",
+       "margin": 0.625,
+       "top_logit": 30.5
+      },
+      {
+       "pos": 107,
+       "ours": " information",
+       "released": " further",
+       "margin": 0.375,
+       "top_logit": 24.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top3": {
+     "tokens": 36,
+     "agree": 0.8888888955116272,
+     "first_mismatch": 20,
+     "nll": 0.3161424398422241,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " not",
+       "released": " Erik",
+       "margin": 0.375,
+       "top_logit": 22.25
+      },
+      {
+       "pos": 28,
+       "ours": " who",
+       "released": " a",
+       "margin": 3.125,
+       "top_logit": 31.875
+      },
+      {
+       "pos": 29,
+       "ours": " German",
+       "released": " Swedish",
+       "margin": 0.0,
+       "top_logit": 26.25
+      },
+      {
+       "pos": 33,
+       "ours": " Chamber",
+       "released": " field",
+       "margin": 4.25,
+       "top_logit": 23.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-top3": {
+     "tokens": 36,
+     "agree": 0.8888888955116272,
+     "first_mismatch": 20,
+     "nll": 0.3161424398422241,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " not",
+       "released": " Erik",
+       "margin": 0.375,
+       "top_logit": 22.25
+      },
+      {
+       "pos": 28,
+       "ours": " who",
+       "released": " a",
+       "margin": 3.125,
+       "top_logit": 31.875
+      },
+      {
+       "pos": 29,
+       "ours": " German",
+       "released": " Swedish",
+       "margin": 0.0,
+       "top_logit": 26.25
+      },
+      {
+       "pos": 33,
+       "ours": " Chamber",
+       "released": " field",
+       "margin": 4.25,
+       "top_logit": 23.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|graphkv-top3": {
+     "tokens": 65,
+     "agree": 0.9076923131942749,
+     "first_mismatch": 20,
+     "nll": 0.25151750445365906,
+     "mismatches": [
+      {
+       "pos": 20,
+       "ours": " not",
+       "released": " Erik",
+       "margin": 0.375,
+       "top_logit": 22.25
+      },
+      {
+       "pos": 28,
+       "ours": " who",
+       "released": " a",
+       "margin": 3.125,
+       "top_logit": 31.875
+      },
+      {
+       "pos": 29,
+       "ours": " German",
+       "released": " Swedish",
+       "margin": 0.0,
+       "top_logit": 26.25
+      },
+      {
+       "pos": 33,
+       "ours": " Chamber",
+       "released": " field",
+       "margin": 4.25,
+       "top_logit": 23.75
+      },
+      {
+       "pos": 36,
+       "ours": "<|end_of_text|>",
+       "released": " He",
+       "margin": 1.0,
+       "top_logit": 25.625
+      },
+      {
+       "pos": 46,
+       "ours": " and",
+       "released": " on",
+       "margin": 1.375,
+       "top_logit": 27.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    }
+   },
+   "seconds": 740.1
+  },
+  {
+   "index": 8066,
+   "group": "comparison",
+   "cells": {
+    "vanilla|sequential": {
+     "tokens": 52,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.04134432598948479
+    },
+    "block|sequential": {
+     "tokens": 55,
+     "agree": 0.9636363387107849,
+     "first_mismatch": 9,
+     "nll": 0.06657113879919052,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " that",
+       "released": " the",
+       "margin": 0.5,
+       "top_logit": 33.25
+      },
+      {
+       "pos": 13,
+       "ours": " both",
+       "released": " the",
+       "margin": 0.5,
+       "top_logit": 37.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp_appr_1|sequential": {
+     "tokens": 65,
+     "agree": 0.9692307710647583,
+     "first_mismatch": 16,
+     "nll": 0.12882378697395325,
+     "mismatches": [
+      {
+       "pos": 16,
+       "ours": " was",
+       "released": " is",
+       "margin": 2.75,
+       "top_logit": 33.75
+      },
+      {
+       "pos": 44,
+       "ours": " more",
+       "released": " later",
+       "margin": 4.125,
+       "top_logit": 27.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|sequential": {
+     "tokens": 70,
+     "agree": 0.9714285731315613,
+     "first_mismatch": 16,
+     "nll": 0.0724884644150734,
+     "mismatches": [
+      {
+       "pos": 16,
+       "ours": " was",
+       "released": " is",
+       "margin": 2.75,
+       "top_logit": 33.75
+      },
+      {
+       "pos": 51,
+       "ours": " it",
+       "released": " I",
+       "margin": 0.125,
+       "top_logit": 30.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|sequential": {
+     "tokens": 70,
+     "agree": 0.9714285731315613,
+     "first_mismatch": 16,
+     "nll": 0.0724884644150734,
+     "mismatches": [
+      {
+       "pos": 16,
+       "ours": " was",
+       "released": " is",
+       "margin": 2.75,
+       "top_logit": 33.75
+      },
+      {
+       "pos": 51,
+       "ours": " it",
+       "released": " I",
+       "margin": 0.125,
+       "top_logit": 30.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|block": {
+     "tokens": 52,
+     "agree": 0.9615384340286255,
+     "first_mismatch": 9,
+     "nll": 0.07250113785266876,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " that",
+       "margin": 0.5,
+       "top_logit": 31.5
+      },
+      {
+       "pos": 38,
+       "ours": "Bright",
+       "released": "No",
+       "margin": 0.375,
+       "top_logit": 30.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|block": {
+     "tokens": 55,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.05384226143360138
+    },
+    "gapemp_appr_1|block": {
+     "tokens": 65,
+     "agree": 0.9538461565971375,
+     "first_mismatch": 9,
+     "nll": 0.07249622792005539,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " that",
+       "margin": 0.5,
+       "top_logit": 31.5
+      },
+      {
+       "pos": 16,
+       "ours": " was",
+       "released": " is",
+       "margin": 0.25,
+       "top_logit": 32.0
+      },
+      {
+       "pos": 50,
+       "ours": " it",
+       "released": " \"",
+       "margin": 0.625,
+       "top_logit": 30.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|block": {
+     "tokens": 70,
+     "agree": 0.9571428298950195,
+     "first_mismatch": 9,
+     "nll": 0.06367132812738419,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " that",
+       "margin": 0.5,
+       "top_logit": 31.5
+      },
+      {
+       "pos": 16,
+       "ours": " was",
+       "released": " is",
+       "margin": 0.25,
+       "top_logit": 32.0
+      },
+      {
+       "pos": 44,
+       "ours": " later",
+       "released": " more",
+       "margin": 0.125,
+       "top_logit": 25.125
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|block": {
+     "tokens": 70,
+     "agree": 0.9571428298950195,
+     "first_mismatch": 9,
+     "nll": 0.06367132812738419,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " that",
+       "margin": 0.5,
+       "top_logit": 31.5
+      },
+      {
+       "pos": 16,
+       "ours": " was",
+       "released": " is",
+       "margin": 0.25,
+       "top_logit": 32.0
+      },
+      {
+       "pos": 44,
+       "ours": " later",
+       "released": " more",
+       "margin": 0.125,
+       "top_logit": 25.125
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-top1@official": {
+     "tokens": 52,
+     "agree": 0.9615384340286255,
+     "first_mismatch": 16,
+     "nll": 0.11164639890193939,
+     "mismatches": [
+      {
+       "pos": 16,
+       "ours": " is",
+       "released": " was",
+       "margin": 3.25,
+       "top_logit": 34.0
+      },
+      {
+       "pos": 38,
+       "ours": "Bright",
+       "released": "No",
+       "margin": 0.5,
+       "top_logit": 30.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top1@official": {
+     "tokens": 55,
+     "agree": 0.9818181991577148,
+     "first_mismatch": 9,
+     "nll": 0.07929588109254837,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " that",
+       "released": " the",
+       "margin": 0.875,
+       "top_logit": 31.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top1@official": {
+     "tokens": 65,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03778792545199394
+    },
+    "gapemp_appr_3|graphkv-top1@official": {
+     "tokens": 70,
+     "agree": 0.9857142567634583,
+     "first_mismatch": 44,
+     "nll": 0.039623286575078964,
+     "mismatches": [
+      {
+       "pos": 44,
+       "ours": " later",
+       "released": " more",
+       "margin": 0.375,
+       "top_logit": 25.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|graphkv-top1@official": {
+     "tokens": 70,
+     "agree": 0.9857142567634583,
+     "first_mismatch": 44,
+     "nll": 0.039623286575078964,
+     "mismatches": [
+      {
+       "pos": 44,
+       "ours": " later",
+       "released": " more",
+       "margin": 0.375,
+       "top_logit": 25.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-top3@official": {
+     "tokens": 52,
+     "agree": 0.9615384340286255,
+     "first_mismatch": 16,
+     "nll": 0.13153618574142456,
+     "mismatches": [
+      {
+       "pos": 16,
+       "ours": " is",
+       "released": " was",
+       "margin": 4.125,
+       "top_logit": 34.0
+      },
+      {
+       "pos": 38,
+       "ours": "Bright",
+       "released": "No",
+       "margin": 1.125,
+       "top_logit": 31.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top3@official": {
+     "tokens": 55,
+     "agree": 0.9454545378684998,
+     "first_mismatch": 9,
+     "nll": 0.11816532909870148,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " that",
+       "released": " the",
+       "margin": 1.5,
+       "top_logit": 31.625
+      },
+      {
+       "pos": 13,
+       "ours": " both",
+       "released": " the",
+       "margin": 0.5,
+       "top_logit": 35.25
+      },
+      {
+       "pos": 25,
+       "ours": " Soviet",
+       "released": ")\n",
+       "margin": 1.25,
+       "top_logit": 31.375
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top3@official": {
+     "tokens": 65,
+     "agree": 0.9692307710647583,
+     "first_mismatch": 44,
+     "nll": 0.04911133274435997,
+     "mismatches": [
+      {
+       "pos": 44,
+       "ours": " more",
+       "released": " later",
+       "margin": 0.25,
+       "top_logit": 25.0
+      },
+      {
+       "pos": 50,
+       "ours": " it",
+       "released": " \"",
+       "margin": 0.625,
+       "top_logit": 30.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-top3@official": {
+     "tokens": 70,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.036034438759088516
+    },
+    "gapemp|graphkv-top3@official": {
+     "tokens": 70,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.036034438759088516
+    },
+    "vanilla|graphkv-full@official": {
+     "tokens": 52,
+     "agree": 0.9615384340286255,
+     "first_mismatch": 16,
+     "nll": 0.15952913463115692,
+     "mismatches": [
+      {
+       "pos": 16,
+       "ours": " is",
+       "released": " was",
+       "margin": 5.25,
+       "top_logit": 33.0
+      },
+      {
+       "pos": 38,
+       "ours": "Bright",
+       "released": "No",
+       "margin": 1.375,
+       "top_logit": 31.125
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-full@official": {
+     "tokens": 55,
+     "agree": 0.9636363387107849,
+     "first_mismatch": 9,
+     "nll": 0.15592943131923676,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " that",
+       "released": " the",
+       "margin": 1.5,
+       "top_logit": 30.5
+      },
+      {
+       "pos": 25,
+       "ours": " Soviet",
+       "released": ")\n",
+       "margin": 3.125,
+       "top_logit": 31.625
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-full@official": {
+     "tokens": 65,
+     "agree": 0.9692307710647583,
+     "first_mismatch": 44,
+     "nll": 0.05533572658896446,
+     "mismatches": [
+      {
+       "pos": 44,
+       "ours": " more",
+       "released": " later",
+       "margin": 0.25,
+       "top_logit": 25.125
+      },
+      {
+       "pos": 50,
+       "ours": " it",
+       "released": " \"",
+       "margin": 1.0,
+       "top_logit": 31.125
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-full@official": {
+     "tokens": 70,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.04132157564163208
+    },
+    "gapemp|graphkv-full@official": {
+     "tokens": 70,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.04132157564163208
+    },
+    "vanilla|graphkv-top3": {
+     "tokens": 52,
+     "agree": 0.9615384340286255,
+     "first_mismatch": 16,
+     "nll": 0.06372302770614624,
+     "mismatches": [
+      {
+       "pos": 16,
+       "ours": " is",
+       "released": " was",
+       "margin": 0.5,
+       "top_logit": 33.25
+      },
+      {
+       "pos": 38,
+       "ours": "Bright",
+       "released": "No",
+       "margin": 0.25,
+       "top_logit": 33.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "block|graphkv-top3": {
+     "tokens": 55,
+     "agree": 0.9818181991577148,
+     "first_mismatch": 9,
+     "nll": 0.05127732455730438,
+     "mismatches": [
+      {
+       "pos": 9,
+       "ours": " that",
+       "released": " the",
+       "margin": 0.375,
+       "top_logit": 32.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp_appr_1|graphkv-top3": {
+     "tokens": 65,
+     "agree": 0.9692307710647583,
+     "first_mismatch": 44,
+     "nll": 0.060236237943172455,
+     "mismatches": [
+      {
+       "pos": 44,
+       "ours": " more",
+       "released": " later",
+       "margin": 1.125,
+       "top_logit": 26.5
+      },
+      {
+       "pos": 50,
+       "ours": " it",
+       "released": " \"",
+       "margin": 0.125,
+       "top_logit": 31.375
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-top3": {
+     "tokens": 70,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03298511728644371
+    },
+    "gapemp|graphkv-top3": {
+     "tokens": 70,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03298511728644371
+    }
+   },
+   "seconds": 255.0
+  },
+  {
+   "index": 8466,
+   "group": "compositional",
+   "cells": {
+    "vanilla|sequential": {
+     "tokens": 92,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.011470199562609196
+    },
+    "block|sequential": {
+     "tokens": 93,
+     "agree": 0.9892473220825195,
+     "first_mismatch": 62,
+     "nll": 0.03305090218782425,
+     "mismatches": [
+      {
+       "pos": 62,
+       "ours": " confirmed",
+       "released": " later",
+       "margin": 2.0,
+       "top_logit": 31.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|sequential": {
+     "tokens": 122,
+     "agree": 0.9672130942344666,
+     "first_mismatch": 0,
+     "nll": 0.11352071911096573,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Based",
+       "released": "According",
+       "margin": 2.0,
+       "top_logit": 29.875
+      },
+      {
+       "pos": 7,
+       "ours": " Fernando",
+       "released": " the",
+       "margin": 2.375,
+       "top_logit": 29.25
+      },
+      {
+       "pos": 36,
+       "ours": " a",
+       "released": " mentioned",
+       "margin": 1.625,
+       "top_logit": 28.5
+      },
+      {
+       "pos": 37,
+       "ours": " as",
+       "released": " in",
+       "margin": 2.875,
+       "top_logit": 32.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|sequential": {
+     "tokens": 90,
+     "agree": 0.9444444179534912,
+     "first_mismatch": 0,
+     "nll": 0.10248329490423203,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Based",
+       "released": "According",
+       "margin": 2.0,
+       "top_logit": 29.875
+      },
+      {
+       "pos": 7,
+       "ours": " Fernando",
+       "released": " the",
+       "margin": 2.375,
+       "top_logit": 29.25
+      },
+      {
+       "pos": 12,
+       "ours": " \"",
+       "released": " Ang",
+       "margin": 0.0,
+       "top_logit": 34.0
+      },
+      {
+       "pos": 17,
+       "ours": " is",
+       "released": ",",
+       "margin": 0.625,
+       "top_logit": 31.75
+      },
+      {
+       "pos": 59,
+       "ours": " confirmed",
+       "released": " later",
+       "margin": 2.375,
+       "top_logit": 31.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|sequential": {
+     "tokens": 103,
+     "agree": 0.9514563083648682,
+     "first_mismatch": 7,
+     "nll": 0.07412131875753403,
+     "mismatches": [
+      {
+       "pos": 7,
+       "ours": " I",
+       "released": " the",
+       "margin": 2.375,
+       "top_logit": 29.25
+      },
+      {
+       "pos": 12,
+       "ours": " \"",
+       "released": " Ang",
+       "margin": 0.0,
+       "top_logit": 35.5
+      },
+      {
+       "pos": 18,
+       "ours": " not",
+       "released": " Fernando",
+       "margin": 0.0,
+       "top_logit": 26.625
+      },
+      {
+       "pos": 26,
+       "ours": " on",
+       "released": " titled",
+       "margin": 0.0,
+       "top_logit": 28.25
+      },
+      {
+       "pos": 72,
+       "ours": " confirmed",
+       "released": " later",
+       "margin": 2.125,
+       "top_logit": 31.375
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|block": {
+     "tokens": 92,
+     "agree": 0.989130437374115,
+     "first_mismatch": 62,
+     "nll": 0.025844493880867958,
+     "mismatches": [
+      {
+       "pos": 62,
+       "ours": " later",
+       "released": " confirmed",
+       "margin": 0.125,
+       "top_logit": 30.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "block|block": {
+     "tokens": 93,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.024503767490386963
+    },
+    "gapemp_appr_1|block": {
+     "tokens": 122,
+     "agree": 0.9590163826942444,
+     "first_mismatch": 0,
+     "nll": 0.1035458892583847,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Based",
+       "released": "According",
+       "margin": 1.25,
+       "top_logit": 28.625
+      },
+      {
+       "pos": 12,
+       "ours": " Ang",
+       "released": " \"",
+       "margin": 1.5,
+       "top_logit": 31.5
+      },
+      {
+       "pos": 27,
+       "ours": " search",
+       "released": " film",
+       "margin": 0.375,
+       "top_logit": 22.625
+      },
+      {
+       "pos": 28,
+       "ours": "'s",
+       "released": " \"",
+       "margin": 1.75,
+       "top_logit": 24.375
+      },
+      {
+       "pos": 39,
+       "ours": " document",
+       "released": " context",
+       "margin": 0.75,
+       "top_logit": 24.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|block": {
+     "tokens": 90,
+     "agree": 0.9777777791023254,
+     "first_mismatch": 0,
+     "nll": 0.051870040595531464,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Based",
+       "released": "According",
+       "margin": 1.25,
+       "top_logit": 28.625
+      },
+      {
+       "pos": 59,
+       "ours": " confirmed",
+       "released": " later",
+       "margin": 0.375,
+       "top_logit": 30.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|block": {
+     "tokens": 103,
+     "agree": 0.9805825352668762,
+     "first_mismatch": 7,
+     "nll": 0.059206027537584305,
+     "mismatches": [
+      {
+       "pos": 7,
+       "ours": " I",
+       "released": " the",
+       "margin": 0.875,
+       "top_logit": 26.5
+      },
+      {
+       "pos": 18,
+       "ours": " not",
+       "released": " Fernando",
+       "margin": 1.125,
+       "top_logit": 22.125
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-top1@official": {
+     "tokens": 92,
+     "agree": 0.989130437374115,
+     "first_mismatch": 0,
+     "nll": 0.04151386395096779,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "According",
+       "released": "Based",
+       "margin": 0.0,
+       "top_logit": 28.625
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "block|graphkv-top1@official": {
+     "tokens": 93,
+     "agree": 0.9784946441650391,
+     "first_mismatch": 0,
+     "nll": 0.042641643434762955,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "According",
+       "released": "Based",
+       "margin": 0.0,
+       "top_logit": 28.625
+      },
+      {
+       "pos": 62,
+       "ours": " confirmed",
+       "released": " later",
+       "margin": 0.125,
+       "top_logit": 30.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp_appr_1|graphkv-top1@official": {
+     "tokens": 122,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.06223138049244881
+    },
+    "gapemp_appr_3|graphkv-top1@official": {
+     "tokens": 90,
+     "agree": 0.9777777791023254,
+     "first_mismatch": 12,
+     "nll": 0.04920083284378052,
+     "mismatches": [
+      {
+       "pos": 12,
+       "ours": " \"",
+       "released": " Ang",
+       "margin": 0.5,
+       "top_logit": 32.5
+      },
+      {
+       "pos": 59,
+       "ours": " confirmed",
+       "released": " later",
+       "margin": 0.5,
+       "top_logit": 30.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|graphkv-top1@official": {
+     "tokens": 103,
+     "agree": 0.9611650705337524,
+     "first_mismatch": 0,
+     "nll": 0.05328208953142166,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "According",
+       "released": "Based",
+       "margin": 0.0,
+       "top_logit": 28.625
+      },
+      {
+       "pos": 7,
+       "ours": " I",
+       "released": " the",
+       "margin": 0.25,
+       "top_logit": 25.875
+      },
+      {
+       "pos": 12,
+       "ours": " \"",
+       "released": " Ang",
+       "margin": 0.0,
+       "top_logit": 33.0
+      },
+      {
+       "pos": 72,
+       "ours": " confirmed",
+       "released": " later",
+       "margin": 0.125,
+       "top_logit": 29.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "vanilla|graphkv-top3@official": {
+     "tokens": 92,
+     "agree": 0.95652174949646,
+     "first_mismatch": 0,
+     "nll": 0.04712144285440445,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "According",
+       "released": "Based",
+       "margin": 0.0,
+       "top_logit": 28.875
+      },
+      {
+       "pos": 7,
+       "ours": " the",
+       "released": " I",
+       "margin": 0.125,
+       "top_logit": 25.75
+      },
+      {
+       "pos": 18,
+       "ours": " ",
+       "released": " film",
+       "margin": 0.0,
+       "top_logit": 32.75
+      },
+      {
+       "pos": 62,
+       "ours": " later",
+       "released": " confirmed",
+       "margin": 0.375,
+       "top_logit": 30.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top3@official": {
+     "tokens": 93,
+     "agree": 0.9677419066429138,
+     "first_mismatch": 0,
+     "nll": 0.042672354727983475,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "According",
+       "released": "Based",
+       "margin": 0.0,
+       "top_logit": 28.875
+      },
+      {
+       "pos": 7,
+       "ours": " the",
+       "released": " I",
+       "margin": 0.125,
+       "top_logit": 25.75
+      },
+      {
+       "pos": 18,
+       "ours": " ",
+       "released": " film",
+       "margin": 0.0,
+       "top_logit": 32.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp_appr_1|graphkv-top3@official": {
+     "tokens": 122,
+     "agree": 0.9918032884597778,
+     "first_mismatch": 12,
+     "nll": 0.06533507257699966,
+     "mismatches": [
+      {
+       "pos": 12,
+       "ours": " Ang",
+       "released": " \"",
+       "margin": 0.625,
+       "top_logit": 32.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-top3@official": {
+     "tokens": 90,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03420046716928482
+    },
+    "gapemp|graphkv-top3@official": {
+     "tokens": 103,
+     "agree": 0.9902912378311157,
+     "first_mismatch": 0,
+     "nll": 0.04269362986087799,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "According",
+       "released": "Based",
+       "margin": 0.0,
+       "top_logit": 28.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "vanilla|graphkv-full@official": {
+     "tokens": 92,
+     "agree": 0.989130437374115,
+     "first_mismatch": 7,
+     "nll": 0.04162226617336273,
+     "mismatches": [
+      {
+       "pos": 7,
+       "ours": " the",
+       "released": " I",
+       "margin": 0.125,
+       "top_logit": 25.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "block|graphkv-full@official": {
+     "tokens": 93,
+     "agree": 0.9784946441650391,
+     "first_mismatch": 7,
+     "nll": 0.04391111806035042,
+     "mismatches": [
+      {
+       "pos": 7,
+       "ours": " the",
+       "released": " I",
+       "margin": 0.125,
+       "top_logit": 25.5
+      },
+      {
+       "pos": 62,
+       "ours": " confirmed",
+       "released": " later",
+       "margin": 0.25,
+       "top_logit": 30.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp_appr_1|graphkv-full@official": {
+     "tokens": 122,
+     "agree": 0.9590163826942444,
+     "first_mismatch": 0,
+     "nll": 0.07663293927907944,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Based",
+       "released": "According",
+       "margin": 0.5,
+       "top_logit": 28.875
+      },
+      {
+       "pos": 12,
+       "ours": " Ang",
+       "released": " \"",
+       "margin": 0.625,
+       "top_logit": 32.25
+      },
+      {
+       "pos": 20,
+       "ours": " Fernando",
+       "released": " not",
+       "margin": 0.25,
+       "top_logit": 22.0
+      },
+      {
+       "pos": 27,
+       "ours": " search",
+       "released": " film",
+       "margin": 0.125,
+       "top_logit": 23.25
+      },
+      {
+       "pos": 44,
+       "ours": ".'",
+       "released": ".,",
+       "margin": 0.625,
+       "top_logit": 31.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-full@official": {
+     "tokens": 90,
+     "agree": 0.9777777791023254,
+     "first_mismatch": 0,
+     "nll": 0.039128150790929794,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Based",
+       "released": "According",
+       "margin": 0.5,
+       "top_logit": 28.875
+      },
+      {
+       "pos": 59,
+       "ours": " confirmed",
+       "released": " later",
+       "margin": 0.375,
+       "top_logit": 30.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|graphkv-full@official": {
+     "tokens": 103,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.04164327308535576
+    },
+    "vanilla|graphkv-top3": {
+     "tokens": 92,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.02525435760617256
+    },
+    "block|graphkv-top3": {
+     "tokens": 93,
+     "agree": 0.9892473220825195,
+     "first_mismatch": 62,
+     "nll": 0.031841982156038284,
+     "mismatches": [
+      {
+       "pos": 62,
+       "ours": " confirmed",
+       "released": " later",
+       "margin": 0.625,
+       "top_logit": 30.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top3": {
+     "tokens": 122,
+     "agree": 0.9672130942344666,
+     "first_mismatch": 0,
+     "nll": 0.08521910756826401,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Based",
+       "released": "According",
+       "margin": 1.375,
+       "top_logit": 29.75
+      },
+      {
+       "pos": 7,
+       "ours": " Fernando",
+       "released": " the",
+       "margin": 0.375,
+       "top_logit": 26.25
+      },
+      {
+       "pos": 12,
+       "ours": " Ang",
+       "released": " \"",
+       "margin": 0.5,
+       "top_logit": 32.75
+      },
+      {
+       "pos": 37,
+       "ours": " as",
+       "released": " in",
+       "margin": 0.625,
+       "top_logit": 29.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-top3": {
+     "tokens": 90,
+     "agree": 0.9666666388511658,
+     "first_mismatch": 0,
+     "nll": 0.05580337345600128,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Based",
+       "released": "According",
+       "margin": 1.375,
+       "top_logit": 29.75
+      },
+      {
+       "pos": 7,
+       "ours": " Fernando",
+       "released": " the",
+       "margin": 0.375,
+       "top_logit": 26.25
+      },
+      {
+       "pos": 59,
+       "ours": " confirmed",
+       "released": " later",
+       "margin": 0.875,
+       "top_logit": 30.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|graphkv-top3": {
+     "tokens": 103,
+     "agree": 0.9611650705337524,
+     "first_mismatch": 7,
+     "nll": 0.07368961721658707,
+     "mismatches": [
+      {
+       "pos": 7,
+       "ours": " I",
+       "released": " the",
+       "margin": 0.5,
+       "top_logit": 26.875
+      },
+      {
+       "pos": 17,
+       "ours": ",",
+       "released": " is",
+       "margin": 1.25,
+       "top_logit": 29.0
+      },
+      {
+       "pos": 26,
+       "ours": " on",
+       "released": " titled",
+       "margin": 1.875,
+       "top_logit": 28.125
+      },
+      {
+       "pos": 72,
+       "ours": " confirmed",
+       "released": " later",
+       "margin": 0.5,
+       "top_logit": 30.625
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    }
+   },
+   "seconds": 429.2
+  },
+  {
+   "index": 10192,
+   "group": "compositional",
+   "cells": {
+    "vanilla|sequential": {
+     "tokens": 41,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.0629124790430069
+    },
+    "block|sequential": {
+     "tokens": 66,
+     "agree": 0.9242424368858337,
+     "first_mismatch": 0,
+     "nll": 0.2823403775691986,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "According",
+       "released": "Unfortunately",
+       "margin": 1.5,
+       "top_logit": 29.25
+      },
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " Maggie",
+       "margin": 5.75,
+       "top_logit": 36.5
+      },
+      {
+       "pos": 14,
+       "ours": "'s",
+       "released": ".",
+       "margin": 1.5,
+       "top_logit": 26.125
+      },
+      {
+       "pos": 24,
+       "ours": "'s",
+       "released": ",",
+       "margin": 4.0,
+       "top_logit": 37.0
+      },
+      {
+       "pos": 40,
+       "ours": " her",
+       "released": " husband",
+       "margin": 0.625,
+       "top_logit": 24.125
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|sequential": {
+     "tokens": 32,
+     "agree": 0.96875,
+     "first_mismatch": 15,
+     "nll": 0.11235199123620987,
+     "mismatches": [
+      {
+       "pos": 15,
+       "ours": ",",
+       "released": ".",
+       "margin": 1.0,
+       "top_logit": 37.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|sequential": {
+     "tokens": 32,
+     "agree": 0.96875,
+     "first_mismatch": 15,
+     "nll": 0.11235199123620987,
+     "mismatches": [
+      {
+       "pos": 15,
+       "ours": ",",
+       "released": ".",
+       "margin": 1.0,
+       "top_logit": 37.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|sequential": {
+     "tokens": 31,
+     "agree": 0.9354838728904724,
+     "first_mismatch": 15,
+     "nll": 0.1742495745420456,
+     "mismatches": [
+      {
+       "pos": 15,
+       "ours": ",",
+       "released": ".",
+       "margin": 1.0,
+       "top_logit": 37.0
+      },
+      {
+       "pos": 18,
+       "ours": " the",
+       "released": " there",
+       "margin": 1.75,
+       "top_logit": 31.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|block": {
+     "tokens": 41,
+     "agree": 0.9756097793579102,
+     "first_mismatch": 0,
+     "nll": 0.08916228264570236,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Unfortunately",
+       "released": "According",
+       "margin": 0.5,
+       "top_logit": 27.125
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|block": {
+     "tokens": 66,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.10842380672693253
+    },
+    "gapemp_appr_1|block": {
+     "tokens": 32,
+     "agree": 0.9375,
+     "first_mismatch": 0,
+     "nll": 0.11063746362924576,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Unfortunately",
+       "released": "According",
+       "margin": 0.5,
+       "top_logit": 27.125
+      },
+      {
+       "pos": 15,
+       "ours": ",",
+       "released": ".",
+       "margin": 0.0,
+       "top_logit": 33.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|block": {
+     "tokens": 32,
+     "agree": 0.9375,
+     "first_mismatch": 0,
+     "nll": 0.11063746362924576,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Unfortunately",
+       "released": "According",
+       "margin": 0.5,
+       "top_logit": 27.125
+      },
+      {
+       "pos": 15,
+       "ours": ",",
+       "released": ".",
+       "margin": 0.0,
+       "top_logit": 33.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|block": {
+     "tokens": 31,
+     "agree": 0.9032257795333862,
+     "first_mismatch": 0,
+     "nll": 0.1597433090209961,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "Unfortunately",
+       "released": "According",
+       "margin": 0.5,
+       "top_logit": 27.125
+      },
+      {
+       "pos": 15,
+       "ours": ",",
+       "released": ".",
+       "margin": 0.0,
+       "top_logit": 33.25
+      },
+      {
+       "pos": 18,
+       "ours": " the",
+       "released": " there",
+       "margin": 0.75,
+       "top_logit": 30.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-top1@official": {
+     "tokens": 41,
+     "agree": 0.9756097793579102,
+     "first_mismatch": 15,
+     "nll": 0.09311655908823013,
+     "mismatches": [
+      {
+       "pos": 15,
+       "ours": ".",
+       "released": ",",
+       "margin": 1.0,
+       "top_logit": 34.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top1@official": {
+     "tokens": 66,
+     "agree": 0.939393937587738,
+     "first_mismatch": 0,
+     "nll": 0.16985607147216797,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "According",
+       "released": "Unfortunately",
+       "margin": 0.875,
+       "top_logit": 28.125
+      },
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " Maggie",
+       "margin": 2.5,
+       "top_logit": 31.5
+      },
+      {
+       "pos": 32,
+       "ours": " as",
+       "released": " but",
+       "margin": 0.75,
+       "top_logit": 33.5
+      },
+      {
+       "pos": 40,
+       "ours": " relationships",
+       "released": " husband",
+       "margin": 0.25,
+       "top_logit": 24.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top1@official": {
+     "tokens": 32,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.07964193820953369
+    },
+    "gapemp_appr_3|graphkv-top1@official": {
+     "tokens": 32,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.07964193820953369
+    },
+    "gapemp|graphkv-top1@official": {
+     "tokens": 31,
+     "agree": 0.9677419066429138,
+     "first_mismatch": 18,
+     "nll": 0.1366516351699829,
+     "mismatches": [
+      {
+       "pos": 18,
+       "ours": " the",
+       "released": " there",
+       "margin": 1.125,
+       "top_logit": 30.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-top3@official": {
+     "tokens": 41,
+     "agree": 0.9756097793579102,
+     "first_mismatch": 15,
+     "nll": 0.09719725698232651,
+     "mismatches": [
+      {
+       "pos": 15,
+       "ours": ".",
+       "released": ",",
+       "margin": 1.0,
+       "top_logit": 34.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top3@official": {
+     "tokens": 66,
+     "agree": 0.9242424368858337,
+     "first_mismatch": 0,
+     "nll": 0.19286923110485077,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "According",
+       "released": "Unfortunately",
+       "margin": 1.75,
+       "top_logit": 29.0
+      },
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " Maggie",
+       "margin": 2.375,
+       "top_logit": 31.625
+      },
+      {
+       "pos": 14,
+       "ours": "'s",
+       "released": ".",
+       "margin": 0.625,
+       "top_logit": 26.375
+      },
+      {
+       "pos": 32,
+       "ours": " as",
+       "released": " but",
+       "margin": 1.25,
+       "top_logit": 33.75
+      },
+      {
+       "pos": 40,
+       "ours": " relationships",
+       "released": " husband",
+       "margin": 0.5,
+       "top_logit": 24.125
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top3@official": {
+     "tokens": 32,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.08218386024236679
+    },
+    "gapemp_appr_3|graphkv-top3@official": {
+     "tokens": 32,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.08218386024236679
+    },
+    "gapemp|graphkv-top3@official": {
+     "tokens": 31,
+     "agree": 0.9677419066429138,
+     "first_mismatch": 18,
+     "nll": 0.12034587562084198,
+     "mismatches": [
+      {
+       "pos": 18,
+       "ours": " the",
+       "released": " there",
+       "margin": 0.875,
+       "top_logit": 30.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-full@official": {
+     "tokens": 41,
+     "agree": 0.9756097793579102,
+     "first_mismatch": 15,
+     "nll": 0.05936650559306145,
+     "mismatches": [
+      {
+       "pos": 15,
+       "ours": ".",
+       "released": ",",
+       "margin": 0.25,
+       "top_logit": 34.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "block|graphkv-full@official": {
+     "tokens": 66,
+     "agree": 0.9545454382896423,
+     "first_mismatch": 0,
+     "nll": 0.20552758872509003,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "According",
+       "released": "Unfortunately",
+       "margin": 2.375,
+       "top_logit": 29.5
+      },
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " Maggie",
+       "margin": 2.375,
+       "top_logit": 31.625
+      },
+      {
+       "pos": 14,
+       "ours": "'s",
+       "released": ".",
+       "margin": 2.25,
+       "top_logit": 27.125
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-full@official": {
+     "tokens": 32,
+     "agree": 0.96875,
+     "first_mismatch": 18,
+     "nll": 0.08798426389694214,
+     "mismatches": [
+      {
+       "pos": 18,
+       "ours": " there",
+       "released": " the",
+       "margin": 0.625,
+       "top_logit": 30.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-full@official": {
+     "tokens": 32,
+     "agree": 0.96875,
+     "first_mismatch": 18,
+     "nll": 0.08798426389694214,
+     "mismatches": [
+      {
+       "pos": 18,
+       "ours": " there",
+       "released": " the",
+       "margin": 0.625,
+       "top_logit": 30.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|graphkv-full@official": {
+     "tokens": 31,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.07228478789329529
+    },
+    "vanilla|graphkv-top3": {
+     "tokens": 41,
+     "agree": 0.9512194991111755,
+     "first_mismatch": 15,
+     "nll": 0.13405348360538483,
+     "mismatches": [
+      {
+       "pos": 15,
+       "ours": ".",
+       "released": ",",
+       "margin": 2.25,
+       "top_logit": 36.0
+      },
+      {
+       "pos": 25,
+       "ours": " The",
+       "released": " Unfortunately",
+       "margin": 0.375,
+       "top_logit": 25.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top3": {
+     "tokens": 66,
+     "agree": 0.939393937587738,
+     "first_mismatch": 0,
+     "nll": 0.15437662601470947,
+     "mismatches": [
+      {
+       "pos": 0,
+       "ours": "According",
+       "released": "Unfortunately",
+       "margin": 0.875,
+       "top_logit": 28.375
+      },
+      {
+       "pos": 9,
+       "ours": " the",
+       "released": " Maggie",
+       "margin": 2.125,
+       "top_logit": 33.0
+      },
+      {
+       "pos": 32,
+       "ours": " as",
+       "released": " but",
+       "margin": 0.75,
+       "top_logit": 34.25
+      },
+      {
+       "pos": 44,
+       "ours": " I",
+       "released": " it",
+       "margin": 0.0,
+       "top_logit": 33.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top3": {
+     "tokens": 32,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.07763844728469849
+    },
+    "gapemp_appr_3|graphkv-top3": {
+     "tokens": 32,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.07763844728469849
+    },
+    "gapemp|graphkv-top3": {
+     "tokens": 31,
+     "agree": 0.9677419066429138,
+     "first_mismatch": 18,
+     "nll": 0.12887626886367798,
+     "mismatches": [
+      {
+       "pos": 18,
+       "ours": " the",
+       "released": " there",
+       "margin": 0.75,
+       "top_logit": 30.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    }
+   },
+   "seconds": 554.7
+  },
+  {
+   "index": 10846,
+   "group": "bridge_comparison",
+   "cells": {
+    "vanilla|sequential": {
+     "tokens": 109,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03915035352110863
+    },
+    "block|sequential": {
+     "tokens": 118,
+     "agree": 0.9576271176338196,
+     "first_mismatch": 10,
+     "nll": 0.09087599813938141,
+     "mismatches": [
+      {
+       "pos": 10,
+       "ours": " directors",
+       "released": " birth",
+       "margin": 1.125,
+       "top_logit": 27.5
+      },
+      {
+       "pos": 17,
+       "ours": " the",
+       "released": " each",
+       "margin": 3.0,
+       "top_logit": 38.0
+      },
+      {
+       "pos": 22,
+       "ours": "Sky",
+       "released": "School",
+       "margin": 0.5,
+       "top_logit": 37.0
+      },
+      {
+       "pos": 25,
+       "ours": "\",",
+       "released": "\"",
+       "margin": 1.5,
+       "top_logit": 35.75
+      },
+      {
+       "pos": 97,
+       "ours": " director",
+       "released": " film",
+       "margin": 1.0,
+       "top_logit": 34.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|sequential": {
+     "tokens": 105,
+     "agree": 0.961904764175415,
+     "first_mismatch": 17,
+     "nll": 0.14958028495311737,
+     "mismatches": [
+      {
+       "pos": 17,
+       "ours": " Sky",
+       "released": " School",
+       "margin": 2.75,
+       "top_logit": 32.5
+      },
+      {
+       "pos": 29,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 6.25,
+       "top_logit": 39.5
+      },
+      {
+       "pos": 91,
+       "ours": " it",
+       "released": " the",
+       "margin": 1.125,
+       "top_logit": 28.375
+      },
+      {
+       "pos": 93,
+       "ours": " of",
+       "released": " born",
+       "margin": 1.0,
+       "top_logit": 33.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|sequential": {
+     "tokens": 107,
+     "agree": 0.9719626307487488,
+     "first_mismatch": 17,
+     "nll": 0.14070114493370056,
+     "mismatches": [
+      {
+       "pos": 17,
+       "ours": " Sky",
+       "released": " School",
+       "margin": 2.75,
+       "top_logit": 32.5
+      },
+      {
+       "pos": 29,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 6.25,
+       "top_logit": 39.5
+      },
+      {
+       "pos": 91,
+       "ours": " it",
+       "released": " the",
+       "margin": 1.125,
+       "top_logit": 28.375
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|sequential": {
+     "tokens": 105,
+     "agree": 0.9428571462631226,
+     "first_mismatch": 11,
+     "nll": 0.16601206362247467,
+     "mismatches": [
+      {
+       "pos": 11,
+       "ours": " of",
+       "released": " associated",
+       "margin": 3.75,
+       "top_logit": 30.125
+      },
+      {
+       "pos": 17,
+       "ours": " Sky",
+       "released": " School",
+       "margin": 2.25,
+       "top_logit": 32.75
+      },
+      {
+       "pos": 24,
+       "ours": " was",
+       "released": " is",
+       "margin": 1.375,
+       "top_logit": 31.375
+      },
+      {
+       "pos": 29,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 4.0,
+       "top_logit": 38.25
+      },
+      {
+       "pos": 48,
+       "ours": " birth",
+       "released": " documents",
+       "margin": 0.375,
+       "top_logit": 23.625
+      },
+      {
+       "pos": 91,
+       "ours": " it",
+       "released": " the",
+       "margin": 0.125,
+       "top_logit": 28.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|block": {
+     "tokens": 109,
+     "agree": 0.9449541568756104,
+     "first_mismatch": 10,
+     "nll": 0.10571269690990448,
+     "mismatches": [
+      {
+       "pos": 10,
+       "ours": " birth",
+       "released": " directors",
+       "margin": 0.875,
+       "top_logit": 27.25
+      },
+      {
+       "pos": 17,
+       "ours": " School",
+       "released": " Sky",
+       "margin": 3.25,
+       "top_logit": 28.75
+      },
+      {
+       "pos": 30,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 1.75,
+       "top_logit": 35.75
+      },
+      {
+       "pos": 48,
+       "ours": " documents",
+       "released": " birth",
+       "margin": 0.5,
+       "top_logit": 24.375
+      },
+      {
+       "pos": 67,
+       "ours": " while",
+       "released": " and",
+       "margin": 0.75,
+       "top_logit": 33.75
+      },
+      {
+       "pos": 93,
+       "ours": " it",
+       "released": " the",
+       "margin": 0.125,
+       "top_logit": 28.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|block": {
+     "tokens": 118,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.029786696657538414
+    },
+    "gapemp_appr_1|block": {
+     "tokens": 105,
+     "agree": 0.9714285731315613,
+     "first_mismatch": 10,
+     "nll": 0.05990787595510483,
+     "mismatches": [
+      {
+       "pos": 10,
+       "ours": " birth",
+       "released": " directors",
+       "margin": 0.875,
+       "top_logit": 27.25
+      },
+      {
+       "pos": 29,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 1.5,
+       "top_logit": 35.75
+      },
+      {
+       "pos": 93,
+       "ours": " of",
+       "released": " born",
+       "margin": 0.0,
+       "top_logit": 34.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|block": {
+     "tokens": 107,
+     "agree": 0.9813084006309509,
+     "first_mismatch": 10,
+     "nll": 0.06362978368997574,
+     "mismatches": [
+      {
+       "pos": 10,
+       "ours": " birth",
+       "released": " directors",
+       "margin": 0.875,
+       "top_logit": 27.25
+      },
+      {
+       "pos": 29,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 1.5,
+       "top_logit": 35.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|block": {
+     "tokens": 105,
+     "agree": 0.961904764175415,
+     "first_mismatch": 10,
+     "nll": 0.10811825841665268,
+     "mismatches": [
+      {
+       "pos": 10,
+       "ours": " birth",
+       "released": " directors",
+       "margin": 0.875,
+       "top_logit": 27.25
+      },
+      {
+       "pos": 11,
+       "ours": " of",
+       "released": " associated",
+       "margin": 3.25,
+       "top_logit": 27.5
+      },
+      {
+       "pos": 24,
+       "ours": " was",
+       "released": " is",
+       "margin": 1.875,
+       "top_logit": 29.125
+      },
+      {
+       "pos": 29,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 1.0,
+       "top_logit": 35.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-top1@official": {
+     "tokens": 109,
+     "agree": 0.9724770784378052,
+     "first_mismatch": 17,
+     "nll": 0.09882063418626785,
+     "mismatches": [
+      {
+       "pos": 17,
+       "ours": " School",
+       "released": " Sky",
+       "margin": 3.625,
+       "top_logit": 28.875
+      },
+      {
+       "pos": 30,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 1.5,
+       "top_logit": 35.75
+      },
+      {
+       "pos": 67,
+       "ours": " while",
+       "released": " and",
+       "margin": 1.5,
+       "top_logit": 35.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top1@official": {
+     "tokens": 118,
+     "agree": 0.9830508232116699,
+     "first_mismatch": 10,
+     "nll": 0.040279634296894073,
+     "mismatches": [
+      {
+       "pos": 10,
+       "ours": " directors",
+       "released": " birth",
+       "margin": 1.75,
+       "top_logit": 26.75
+      },
+      {
+       "pos": 17,
+       "ours": " the",
+       "released": " each",
+       "margin": 0.0,
+       "top_logit": 37.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top1@official": {
+     "tokens": 105,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.03691340610384941
+    },
+    "gapemp_appr_3|graphkv-top1@official": {
+     "tokens": 107,
+     "agree": 0.9906542301177979,
+     "first_mismatch": 93,
+     "nll": 0.0423344261944294,
+     "mismatches": [
+      {
+       "pos": 93,
+       "ours": " born",
+       "released": " of",
+       "margin": 0.5,
+       "top_logit": 35.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp|graphkv-top1@official": {
+     "tokens": 105,
+     "agree": 0.9904761910438538,
+     "first_mismatch": 11,
+     "nll": 0.04892449453473091,
+     "mismatches": [
+      {
+       "pos": 11,
+       "ours": " of",
+       "released": " associated",
+       "margin": 0.75,
+       "top_logit": 26.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "vanilla|graphkv-top3@official": {
+     "tokens": 109,
+     "agree": 0.963302731513977,
+     "first_mismatch": 17,
+     "nll": 0.09075573086738586,
+     "mismatches": [
+      {
+       "pos": 17,
+       "ours": " School",
+       "released": " Sky",
+       "margin": 1.25,
+       "top_logit": 28.5
+      },
+      {
+       "pos": 30,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 2.0,
+       "top_logit": 36.25
+      },
+      {
+       "pos": 48,
+       "ours": " documents",
+       "released": " birth",
+       "margin": 1.875,
+       "top_logit": 25.375
+      },
+      {
+       "pos": 67,
+       "ours": " while",
+       "released": " and",
+       "margin": 0.75,
+       "top_logit": 35.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top3@official": {
+     "tokens": 118,
+     "agree": 0.9830508232116699,
+     "first_mismatch": 10,
+     "nll": 0.06627878546714783,
+     "mismatches": [
+      {
+       "pos": 10,
+       "ours": " directors",
+       "released": " birth",
+       "margin": 3.125,
+       "top_logit": 27.0
+      },
+      {
+       "pos": 17,
+       "ours": " the",
+       "released": " each",
+       "margin": 0.75,
+       "top_logit": 36.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top3@official": {
+     "tokens": 105,
+     "agree": 0.9809523820877075,
+     "first_mismatch": 29,
+     "nll": 0.05242002755403519,
+     "mismatches": [
+      {
+       "pos": 29,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 0.0,
+       "top_logit": 35.5
+      },
+      {
+       "pos": 93,
+       "ours": " of",
+       "released": " born",
+       "margin": 1.25,
+       "top_logit": 35.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-top3@official": {
+     "tokens": 107,
+     "agree": 0.9906542301177979,
+     "first_mismatch": 29,
+     "nll": 0.040296390652656555,
+     "mismatches": [
+      {
+       "pos": 29,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 0.0,
+       "top_logit": 35.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "gapemp|graphkv-top3@official": {
+     "tokens": 105,
+     "agree": 0.9904761910438538,
+     "first_mismatch": 11,
+     "nll": 0.04247228428721428,
+     "mismatches": [
+      {
+       "pos": 11,
+       "ours": " of",
+       "released": " associated",
+       "margin": 0.25,
+       "top_logit": 27.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": true
+    },
+    "vanilla|graphkv-full@official": {
+     "tokens": 109,
+     "agree": 0.9449541568756104,
+     "first_mismatch": 11,
+     "nll": 0.10457947850227356,
+     "mismatches": [
+      {
+       "pos": 11,
+       "ours": " associated",
+       "released": " of",
+       "margin": 0.5,
+       "top_logit": 26.75
+      },
+      {
+       "pos": 17,
+       "ours": " School",
+       "released": " Sky",
+       "margin": 2.5,
+       "top_logit": 29.625
+      },
+      {
+       "pos": 30,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 0.75,
+       "top_logit": 35.25
+      },
+      {
+       "pos": 48,
+       "ours": " documents",
+       "released": " birth",
+       "margin": 2.75,
+       "top_logit": 25.875
+      },
+      {
+       "pos": 67,
+       "ours": " while",
+       "released": " and",
+       "margin": 0.5,
+       "top_logit": 34.5
+      },
+      {
+       "pos": 93,
+       "ours": " it",
+       "released": " the",
+       "margin": 0.625,
+       "top_logit": 28.625
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-full@official": {
+     "tokens": 118,
+     "agree": 0.9745762944221497,
+     "first_mismatch": 10,
+     "nll": 0.08268147706985474,
+     "mismatches": [
+      {
+       "pos": 10,
+       "ours": " directors",
+       "released": " birth",
+       "margin": 3.25,
+       "top_logit": 27.125
+      },
+      {
+       "pos": 17,
+       "ours": " the",
+       "released": " each",
+       "margin": 1.25,
+       "top_logit": 36.25
+      },
+      {
+       "pos": 85,
+       "ours": ",",
+       "released": " was",
+       "margin": 0.625,
+       "top_logit": 30.875
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-full@official": {
+     "tokens": 105,
+     "agree": 0.9714285731315613,
+     "first_mismatch": 11,
+     "nll": 0.06694011390209198,
+     "mismatches": [
+      {
+       "pos": 11,
+       "ours": " associated",
+       "released": " of",
+       "margin": 0.5,
+       "top_logit": 26.75
+      },
+      {
+       "pos": 29,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 0.5,
+       "top_logit": 35.25
+      },
+      {
+       "pos": 93,
+       "ours": " of",
+       "released": " born",
+       "margin": 2.5,
+       "top_logit": 36.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-full@official": {
+     "tokens": 107,
+     "agree": 0.9813084006309509,
+     "first_mismatch": 11,
+     "nll": 0.0434546060860157,
+     "mismatches": [
+      {
+       "pos": 11,
+       "ours": " associated",
+       "released": " of",
+       "margin": 0.5,
+       "top_logit": 26.75
+      },
+      {
+       "pos": 29,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 0.5,
+       "top_logit": 35.25
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|graphkv-full@official": {
+     "tokens": 105,
+     "agree": 1.0,
+     "first_mismatch": null,
+     "nll": 0.041032206267118454
+    },
+    "vanilla|graphkv-top3": {
+     "tokens": 109,
+     "agree": 0.963302731513977,
+     "first_mismatch": 17,
+     "nll": 0.1641124188899994,
+     "mismatches": [
+      {
+       "pos": 17,
+       "ours": " School",
+       "released": " Sky",
+       "margin": 9.75,
+       "top_logit": 30.875
+      },
+      {
+       "pos": 30,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 2.25,
+       "top_logit": 37.0
+      },
+      {
+       "pos": 48,
+       "ours": " documents",
+       "released": " birth",
+       "margin": 2.0,
+       "top_logit": 26.25
+      },
+      {
+       "pos": 67,
+       "ours": " while",
+       "released": " and",
+       "margin": 0.5,
+       "top_logit": 34.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "block|graphkv-top3": {
+     "tokens": 118,
+     "agree": 0.9745762944221497,
+     "first_mismatch": 10,
+     "nll": 0.05038049817085266,
+     "mismatches": [
+      {
+       "pos": 10,
+       "ours": " directors",
+       "released": " birth",
+       "margin": 2.625,
+       "top_logit": 27.875
+      },
+      {
+       "pos": 17,
+       "ours": " the",
+       "released": " each",
+       "margin": 0.5,
+       "top_logit": 37.5
+      },
+      {
+       "pos": 85,
+       "ours": ",",
+       "released": " was",
+       "margin": 0.375,
+       "top_logit": 32.0
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_1|graphkv-top3": {
+     "tokens": 105,
+     "agree": 0.9523809552192688,
+     "first_mismatch": 29,
+     "nll": 0.08354757726192474,
+     "mismatches": [
+      {
+       "pos": 29,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 2.0,
+       "top_logit": 37.0
+      },
+      {
+       "pos": 63,
+       "ours": " and",
+       "released": " while",
+       "margin": 1.5,
+       "top_logit": 36.0
+      },
+      {
+       "pos": 92,
+       "ours": " film",
+       "released": " director",
+       "margin": 1.125,
+       "top_logit": 32.75
+      },
+      {
+       "pos": 93,
+       "ours": " of",
+       "released": " born",
+       "margin": 0.5,
+       "top_logit": 35.75
+      },
+      {
+       "pos": 99,
+       "ours": " and",
+       "released": " who",
+       "margin": 0.25,
+       "top_logit": 30.375
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp_appr_3|graphkv-top3": {
+     "tokens": 107,
+     "agree": 0.9719626307487488,
+     "first_mismatch": 29,
+     "nll": 0.07260198146104813,
+     "mismatches": [
+      {
+       "pos": 29,
+       "ours": ",",
+       "released": ".\n",
+       "margin": 2.0,
+       "top_logit": 37.0
+      },
+      {
+       "pos": 63,
+       "ours": " and",
+       "released": " while",
+       "margin": 1.5,
+       "top_logit": 36.0
+      },
+      {
+       "pos": 92,
+       "ours": " film",
+       "released": " director",
+       "margin": 1.125,
+       "top_logit": 32.75
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    },
+    "gapemp|graphkv-top3": {
+     "tokens": 105,
+     "agree": 0.9523809552192688,
+     "first_mismatch": 11,
+     "nll": 0.092930868268013,
+     "mismatches": [
+      {
+       "pos": 11,
+       "ours": " of",
+       "released": " associated",
+       "margin": 1.5,
+       "top_logit": 28.25
+      },
+      {
+       "pos": 24,
+       "ours": " was",
+       "released": " is",
+       "margin": 0.125,
+       "top_logit": 28.5
+      },
+      {
+       "pos": 63,
+       "ours": " and",
+       "released": " while",
+       "margin": 0.5,
+       "top_logit": 35.25
+      },
+      {
+       "pos": 92,
+       "ours": " film",
+       "released": " director",
+       "margin": 2.25,
+       "top_logit": 32.75
+      },
+      {
+       "pos": 99,
+       "ours": " and",
+       "released": " who",
+       "margin": 0.5,
+       "top_logit": 29.5
+      }
+     ],
+     "cleanup_only": false,
+     "near_tie_only": false
+    }
+   },
+   "seconds": 345.8
+  }
+ ]
+}

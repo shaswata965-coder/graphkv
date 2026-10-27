@@ -99,8 +99,16 @@ The dataset labelled *NarrativeQA* in the paper is the `nq_eval` file of Block-A
 ### 4. End to end with the paper's 8B model
 
 The released generations of `ldsjmdy/Tulu3-Block-FT` were fed teacher-forced through this implementation, on CPU
-with a streaming loader. Released runs: sequential, Block-RAG, Graph-KV Top-1/Top-3/Full; task: 2Wiki. The full
-agreement matrix and the component-by-component audit are in [`VERIFICATION.md`](VERIFICATION.md).
+with a streaming loader. Setup: 12 2Wiki examples; 60 outputs of sequential, Block-RAG and Graph-KV Top-1/Top-3/Full.
+
+Under each run's own method:
+* 99.79% of the 5,353 released tokens are this implementation's arg-max;
+* 50 of the 60 outputs agree at every token;
+* all 11 disagreements are bfloat16 ties (logit margin 0-0.25).
+
+Under other methods the agreement drops to 97.1%. The released top-3 outputs agree with the `@official` layout
+(12/12 outputs) but not with the paper's shared ranges (5/12). The full matrix and the component-by-component
+audit are in [`VERIFICATION.md`](VERIFICATION.md).
 
 The Colab notebook repeats the check on a GPU with more examples (cell 6a). Its free-generation comparison is
 cell 6b.
