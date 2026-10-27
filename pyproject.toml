@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "graphkv"
 version = "0.1.0"
-description = "Graph-based dynamic KV-cache compression for transformer inference (ISCAS 2026 reproduction)"
+description = "Graph-based dynamic KV-cache compression (ISCAS 2026) and Graph-KV structural attention (NeurIPS 2025)"
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
@@ -15,10 +15,11 @@ dependencies = [
 
 [project.optional-dependencies]
 experiments = ["datasets>=2.14", "matplotlib>=3.7", "numpy"]
+neurips = ["huggingface_hub>=0.20", "pandas", "accelerate"]
 test = ["pytest>=7"]
 
 [tool.setuptools.packages.find]
-include = ["graphkv*"]
+include = ["graphkv*"]  # graphkv (ISCAS 2026) and graphkv_neurips (Graph-KV, NeurIPS 2025)
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

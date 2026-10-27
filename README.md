@@ -1,5 +1,11 @@
 # GraphKV: graph-based dynamic KV-cache compression
 
+> **Two papers live in this repository.**
+> * `graphkv/` (this README): the ISCAS 2026 KV-cache *compression* paper below.
+> * `graphkv_neurips/`: **Graph-KV: Breaking Sequence via Injecting Structural Biases into LLMs** (Wang et al., NeurIPS 2025),
+>   with the official code pinned in `third_party/GraphKV`. See [`docs/neurips/README.md`](docs/neurips/README.md) for it and
+>   [`docs/neurips/COLAB.md`](docs/neurips/COLAB.md) for running its experiments on Colab.
+
 A from-scratch, tested implementation of
 
 > N. Bhattacharya, S. Sathvik, A. Yadav, A. Dixit, B. Kumar,
