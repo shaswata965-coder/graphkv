@@ -56,8 +56,10 @@ Suggested month:
 1. **Push access.** If the repository is private, create a GitHub fine-grained token with read access to it,
    and add it in Colab under the key icon (*Secrets*) as `GH_TOKEN`. Enable notebook access.
 2. **Runtime.** *Runtime → Change runtime type*: T4 for debugging, L4 for 8B runs.
-3. Run cells 1-4: rate, Drive, code + install, unit tests. The unit tests run on tiny random models and
+3. Run cells 1-4: rate and model, Drive, code + install, unit tests. The unit tests run on tiny random models and
    check the attention masks, positions, chunkers and views (~1 min). Run them again after each `git pull`.
+   After a disconnect or a runtime reset, start again at cell 1: the runtime forgets everything except Drive
+   (cell 3 stops with "run cells 1 and 2 first" if you skip them).
 4. **Debug run (cell 5)** on every change: 5 examples, 1B model, ~5 min. Read `summary.md` in the output
    directory on Drive. Only then switch to an L4.
 5. **Paper replication (cells 6a-6c, once).** 6a checks token by token against the released generations; 6b and 6c
