@@ -283,7 +283,7 @@ For example, score it after a forced prefix such as `Based on the provided searc
 ## Next
 
 1. Fix or replace the NLL proxy, then repeat the E1 and E2 contrasts that matter. A 150-question generation run costs
-   about 35 minutes per condition pair.
+   about 40 minutes per condition pair.
 2. Resume cell 6b to finish 50 questions per dataset. Resume `e3_docs_gen` (24 left) and `e2_attention-sent128`
    (62 left). All three continue where they stopped.
 3. Add a generation run of `graphkv-top3` and `noedge-top3` with everything visible to E3, so the cost of dropping
